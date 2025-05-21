@@ -1,0 +1,23 @@
+<!doctype html>
+<html
+        {% if LANGUAGE_CODE %}
+            lang="{{ LANGUAGE_CODE }}"
+        {% else %}
+            lang="en"
+        {% endif %}
+>
+<head>
+    <!--{% load static %}-->
+    {% load i18n %}
+    {% get_current_language as LANGUAGE_CODE %}
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link href="{% static '' %}" rel="stylesheet"/>
+    <title>{%block title %}jobportal{%endblock%}</title>
+</head>
+<body>
+    {% block content %}
+
+    {% endblock %}
+</body>
+</html>
