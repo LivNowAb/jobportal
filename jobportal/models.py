@@ -47,7 +47,7 @@ class Client (Model):
     address = CharField(max_length=128)
     city = CharField(max_length=20)
     district = ForeignKey(District, on_delete=DO_NOTHING)
-    business_name = CharField(max_length=20)
+    business_name = CharField(max_length=30)
     VAT_number = CharField(max_length=50)
     logo = ImageField(null=True, blank=True)
     contact_email = EmailField(null=True, blank=True)
