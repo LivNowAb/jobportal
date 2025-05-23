@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'jobportal.apps.JobportalConfig',
+    'django_dump_load_utf8',
 ]
 
 MIDDLEWARE = [

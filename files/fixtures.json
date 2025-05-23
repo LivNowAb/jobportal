@@ -1,0 +1,146 @@
+[
+  {
+    "model": "jobportal.businesstype",
+    "pk": 1,
+    "fields": {
+      "name": "Bar"
+    }
+  },
+  {
+    "model": "jobportal.businesstype",
+    "pk": 2,
+    "fields": {
+      "name": "Restaurace"
+    }
+  },
+  {
+    "model": "jobportal.businesstype",
+    "pk": 3,
+    "fields": {
+      "name": "Bistro"
+    }
+  },
+  {
+    "model": "jobportal.region",
+    "pk": 1,
+    "fields": {
+      "name": "Středočeský"
+    }
+  },
+  {
+    "model": "jobportal.region",
+    "pk": 2,
+    "fields": {
+      "name": "Jihočeský"
+    }
+  },
+  {
+    "model": "jobportal.region",
+    "pk": 3,
+    "fields": {
+      "name": "Jihomoravský"
+    }
+  },
+  {
+    "model": "jobportal.district",
+    "pk": 1,
+    "fields": {
+      "name": "Brno",
+      "region_id": 3
+    }
+  },
+  {
+    "model": "jobportal.district",
+    "pk": 2,
+    "fields": {
+      "name": "Benešov",
+      "region_id": 1
+    }
+  },
+  {
+    "model": "jobportal.district",
+    "pk": 3,
+    "fields": {
+      "name": "České Budějovice",
+      "region_id": 2
+    }
+  },
+  {
+    "model": "jobportal.position",
+    "pk": 1,
+    "fields": {
+      "name": "Kuchař/kuchařka"
+    }
+  },
+  {
+    "model": "jobportal.position",
+    "pk": 3,
+    "fields": {
+      "name": "Barman/barmanka"
+    }
+  },
+  {
+    "model": "jobportal.position",
+    "pk": 4,
+    "fields": {
+      "name": "Číšník/číšnice"
+    }
+  },
+  {
+    "model": "jobportal.client",
+    "pk": 1,
+    "fields": {
+      "business_type": 1,
+      "address": "Brno 67",
+      "city": "Brno",
+      "district": 1,
+      "business_name": "Bar v Brně",
+      "VAT_number": "1234",
+      "logo": "",
+      "contact_email": "barvbrne@email.cz",
+      "contact_phone": "777 888 999"
+    }
+  },
+  {
+    "model": "jobportal.client",
+    "pk": 2,
+    "fields": {
+      "business_type": 2,
+      "address": "Benešov 90",
+      "city": "Benešov",
+      "district": 2,
+      "business_name": "Restaurace v Benešově",
+      "VAT_number": "4321",
+      "logo": "",
+      "contact_email": "resvbenesove@email.cz",
+      "contact_phone": "555 777 000"
+    }
+  },
+  {
+    "model": "jobportal.client",
+    "pk": 3,
+    "fields": {
+      "business_type": 3,
+      "address": "České Budějovice 102",
+      "city": "České Budějovice",
+      "district": 3,
+      "business_name": "Bistro v ČB",
+      "VAT_number": "6666",
+      "logo": "",
+      "contact_email": "bistrocb@email.cz",
+      "contact_phone": "123 456 789"
+    }
+  },
+  {
+    "model": "jobportal.advertisement",
+    "pk": 1,
+    "fields": {
+      "position": 1,
+      "title": "Hledáme kuchtíka",
+      "text_content": "přijďte k nám vařit, dík",
+      "salary": "40 000 - 45 000",
+      "client_id": 2,
+      "created": "2025-05-21T19:14:28.429Z"
+    }
+  }
+]
