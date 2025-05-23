@@ -21,6 +21,6 @@ from jobportal.views import home, AdDetail, AdsListView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home, name="home"),
-    path('advertisement/detail/', AdDetail.as_view(), name='ad_detail'),
+    path('advertisement/detail/<int:pk>', AdDetail.as_view(), name='ad_detail'),
     path('advertisement/ads_list/', AdsListView.as_view(), name='ads_list'),
 ]

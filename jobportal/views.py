@@ -14,7 +14,7 @@ def ad_list(request):
 def client_list(request):
     return render(request, "client/index.html")
 
-class AdDetail(ListView):
+class AdDetail(DetailView):
     model = Advertisement
     template_name = "advertisement/detail.html"
     context_object_name = 'ad_detail'

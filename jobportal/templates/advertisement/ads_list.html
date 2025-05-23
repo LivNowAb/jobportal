@@ -6,7 +6,7 @@
      {% for advertisement in ads_list %}
         <div>
             <ul>
-              <li>{{ advertisement.title }}</li>
+                <li><a href="{% url 'ad_detail' advertisement.id %}">{{ advertisement.title }}</a></li>
               <li>{{ advertisement.created }}</li>
               <li>{{ advertisement.text_content }}</li>
             </ul>
