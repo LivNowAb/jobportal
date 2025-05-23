@@ -142,5 +142,17 @@
       "client_id": 2,
       "created": "2025-05-21T19:14:28.429Z"
     }
+  },
+  {
+    "model": "jobportal.advertisement",
+    "pk": 2,
+    "fields": {
+      "position": 3,
+      "title": "Hledáme barmana",
+      "text_content": "Pojď míchat drinčíky",
+      "salary": "35 000 - 40 000",
+      "client_id": 1,
+      "created": "2025-05-23T16:31:02.252Z"
+    }
   }
 ]

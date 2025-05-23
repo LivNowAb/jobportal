@@ -68,6 +68,9 @@ class Advertisement (Model):
     client_id = ForeignKey(Client, on_delete=DO_NOTHING)
     created = DateTimeField(auto_now_add=True)
 
+    class Meta:
+        ordering = ['-created']
+
     def __repr__(self):
         return f'{self.title}'
 
