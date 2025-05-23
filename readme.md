@@ -35,43 +35,43 @@ Authors: Juraj Miškolczi, Livia Nowak Abdul, Nicole Taudy
 
 ## Databases:
 
-- [ ] Client
-   - [ ] business
-   - [ ] address
-   - [ ] city
-   - [ ] district
-   - [ ] business type
-   - [ ] VAT number 
-   - [ ] logo
-   - [ ] contact
-       - [ ] email
-       - [ ] phone number
+- [x] Client
+   - [x] business type
+   - [x] address
+   - [x] city
+   - [x] district
+   - [x] business name
+   - [x] VAT number 
+   - [x] logo
+   - [x] contact
+       - [x] email
+       - [x] phone number
    
 
-- [ ] Business type
-   - [ ] name
+- [x] Business type
+   - [x] name
 
 
-- [ ] Advertisement
-   - [ ] position
-   - [ ] title
-   - [ ] text content
-   - [ ] salary
-   - [ ] client id 
-   - [ ] created
+- [x] Advertisement
+   - [x] position
+   - [x] title
+   - [x] text content
+   - [x] salary
+   - [x] client id 
+   - [x] created
  
   
-- [ ] Position
-    - [ ] name
+- [x] Position
+    - [x] name
 
 
-- [ ] Region
-    - [ ] name
+- [x] Region
+    - [x] name
 
 
-- [ ] District
-    - [ ] name
-    - [ ] region id
+- [x] District
+    - [x] name
+    - [x] region id
 
 
    ![Screenshot_2025-05-20_at_19.38.59.png](Screenshot_2025-05-20_at_19.38.59.png)

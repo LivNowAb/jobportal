@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <h1>Seznam inzerátů</h1>
+    <div>
+     {% for advertisement in ads_list %}
+        <div>
+            <ul>
+              <li>{{ advertisement.title }}</li>
+              <li>{{ advertisement.created }}</li>
+              <li>{{ advertisement.text_content }}</li>
+            </ul>
+        </div>
+    {% endfor %}
+    </div>
+{% endblock %}

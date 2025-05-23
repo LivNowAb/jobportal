@@ -18,3 +18,8 @@ class AdDetail(ListView):
     model = Advertisement
     template_name = "advertisement/detail.html"
     context_object_name = 'ad_detail'
+
+class AdsListView(ListView):
+    model = Advertisement
+    template_name = "advertisement/ads_list.html"
+    context_object_name = 'ads_list'
