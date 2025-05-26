@@ -1,4 +1,6 @@
-from django.db.models import ForeignKey, DO_NOTHING, CharField, DateTimeField, Model, TextField, ImageField, EmailField
+from django.contrib.auth.models import User
+from django.db.models import ForeignKey, DO_NOTHING, CharField, DateTimeField, Model, TextField, ImageField, EmailField, \
+    FileField, OneToOneField
 
 
 class BusinessType (Model):
@@ -43,6 +45,7 @@ class Position (Model):
 
 
 class Client (Model):
+    user = OneToOneField(User, null=True, on_delete=DO_NOTHING)
     business_type = ForeignKey(BusinessType, on_delete=DO_NOTHING)
     address = CharField(max_length=128)
     city = CharField(max_length=20)
@@ -76,3 +79,17 @@ class Advertisement (Model):
 
     def __str__(self):
         return f'{self.title}'
+
+class Response(Model):
+    advertisement = ForeignKey(Advertisement, on_delete=DO_NOTHING, related_name='responses')
+    name = CharField(max_length=100)
+    email = EmailField()
+    message = TextField()
+    created = DateTimeField(auto_now_add=True)
+    cv = FileField(upload_to='cvs/', null=True, blank=True)
+
+    def __repr__(self):
+        return f'{self.advertisement}'
+
+    def __str__(self):
+        return f'{self.advertisement}'

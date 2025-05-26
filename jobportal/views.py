@@ -1,7 +1,9 @@
-from django.shortcuts import render
-from django.views.generic import DetailView, ListView
+from django.contrib.auth.models import Group
+from django.shortcuts import render, redirect
+from django.views.generic import DetailView, ListView, FormView
 
-from jobportal.models import Advertisement
+from jobportal.forms import RegistrationForm, ResponseForm
+from jobportal.models import Advertisement, Client
 
 
 # Create your views here.
@@ -19,7 +21,43 @@ class AdDetail(DetailView):
     template_name = "advertisement/detail.html"
     context_object_name = 'ad_detail'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        if 'submitted' in self.request.GET:
+            context['form_submitted'] = True
+        else:
+            context['form_submitted'] = False
+            context['form'] = ResponseForm()
+        return context
+
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        form = ResponseForm(request.POST, request.FILES)  # přidáno request.FILES
+        if form.is_valid():
+            response = form.save(commit=False)
+            response.advertisement = self.object
+            response.save()
+            return redirect(f'{self.request.path}?submitted=True')
+        else:
+            context = self.get_context_data()
+            context['form'] = form
+            return self.render_to_response(context)
+
 class AdsListView(ListView):
     model = Advertisement
     template_name = "advertisement/ads_list.html"
     context_object_name = 'ads_list'
+
+class RegistrationView(FormView):
+    template_name = "registration/registration.html"
+    form_class = RegistrationForm
+    success_url = "client/profile"
+
+    def form_valid(self, form):
+        user = form.save()
+        return super().form_valid(form)
+
+class ClientProfileView(DetailView):
+    model = Client
+    template_name = "client/index.html"
+    context_object_name = 'client_detail'
