@@ -29,7 +29,7 @@ urlpatterns = [
     path( "password_change/", PasswordChangeView.as_view(template_name="registration/password_change.html"), name="password_change"),
     path("registration/client/profile", ProfileView.as_view(template_name="client/index.html"), name="client_reg_profile"),
     path("accounts/profile/", ProfileView.as_view(template_name="client/index.html"), name="client_log_profile"),
-    # zobrazi muj profil po prihlaseni
+    # redirects to logged user profile
     path("accounts/profile/<int:pk>", ClientProfileView.as_view(template_name="client/index.html"), name="client_detail"),
-    # zobrazi jakykoliv profil po zadani id
+    # redirects to any user profile with the given pk
 ]

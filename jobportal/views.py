@@ -31,7 +31,7 @@ class AdDetail(DetailView):
 
     def post(self, request, *args, **kwargs):
         self.object = self.get_object()
-        form = ResponseForm(request.POST, request.FILES)  # přidáno request.FILES
+        form = ResponseForm(request.POST, request.FILES)
         if form.is_valid():
             response = form.save(commit=False)
             response.advertisement = self.object
