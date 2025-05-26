@@ -1,6 +1,5 @@
-from django.contrib.auth.models import Group
 from django.shortcuts import render, redirect
-from django.views.generic import DetailView, ListView, FormView
+from django.views.generic import DetailView, ListView, FormView, TemplateView
 
 from jobportal.forms import RegistrationForm, ResponseForm
 from jobportal.models import Advertisement, Client
@@ -61,3 +60,13 @@ class ClientProfileView(DetailView):
     model = Client
     template_name = "client/index.html"
     context_object_name = 'client_detail'
+
+class ProfileView(TemplateView):
+    model = Client
+    template_name = "client/index.html"
+    context_object_name = 'client_detail'
+
+    def get_context_data(self, **kwargs):
+        context = super(ProfileView, self).get_context_data(**kwargs)
+        context['client_detail'] = Client.objects.get(user=self.request.user)
+        return context

@@ -53,7 +53,7 @@ class Client (Model):
     business_name = CharField(max_length=30)
     VAT_number = CharField(max_length=50)
     logo = ImageField(null=True, blank=True)
-    contact_email = EmailField(null=True, blank=True)
+    contact_email = EmailField(null=True)
     contact_phone = CharField(max_length=15)
 
     def __repr__(self):
