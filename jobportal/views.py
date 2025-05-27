@@ -15,6 +15,9 @@ def ad_list(request):
 def client_list(request):
     return render(request, "client/index.html")
 
+def pricing_list(request):
+    return render(request, "pricing.html")
+
 class AdDetail(DetailView):
     model = Advertisement
     template_name = "advertisement/detail.html"

@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.contrib.auth.views import PasswordChangeView, LoginView
 from django.urls import path
-from jobportal.views import home, AdDetail, AdsListView, RegistrationView, ClientProfileView, ProfileView
+from jobportal.views import home, AdDetail, AdsListView, RegistrationView, ClientProfileView, ProfileView, pricing_list
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -32,4 +32,5 @@ urlpatterns = [
     # redirects to logged user profile
     path("accounts/profile/<int:pk>", ClientProfileView.as_view(template_name="client/index.html"), name="client_detail"),
     # redirects to any user profile with the corresponding pk
+    path("pricing/", pricing_list, name="pricing"),
 ]
