@@ -31,5 +31,5 @@ urlpatterns = [
     path("accounts/profile/", ProfileView.as_view(template_name="client/index.html"), name="client_log_profile"),
     # redirects to logged user profile
     path("accounts/profile/<int:pk>", ClientProfileView.as_view(template_name="client/index.html"), name="client_detail"),
-    # redirects to any user profile with the given pk
+    # redirects to any user profile with the corresponding pk
 ]
