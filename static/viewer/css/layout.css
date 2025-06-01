@@ -1,0 +1,192 @@
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  background: white;
+  color: black;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+}
+
+
+.main-home {
+  height: 100vh;
+  color: black;
+  font-size: 2rem;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: 0 auto;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-grow: 1;
+}
+
+
+header {
+  background: black;
+  height: 80px;
+  display: flex;
+  color: white;
+  font-style: normal;
+  font-family: Arial, Helvetica, sans-serif;
+  justify-content: left;
+  align-items: center;
+  text-align: center;
+  box-sizing: border-box;
+  flex: 50px 0 0;
+}
+
+footer {
+  background: black;
+  height: 50px;
+  display: flex;
+  color: white;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+}
+
+h1 {
+
+  font-size: 3rem;
+  padding: 20px;
+}
+
+a.logo {
+  font-size: 3rem;
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+  margin: 0;
+  padding: 0;
+}
+
+a.logo:hover {
+  color: khaki;
+}
+
+.welcome {
+  display: block;
+  color: black;
+  font-size: 5rem;
+  align-items: center;
+  justify-content: center;
+  width: 100vh
+ }
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.5rem;
+  padding: 12px 12px;
+  background-color: khaki;
+}
+
+.button-menu {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 20px;
+}
+
+.button-menu .button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: black;
+  color: white;
+  text-decoration: none;
+  border-radius: 10px;
+  font-size: 16px;
+  transition: background-color 0.1s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.button-menu .button:hover {
+  transform: scale(1.08);
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+}
+
+.button-menu .button:active {
+  transform: scale(1.08);
+  }
+
+.button:hover {
+  color: khaki;
+}
+
+table, th, td{
+
+  border: 0.3px solid black;
+  border-collapse: collapse;
+  text-align: left;
+  justify-content: center;
+  padding: .5em;
+  margin: 1.25em auto;
+  color: black;
+}
+
+table {
+  margin-top: 20px;
+  width: 900px;
+  background-color: #fdf8ff;
+}
+
+.button-add{
+  display: inline-block;
+  padding: 10px 10px;
+  background-color: black;
+  color: white;
+  text-decoration: none;
+  border-radius: 10px;
+  font-size: 16px;
+  transition: background-color 0.1s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin: 20px
+}
+
+.button-add:hover {
+  color: khaki;
+  transform: scale(1.1);
+}
+
+.centered {
+  text-align: center;
+}
+
+.actors-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto;
+}
+
+.actors-list li {
+  margin: 5px 0;
+}
+
+.detail-page {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: center;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+  height: 100%
+}
+
