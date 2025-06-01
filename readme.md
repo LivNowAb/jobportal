@@ -74,4 +74,4 @@ Authors: Juraj Miškolczi, Livia Nowak Abdul, Nicole Taudy
     - [x] region id
 
 
-   ![Screenshot_2025-05-20_at_19.38.59.png](Screenshot_2025-05-20_at_19.38.59.png)
+![jobportal_ERD.png](jobportal_ERD.png)
