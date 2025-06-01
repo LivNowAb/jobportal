@@ -1,14 +1,12 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container fixed">
-        <a class="navbar-brand">jobportal</a>
-            <span class="navbar-toggler-icon"></span>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-                <a class="nav-item nav-link active" href="{% url 'home' %}">Hlavní stránka</a>
-                <a class="nav-item nav-link active" href="{% url 'ads_list' %}">Inzeráty</a>
-                <a class="nav-item nav-link active" href="{% url 'ad_creation' %}">Přidat inzerát</a>
-                <a class="nav-item nav-link active" href="{% url 'pricing' %}">Ceník</a>
-                <a class="nav-item nav-link active" href="{% url 'client_creation' %}">Vytvořit podnik</a> #prozatimni reseni
+<nav>
+    <div>
+        <div>
+            <div class="button-menu">
+                <a class="button" href="{% url 'home' %}">Hlavní stránka</a>
+                <a class="button" href="{% url 'ads_list' %}">Inzeráty</a>
+                <a class="button" href="{% url 'ad_creation' %}">Přidat inzerát</a>
+                <a class="button" href="{% url 'pricing' %}">Ceník</a>
+                <a class="button" href="{% url 'client_creation' %}">Vytvořit podnik</a>
             </div>
         </div>
     </div>
