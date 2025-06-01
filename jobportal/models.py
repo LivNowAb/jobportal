@@ -68,7 +68,7 @@ class Advertisement (Model):
     title = CharField(max_length=128)
     text_content = TextField()
     salary = CharField(max_length=128)
-    client_id = ForeignKey(Client, on_delete=DO_NOTHING)
+    client = ForeignKey(Client, on_delete=DO_NOTHING, null=True)
     created = DateTimeField(auto_now_add=True)
 
     class Meta:

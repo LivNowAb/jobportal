@@ -1,0 +1,70 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <div>
+    <div>
+        <h2>Založit nový podnik</h2>
+    </div>
+    <div>
+        <form method="post" class="" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div>
+                {{ form.business_name.label_tag }}
+                {{ form.business_name }}
+                {{ form.business_name.errors }}
+            </div>
+
+            <div>
+                {{ form.business_type.label_tag }}
+                {{ form.business_type }}
+                {{ form.business_type.errors }}
+            </div>
+
+            <div>
+                {{ form.VAT_number.label_tag }}
+                {{ form.VAT_number }}
+                {{ form.VAT_number.errors }}
+            </div>
+
+            <div>
+                {{ form.address.label_tag }}
+                {{ form.address }}
+                {{ form.address.errors }}
+            </div>
+
+            <div>
+                {{ form.city.label_tag }}
+                {{ form.city }}
+                {{ form.city.errors }}
+            </div>
+
+            <div>
+                {{ form.district.label_tag }}
+                {{ form.district }}
+                {{ form.district.errors }}
+            </div>
+
+            <div>
+                {{ form.contact_email.label_tag }}
+                {{ form.contact_email }}
+                {{ form.contact_email.errors }}
+            </div>
+
+            <div>
+                {{ form.contact_phone.label_tag }}
+                {{ form.contact_phone }}
+                {{ form.contact_phone.errors }}
+            </div>
+
+            <div>
+                {{ form.logo.label_tag }}
+                {{ form.logo }}
+                {{ form.logo.errors }}
+            </div>
+
+
+            <button type="submit" class="">Založit podnik</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

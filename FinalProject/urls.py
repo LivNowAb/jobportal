@@ -17,7 +17,8 @@ Including another URLconf
 from django.contrib import admin
 from django.contrib.auth.views import PasswordChangeView, LoginView
 from django.urls import path
-from jobportal.views import home, AdDetail, AdsListView, RegistrationView, ClientProfileView, ProfileView, pricing_list
+from jobportal.views import home, AdDetail, AdsListView, RegistrationView, ClientProfileView, pricing_list, \
+    CreateAd, ClientProfileCreation
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,11 +27,20 @@ urlpatterns = [
     path('advertisement/ads_list/', AdsListView.as_view(), name='ads_list'),
     path("login/", LoginView.as_view(template_name="registration/login.html"), name="login"),
     path("registration/", RegistrationView.as_view(), name="registration"),
-    path( "password_change/", PasswordChangeView.as_view(template_name="registration/password_change.html"), name="password_change"),
-    path("registration/client/profile", ProfileView.as_view(template_name="client/index.html"), name="client_reg_profile"),
-    path("accounts/profile/", ProfileView.as_view(template_name="client/index.html"), name="client_log_profile"),
+    path( "password_change/", PasswordChangeView.as_view(template_name="registration/password_change.html"),
+          name="password_change"),
+    path("registration/client/profile", ClientProfileView.as_view(template_name="client/index.html"),
+         name="client_reg_profile"),
+    path("accounts/profile/", ClientProfileView.as_view(template_name="client/index.html"),
+         name="client_log_profile"),
     # redirects to logged user profile
-    path("accounts/profile/<int:pk>", ClientProfileView.as_view(template_name="client/index.html"), name="client_detail"),
+    path("accounts/profile/<int:pk>", ClientProfileView.as_view(template_name="client/index.html"),
+         name="client_detail"),
     # redirects to any user profile with the corresponding pk
     path("pricing/", pricing_list, name="pricing"),
+    path("create_ad/", CreateAd.as_view(template_name="advertisement/create.html"), name="ad_creation"),
+    path("create_client/", ClientProfileCreation.as_view(template_name="client/create.html"),
+         name="client_creation"),
+    path("create_client/client/index/", ClientProfileView.as_view(template_name="client/index.html"))
+    #TODO: OPRAVIT
 ]

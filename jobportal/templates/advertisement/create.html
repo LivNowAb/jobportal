@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div>
+    <div>
+        <h2>Založit nový inzerát</h2>
+    </div>
+    <div>
+        <form method="post" class="" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div>
+                {{ form.heading.label_tag }}
+                {{ form.heading }}
+                {{ form.heading.errors }}
+            </div>
+
+            <div>
+                {{ form.position.label_tag }}
+                {{ form.position }}
+                {{ form.position.errors }}
+            </div>
+
+            <div>
+                {{ form.text.label_tag }}
+                {{ form.text }}
+                {{ form.text.errors }}
+            </div>
+
+            <div>
+                {{ form.salary.label_tag }}
+                {{ form.salary }}
+                {{ form.salary.errors }}
+            </div>
+
+
+            <button type="submit" class="">Vystavit inzerát</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

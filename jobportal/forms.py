@@ -2,8 +2,9 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.forms import CharField, ModelChoiceField, Textarea
+from django.forms.fields import EmailField, ImageField
 
-from .models import Response, Advertisement, Position
+from .models import Response, Advertisement, Position, Client, BusinessType, District
 
 
 class AdCreation(forms.ModelForm):
@@ -12,9 +13,30 @@ class AdCreation(forms.ModelForm):
         fields = ["heading", "position", "text", "salary"]
 
     heading = CharField(label="Název", max_length=128)
-    position = ModelChoiceField(label="Pracovní Pozice", queryset=Position.objects, widget=forms.Select(attrs={"class": "form-control"}))
-    text = CharField(label="Obsah", widget=Textarea(attrs={"class": "form-control", "cols": 40, "rows": 3}), required=True)
+    position = ModelChoiceField(label="Pracovní Pozice", queryset=Position.objects,
+                                widget=forms.Select(attrs={"class": "form-control"}))
+    text = CharField(label="Obsah", widget=Textarea(attrs={"class": "form-control", "cols": 40, "rows": 3}),
+                     required=True)
     salary = CharField(label="Mzda", max_length=250)
+
+
+class ClientCreation(forms.ModelForm):
+    class Meta:
+        model = Client
+        fields = ["business_name", "business_type", "VAT_number", "address", "city", "district", "contact_email",
+                  "contact_phone", "logo"]
+
+    business_name = CharField(label="Název podniku", max_length=250)
+    business_type = ModelChoiceField(label="Typ provozovny", queryset=BusinessType.objects,
+                                widget=forms.Select(attrs={"class": "form-control"}))
+    VAT_number = CharField(label="IČO/DIČ", max_length=25, required=True)
+    address = CharField(label="Adresa provozovny", max_length=250)
+    city = CharField(label="Město", max_length=250)
+    district = ModelChoiceField(label="Okres", queryset=District.objects,
+                                widget=forms.Select(attrs={"class": "form-control"}))
+    contact_email = EmailField(label="Kontaktní e-mail provozovny")
+    contact_phone = CharField(label="Kontaktní telefonní číslo provozovny", max_length=128)
+    logo = ImageField(label="Logo provozovny", required=False)
 
 
 class ResponseForm(forms.ModelForm):
@@ -39,8 +61,8 @@ class RegistrationForm(UserCreationForm):
     password1 = forms.CharField(
         label='Heslo',
         widget=forms.PasswordInput(attrs=
-                                   {'class': 'form-control'
-                                    }))
+                                   {'class': 'form-control'})
+    )
 
     password2 = forms.CharField(
         label='Heslo znovu',
