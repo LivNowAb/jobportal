@@ -1,7 +1,8 @@
+from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.shortcuts import render, redirect
-from django.views.generic import DetailView, ListView, FormView, TemplateView
+from django.views.generic import DetailView, ListView, FormView, TemplateView, CreateView
 
-from jobportal.forms import RegistrationForm, ResponseForm
+from jobportal.forms import RegistrationForm, ResponseForm, AdCreation
 from jobportal.models import Advertisement, Client
 
 
@@ -73,3 +74,10 @@ class ProfileView(TemplateView):
         context = super(ProfileView, self).get_context_data(**kwargs)
         context['client_detail'] = Client.objects.get(user=self.request.user)
         return context
+    # fetches Client object that is linked to currently logged user
+
+# class CreateAd(PermissionRequiredMixin, CreateView):
+#     template_name = "advertisement/create.html"
+#     form_class= AdCreation
+#     success_url = "ads_list"
+#     permission_required = "" #tady nevim

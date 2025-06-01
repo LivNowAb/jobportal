@@ -1,1 +1,1102 @@
-[]
+[
+  {
+    "model": "jobportal.businesstype",
+    "pk": 4,
+    "fields": {
+      "name": "Bar"
+    }
+  },
+  {
+    "model": "jobportal.businesstype",
+    "pk": 37,
+    "fields": {
+      "name": "Bistro"
+    }
+  },
+  {
+    "model": "jobportal.businesstype",
+    "pk": 39,
+    "fields": {
+      "name": "Čajovna"
+    }
+  },
+  {
+    "model": "jobportal.businesstype",
+    "pk": 40,
+    "fields": {
+      "name": "Diskotéka/klub"
+    }
+  },
+  {
+    "model": "jobportal.businesstype",
+    "pk": 41,
+    "fields": {
+      "name": "Kavárna"
+    }
+  },
+  {
+    "model": "jobportal.businesstype",
+    "pk": 43,
+    "fields": {
+      "name": "Party/event catering"
+    }
+  },
+  {
+    "model": "jobportal.businesstype",
+    "pk": 44,
+    "fields": {
+      "name": "Pekárna/cukrárna"
+    }
+  },
+  {
+    "model": "jobportal.businesstype",
+    "pk": 45,
+    "fields": {
+      "name": "Pizzerie"
+    }
+  },
+  {
+    "model": "jobportal.businesstype",
+    "pk": 46,
+    "fields": {
+      "name": "Restaurace"
+    }
+  },
+  {
+    "model": "jobportal.businesstype",
+    "pk": 48,
+    "fields": {
+      "name": "Stánkový prodej"
+    }
+  },
+  {
+    "model": "jobportal.businesstype",
+    "pk": 49,
+    "fields": {
+      "name": "Stravování v práci/ve škole"
+    }
+  },
+  {
+    "model": "jobportal.businesstype",
+    "pk": 50,
+    "fields": {
+      "name": "Sushi"
+    }
+  },
+  {
+    "model": "jobportal.businesstype",
+    "pk": 51,
+    "fields": {
+      "name": "Vinárna/vinotéka"
+    }
+  },
+  {
+    "model": "jobportal.businesstype",
+    "pk": 52,
+    "fields": {
+      "name": "Ostatní"
+    }
+  },
+  {
+    "model": "jobportal.region",
+    "pk": 4,
+    "fields": {
+      "name": "Jihočeský"
+    }
+  },
+  {
+    "model": "jobportal.region",
+    "pk": 28,
+    "fields": {
+      "name": "Hlavní město Praha"
+    }
+  },
+  {
+    "model": "jobportal.region",
+    "pk": 35,
+    "fields": {
+      "name": "Jihočeský kraj"
+    }
+  },
+  {
+    "model": "jobportal.region",
+    "pk": 36,
+    "fields": {
+      "name": "Jihomoravský kraj"
+    }
+  },
+  {
+    "model": "jobportal.region",
+    "pk": 37,
+    "fields": {
+      "name": "Karlovarský kraj"
+    }
+  },
+  {
+    "model": "jobportal.region",
+    "pk": 38,
+    "fields": {
+      "name": "Královéhradecký kraj"
+    }
+  },
+  {
+    "model": "jobportal.region",
+    "pk": 39,
+    "fields": {
+      "name": "Liberecký kraj"
+    }
+  },
+  {
+    "model": "jobportal.region",
+    "pk": 40,
+    "fields": {
+      "name": "Moravskoslezský kraj"
+    }
+  },
+  {
+    "model": "jobportal.region",
+    "pk": 41,
+    "fields": {
+      "name": "Olomoucký kraj"
+    }
+  },
+  {
+    "model": "jobportal.region",
+    "pk": 42,
+    "fields": {
+      "name": "Pardubický kraj"
+    }
+  },
+  {
+    "model": "jobportal.region",
+    "pk": 44,
+    "fields": {
+      "name": "Plzeňský kraj"
+    }
+  },
+  {
+    "model": "jobportal.region",
+    "pk": 45,
+    "fields": {
+      "name": "Středočeský kraj"
+    }
+  },
+  {
+    "model": "jobportal.region",
+    "pk": 46,
+    "fields": {
+      "name": "Ústecký kraj"
+    }
+  },
+  {
+    "model": "jobportal.region",
+    "pk": 47,
+    "fields": {
+      "name": "Vysočina"
+    }
+  },
+  {
+    "model": "jobportal.region",
+    "pk": 48,
+    "fields": {
+      "name": "Zlínský kraj"
+    }
+  },
+  {
+    "model": "jobportal.district",
+    "pk": 4,
+    "fields": {
+      "name": "Jihočeský",
+      "region_id": 4
+    }
+  },
+  {
+    "model": "jobportal.district",
+    "pk": 118,
+    "fields": {
+      "name": "Benešov",
+      "region_id": 45
+    }
+  },
+  {
+    "model": "jobportal.district",
+    "pk": 119,
+    "fields": {
+      "name": "Beroun",
+      "region_id": 45
+    }
+  },
+  {
+    "model": "jobportal.district",
+    "pk": 120,
+    "fields": {
+      "name": "Blansko",
+      "region_id": 36
+    }
+  },
+  {
+    "model": "jobportal.district",
+    "pk": 121,
+    "fields": {
+      "name": "Brno-město",
+      "region_id": 36
+    }
+  },
+  {
+    "model": "jobportal.district",
+    "pk": 122,
+    "fields": {
+      "name": "Brno-venkov",
+      "region_id": 36
+    }
+  },
+  {
+    "model": "jobportal.district",
+    "pk": 123,
+    "fields": {
+      "name": "Bruntál",
+      "region_id": 40
+    }
+  },
+  {
+    "model": "jobportal.district",
+    "pk": 124,
+    "fields": {
+      "name": "Břeclav",
+      "region_id": 36
+    }
+  },
+  {
+    "model": "jobportal.district",
+    "pk": 125,
+    "fields": {
+      "name": "Česká Lípa",
+      "region_id": 39
+    }
+  },
+  {
+    "model": "jobportal.district",
+    "pk": 126,
+    "fields": {
+      "name": "České Budějovice",
+      "region_id": 35
+    }
+  },
+  {
+    "model": "jobportal.district",
+    "pk": 127,
+    "fields": {
+      "name": "Český Krumlov",
+      "region_id": 35
+    }
+  },
+  {
+    "model": "jobportal.district",
+    "pk": 128,
+    "fields": {
+      "name": "Děčín",
+      "region_id": 46
+    }
+  },
+  {
+    "model": "jobportal.district",
+    "pk": 129,
+    "fields": {
+      "name": "Domažlice",
+      "region_id": 44
+    }
+  },
+  {
+    "model": "jobportal.district",
+    "pk": 130,
+    "fields": {
+      "name": "Frýdek-Místek",
+      "region_id": 40
+    }
+  },
+  {
+    "model": "jobportal.district",
+    "pk": 131,
+    "fields": {
+      "name": "Havlíčkův Brod",
+      "region_id": 47
+    }
+  },
+  {
+    "model": "jobportal.district",
+    "pk": 132,
+    "fields": {
+      "name": "Hodonín",
+      "region_id": 36
+    }
+  },
+  {
+    "model": "jobportal.district",
+    "pk": 133,
+    "fields": {
+      "name": "Hradec Králové",
+      "region_id": 38
+    }
+  },
+  {
+    "model": "jobportal.district",
+    "pk": 134,
+    "fields": {
+      "name": "Cheb",
+      "region_id": 37
+    }
+  },
+  {
+    "model": "jobportal.district",
+    "pk": 135,
+    "fields": {
+      "name": "Chomutov",
+      "region_id": 46
+    }
+  },
+  {
+    "model": "jobportal.district",
+    "pk": 136,
+    "fields": {
+      "name": "Chrudim",
+      "region_id": 42
+    }
+  },
+  {
+    "model": "jobportal.district",
+    "pk": 137,
+    "fields": {
+      "name": "Jablonec nad Nisou",
+      "region_id": 39
+    }
+  },
+  {
+    "model": "jobportal.district",
+    "pk": 138,
+    "fields": {
+      "name": "Jeseník",
+      "region_id": 41
+    }
+  },
+  {
+    "model": "jobportal.district",
+    "pk": 139,
+    "fields": {
+      "name": "Jičín",
+      "region_id": 38
+    }
+  },
+  {
+    "model": "jobportal.district",
+    "pk": 140,
+    "fields": {
+      "name": "Jihlava",
+      "region_id": 47
+    }
+  },
+  {
+    "model": "jobportal.district",
+    "pk": 141,
+    "fields": {
+      "name": "Jindřichův Hradec",
+      "region_id": 35
+    }
+  },
+  {
+    "model": "jobportal.district",
+    "pk": 142,
+    "fields": {
+      "name": "Karlovy Vary",
+      "region_id": 37
+    }
+  },
+  {
+    "model": "jobportal.district",
+    "pk": 143,
+    "fields": {
+      "name": "Karviná",
+      "region_id": 40
+    }
+  },
+  {
+    "model": "jobportal.district",
+    "pk": 144,
+    "fields": {
+      "name": "Kladno",
+      "region_id": 45
+    }
+  },
+  {
+    "model": "jobportal.district",
+    "pk": 145,
+    "fields": {
+      "name": "Klatovy",
+      "region_id": 44
+    }
+  },
+  {
+    "model": "jobportal.district",
+    "pk": 146,
+    "fields": {
+      "name": "Kolín",
+      "region_id": 45
+    }
+  },
+  {
+    "model": "jobportal.district",
+    "pk": 147,
+    "fields": {
+      "name": "Kroměříž",
+      "region_id": 48
+    }
+  },
+  {
+    "model": "jobportal.district",
+    "pk": 148,
+    "fields": {
+      "name": "Kutná Hora",
+      "region_id": 45
+    }
+  },
+  {
+    "model": "jobportal.district",
+    "pk": 149,
+    "fields": {
+      "name": "Liberec",
+      "region_id": 39
+    }
+  },
+  {
+    "model": "jobportal.district",
+    "pk": 150,
+    "fields": {
+      "name": "Litoměřice",
+      "region_id": 46
+    }
+  },
+  {
+    "model": "jobportal.district",
+    "pk": 151,
+    "fields": {
+      "name": "Louny",
+      "region_id": 46
+    }
+  },
+  {
+    "model": "jobportal.district",
+    "pk": 152,
+    "fields": {
+      "name": "Mělník",
+      "region_id": 45
+    }
+  },
+  {
+    "model": "jobportal.district",
+    "pk": 153,
+    "fields": {
+      "name": "Mladá Boleslav",
+      "region_id": 45
+    }
+  },
+  {
+    "model": "jobportal.district",
+    "pk": 154,
+    "fields": {
+      "name": "Most",
+      "region_id": 46
+    }
+  },
+  {
+    "model": "jobportal.district",
+    "pk": 155,
+    "fields": {
+      "name": "Náchod",
+      "region_id": 38
+    }
+  },
+  {
+    "model": "jobportal.district",
+    "pk": 156,
+    "fields": {
+      "name": "Nový Jičín",
+      "region_id": 40
+    }
+  },
+  {
+    "model": "jobportal.district",
+    "pk": 157,
+    "fields": {
+      "name": "Nymburk",
+      "region_id": 45
+    }
+  },
+  {
+    "model": "jobportal.district",
+    "pk": 158,
+    "fields": {
+      "name": "Olomouc",
+      "region_id": 41
+    }
+  },
+  {
+    "model": "jobportal.district",
+    "pk": 159,
+    "fields": {
+      "name": "Opava",
+      "region_id": 40
+    }
+  },
+  {
+    "model": "jobportal.district",
+    "pk": 160,
+    "fields": {
+      "name": "Ostrava-město",
+      "region_id": 40
+    }
+  },
+  {
+    "model": "jobportal.district",
+    "pk": 161,
+    "fields": {
+      "name": "Pardubice",
+      "region_id": 42
+    }
+  },
+  {
+    "model": "jobportal.district",
+    "pk": 162,
+    "fields": {
+      "name": "Pelhřimov",
+      "region_id": 47
+    }
+  },
+  {
+    "model": "jobportal.district",
+    "pk": 163,
+    "fields": {
+      "name": "Písek",
+      "region_id": 35
+    }
+  },
+  {
+    "model": "jobportal.district",
+    "pk": 164,
+    "fields": {
+      "name": "Plzeň-jih",
+      "region_id": 44
+    }
+  },
+  {
+    "model": "jobportal.district",
+    "pk": 165,
+    "fields": {
+      "name": "Plzeň-město",
+      "region_id": 44
+    }
+  },
+  {
+    "model": "jobportal.district",
+    "pk": 166,
+    "fields": {
+      "name": "Plzeň-sever",
+      "region_id": 44
+    }
+  },
+  {
+    "model": "jobportal.district",
+    "pk": 167,
+    "fields": {
+      "name": "Praha (hlavní město)",
+      "region_id": 28
+    }
+  },
+  {
+    "model": "jobportal.district",
+    "pk": 168,
+    "fields": {
+      "name": "Praha-východ",
+      "region_id": 45
+    }
+  },
+  {
+    "model": "jobportal.district",
+    "pk": 169,
+    "fields": {
+      "name": "Praha-západ",
+      "region_id": 45
+    }
+  },
+  {
+    "model": "jobportal.district",
+    "pk": 170,
+    "fields": {
+      "name": "Prachatice",
+      "region_id": 35
+    }
+  },
+  {
+    "model": "jobportal.district",
+    "pk": 171,
+    "fields": {
+      "name": "Prostějov",
+      "region_id": 41
+    }
+  },
+  {
+    "model": "jobportal.district",
+    "pk": 172,
+    "fields": {
+      "name": "Přerov",
+      "region_id": 41
+    }
+  },
+  {
+    "model": "jobportal.district",
+    "pk": 173,
+    "fields": {
+      "name": "Příbram",
+      "region_id": 45
+    }
+  },
+  {
+    "model": "jobportal.district",
+    "pk": 174,
+    "fields": {
+      "name": "Rakovník",
+      "region_id": 45
+    }
+  },
+  {
+    "model": "jobportal.district",
+    "pk": 175,
+    "fields": {
+      "name": "Rokycany",
+      "region_id": 44
+    }
+  },
+  {
+    "model": "jobportal.district",
+    "pk": 176,
+    "fields": {
+      "name": "Rychnov nad Kněžnou",
+      "region_id": 38
+    }
+  },
+  {
+    "model": "jobportal.district",
+    "pk": 177,
+    "fields": {
+      "name": "Semily",
+      "region_id": 39
+    }
+  },
+  {
+    "model": "jobportal.district",
+    "pk": 178,
+    "fields": {
+      "name": "Sokolov",
+      "region_id": 37
+    }
+  },
+  {
+    "model": "jobportal.district",
+    "pk": 179,
+    "fields": {
+      "name": "Strakonice",
+      "region_id": 35
+    }
+  },
+  {
+    "model": "jobportal.district",
+    "pk": 180,
+    "fields": {
+      "name": "Svitavy",
+      "region_id": 42
+    }
+  },
+  {
+    "model": "jobportal.district",
+    "pk": 181,
+    "fields": {
+      "name": "Šumperk",
+      "region_id": 41
+    }
+  },
+  {
+    "model": "jobportal.district",
+    "pk": 182,
+    "fields": {
+      "name": "Tábor",
+      "region_id": 35
+    }
+  },
+  {
+    "model": "jobportal.district",
+    "pk": 183,
+    "fields": {
+      "name": "Tachov",
+      "region_id": 44
+    }
+  },
+  {
+    "model": "jobportal.district",
+    "pk": 184,
+    "fields": {
+      "name": "Teplice",
+      "region_id": 46
+    }
+  },
+  {
+    "model": "jobportal.district",
+    "pk": 185,
+    "fields": {
+      "name": "Trutnov",
+      "region_id": 38
+    }
+  },
+  {
+    "model": "jobportal.district",
+    "pk": 186,
+    "fields": {
+      "name": "Třebíč",
+      "region_id": 47
+    }
+  },
+  {
+    "model": "jobportal.district",
+    "pk": 187,
+    "fields": {
+      "name": "Uherské Hradiště",
+      "region_id": 48
+    }
+  },
+  {
+    "model": "jobportal.district",
+    "pk": 188,
+    "fields": {
+      "name": "Ústí nad Labem",
+      "region_id": 46
+    }
+  },
+  {
+    "model": "jobportal.district",
+    "pk": 189,
+    "fields": {
+      "name": "Ústí nad Orlicí",
+      "region_id": 42
+    }
+  },
+  {
+    "model": "jobportal.district",
+    "pk": 190,
+    "fields": {
+      "name": "Vsetín",
+      "region_id": 48
+    }
+  },
+  {
+    "model": "jobportal.district",
+    "pk": 191,
+    "fields": {
+      "name": "Vyškov",
+      "region_id": 36
+    }
+  },
+  {
+    "model": "jobportal.district",
+    "pk": 192,
+    "fields": {
+      "name": "Zlín",
+      "region_id": 48
+    }
+  },
+  {
+    "model": "jobportal.district",
+    "pk": 193,
+    "fields": {
+      "name": "Znojmo",
+      "region_id": 36
+    }
+  },
+  {
+    "model": "jobportal.district",
+    "pk": 194,
+    "fields": {
+      "name": "Žďár nad Sázavou",
+      "region_id": 47
+    }
+  },
+  {
+    "model": "jobportal.position",
+    "pk": 61,
+    "fields": {
+      "name": "Barback"
+    }
+  },
+  {
+    "model": "jobportal.position",
+    "pk": 62,
+    "fields": {
+      "name": "Barista/ka"
+    }
+  },
+  {
+    "model": "jobportal.position",
+    "pk": 63,
+    "fields": {
+      "name": "Barman/ka"
+    }
+  },
+  {
+    "model": "jobportal.position",
+    "pk": 65,
+    "fields": {
+      "name": "Cukrář/ka"
+    }
+  },
+  {
+    "model": "jobportal.position",
+    "pk": 66,
+    "fields": {
+      "name": "Číšník/Číšnice"
+    }
+  },
+  {
+    "model": "jobportal.position",
+    "pk": 67,
+    "fields": {
+      "name": "Event manažer/ka"
+    }
+  },
+  {
+    "model": "jobportal.position",
+    "pk": 68,
+    "fields": {
+      "name": "Food and Beverage manažer/ka"
+    }
+  },
+  {
+    "model": "jobportal.position",
+    "pk": 70,
+    "fields": {
+      "name": "Hostes/ka"
+    }
+  },
+  {
+    "model": "jobportal.position",
+    "pk": 71,
+    "fields": {
+      "name": "Kuchař/ka"
+    }
+  },
+  {
+    "model": "jobportal.position",
+    "pk": 72,
+    "fields": {
+      "name": "Marketing manažer/ka"
+    }
+  },
+  {
+    "model": "jobportal.position",
+    "pk": 73,
+    "fields": {
+      "name": "Pekař/ka"
+    }
+  },
+  {
+    "model": "jobportal.position",
+    "pk": 74,
+    "fields": {
+      "name": "Personalista/Personalistka"
+    }
+  },
+  {
+    "model": "jobportal.position",
+    "pk": 75,
+    "fields": {
+      "name": "Pizzař/ka"
+    }
+  },
+  {
+    "model": "jobportal.position",
+    "pk": 78,
+    "fields": {
+      "name": "Pomocná síla"
+    }
+  },
+  {
+    "model": "jobportal.position",
+    "pk": 79,
+    "fields": {
+      "name": "Prodavač/ka"
+    }
+  },
+  {
+    "model": "jobportal.position",
+    "pk": 80,
+    "fields": {
+      "name": "Provozní ředitel/ka"
+    }
+  },
+  {
+    "model": "jobportal.position",
+    "pk": 83,
+    "fields": {
+      "name": "Řidič/ka"
+    }
+  },
+  {
+    "model": "jobportal.position",
+    "pk": 84,
+    "fields": {
+      "name": "Sales manažer/ka"
+    }
+  },
+  {
+    "model": "jobportal.position",
+    "pk": 85,
+    "fields": {
+      "name": "Sekretář/ka"
+    }
+  },
+  {
+    "model": "jobportal.position",
+    "pk": 88,
+    "fields": {
+      "name": "Sommelier/ka"
+    }
+  },
+  {
+    "model": "jobportal.position",
+    "pk": 90,
+    "fields": {
+      "name": "Šéfkuchař/ka"
+    }
+  },
+  {
+    "model": "jobportal.position",
+    "pk": 96,
+    "fields": {
+      "name": "Teatender"
+    }
+  },
+  {
+    "model": "jobportal.position",
+    "pk": 97,
+    "fields": {
+      "name": "Uklízeč/ka"
+    }
+  },
+  {
+    "model": "jobportal.position",
+    "pk": 99,
+    "fields": {
+      "name": "Údržbář/ka"
+    }
+  },
+  {
+    "model": "jobportal.position",
+    "pk": 100,
+    "fields": {
+      "name": "Vedoucí restaurace"
+    }
+  },
+  {
+    "model": "jobportal.position",
+    "pk": 101,
+    "fields": {
+      "name": "Výčepní"
+    }
+  },
+  {
+    "model": "jobportal.position",
+    "pk": 102,
+    "fields": {
+      "name": "Ostatní"
+    }
+  },
+  {
+    "model": "jobportal.client",
+    "pk": 4,
+    "fields": {
+      "user": null,
+      "business_type": 45,
+      "address": "Kounicova 3323",
+      "city": "Brno",
+      "district": 121,
+      "business_name": "Pizzerie Maryjánka",
+      "VAT_number": "9899112237",
+      "logo": "",
+      "contact_email": "MaryjankaBrno@seznam.cz",
+      "contact_phone": "004205532624512"
+    }
+  },
+  {
+    "model": "jobportal.client",
+    "pk": 5,
+    "fields": {
+      "user": null,
+      "business_type": 46,
+      "address": "Dolní 1857",
+      "city": "Ostrava",
+      "district": 160,
+      "business_name": "Restaurace Na Homolce",
+      "VAT_number": "184725461113",
+      "logo": "",
+      "contact_email": "restauracenahomolce@seznam.cz",
+      "contact_phone": "004205332624585"
+    }
+  },
+  {
+    "model": "jobportal.client",
+    "pk": 6,
+    "fields": {
+      "user": null,
+      "business_type": 52,
+      "address": "Votrubova 85",
+      "city": "Praha",
+      "district": 167,
+      "business_name": "Sushi Platan",
+      "VAT_number": "28482789219",
+      "logo": "",
+      "contact_email": "sushiplatan@seznam.cz",
+      "contact_phone": "004202256438745"
+    }
+  },
+  {
+    "model": "jobportal.advertisement",
+    "pk": 3,
+    "fields": {
+      "position": 75,
+      "title": "pizzař v Brně",
+      "text_content": "Do pizzerie Maryjánka v širším centru Brna hledáme pizzaře.",
+      "salary": "38500 Kč",
+      "client_id": 4,
+      "created": "2025-05-26T10:38:58.827Z"
+    }
+  },
+  {
+    "model": "jobportal.advertisement",
+    "pk": 4,
+    "fields": {
+      "position": 102,
+      "title": "sushi mistr v Praze",
+      "text_content": "Hledáme sushi mistra do sushi restaurace na předměstí Prahy.",
+      "salary": "40000 Kč",
+      "client_id": 6,
+      "created": "2025-05-26T10:41:38.523Z"
+    }
+  },
+  {
+    "model": "jobportal.advertisement",
+    "pk": 5,
+    "fields": {
+      "position": 100,
+      "title": "vedoucí restaurace v Ostravě",
+      "text_content": "Hledáme vedoucího restaurace v Ostravě.",
+      "salary": "85500 Kč",
+      "client_id": 5,
+      "created": "2025-05-26T10:44:10.811Z"
+    }
+  }
+]
