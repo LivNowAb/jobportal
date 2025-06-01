@@ -1,3 +1,5 @@
+{% load static %}
+
 <!doctype html>
 <html
         {% if LANGUAGE_CODE %}
@@ -7,18 +9,22 @@
         {% endif %}
 >
 <head>
-    <!--{% load static %}-->
     {% load i18n %}
     {% get_current_language as LANGUAGE_CODE %}
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <link rel="stylesheet" href="{% static 'jobportal/css/layout.css' %}">
-    <title>{%block title %}jobportal{%endblock%}</title>
+    <link rel="stylesheet" href="{% static 'viewer/css/layout.css' %}">
+    <title>{% block title %}GastroFlek.cz{%endblock%}</title>
 </head>
 <body>
+    <header>
+        <h1>GastroFlek.cz</h1>
+    </header>
     {% include "navbar.html" %}
-    {% block content %}
-
-    {% endblock %}
+        <main>
+        {% block content %}
+            {% endblock %}
+        </main>
+    <footer>Made by SDA</footer>
 </body>
 </html>

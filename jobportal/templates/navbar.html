@@ -1,13 +1,11 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container fixed">
-        <a class="navbar-brand">jobportal</a>
-            <span class="navbar-toggler-icon"></span>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-                <a class="nav-item nav-link active" href="{% url 'home' %}">Hlavní stránka</a>
-                <a class="nav-item nav-link active" href="{% url 'ads_list' %}">Inzeráty</a>
-                <a class="nav-item nav-link active" href="">Přidat inzerát</a> # dodelat view na pridani inzeratu
-                <a class="nav-item nav-link active" href="{% url 'pricing' %}">Ceník</a>
+<nav>
+    <div>
+        <div>
+            <div class="button-menu">
+                <a class="button" href="{% url 'home' %}">Hlavní stránka</a>
+                <a class="button" href="{% url 'ads_list' %}">Inzeráty</a>
+                <a class="button" href="">Přidat inzerát</a> <!-- dodelat view na pridani inzeratu -->
+                <a class="button" href="{% url 'pricing' %}">Ceník</a>
             </div>
         </div>
     </div>
