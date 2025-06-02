@@ -1,13 +1,18 @@
 <nav>
-    <div>
-        <div>
-            <div class="button-menu">
-                <a class="button" href="{% url 'home' %}">Hlavní stránka</a>
-                <a class="button" href="{% url 'ads_list' %}">Inzeráty</a>
-                <a class="button" href="{% url 'ad_creation' %}">Přidat inzerát</a>
-                <a class="button" href="{% url 'pricing' %}">Ceník</a>
-                <a class="button" href="{% url 'client_creation' %}">Vytvořit podnik</a>
-            </div>
-        </div>
-    </div>
+  <div class="button-menu">
+    <a class="button" href="{% url 'home' %}">Hlavní stránka</a>
+    <a class="button" href="{% url 'ads_list' %}">Inzeráty</a>
+    <a class="button" href="{% url 'ad_creation' %}">Přidat inzerát</a>
+    <a class="button" href="{% url 'pricing' %}">Ceník</a>
+    <a class="button" href="{% url 'client_creation' %}">Vytvořit podnik</a>
+  </div>
+
+  <div class="nav-right dropdown">
+    <a class="btn-reg dropdown-title">Pro firmy</a>
+        <ul class="hidden">
+            <li data-action="action1"><a href="{%  url 'login' %}">Přihlášení</a></li>
+            <li data-action="action2"><a href="{%  url 'registration' %}">Registrace</a></li>
+        </ul>
+  </div>
+
 </nav>

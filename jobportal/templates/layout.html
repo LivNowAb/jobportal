@@ -14,17 +14,18 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link rel="stylesheet" href="{% static 'viewer/css/layout.css' %}">
+    <script src="{% static 'viewer/js/script.js' %}" defer></script>
     <title>{% block title %}GastroFlek.cz{%endblock%}</title>
 </head>
 <body>
     <header>
-        <h1>GastroFlek.cz</h1>
+        <a href="{% url 'home' %}" class="logo"><h1>GastroFlek.cz</h1></a>
     </header>
     {% include "navbar.html" %}
         <main>
         {% block content %}
             {% endblock %}
         </main>
-    <footer>Made by SDA</footer>
+    <footer>Made by SDA students</footer>
 </body>
 </html>

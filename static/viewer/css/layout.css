@@ -38,7 +38,7 @@ main {
 
 
 header {
-  background: black;
+  background: #333333;
   height: 80px;
   display: flex;
   color: white;
@@ -52,7 +52,7 @@ header {
 }
 
 footer {
-  background: black;
+  background: #333333;
   height: 50px;
   display: flex;
   color: white;
@@ -83,7 +83,7 @@ a.logo:hover {
 
 .welcome {
   display: block;
-  color: black;
+  color: #333333;
   font-size: 5rem;
   align-items: center;
   justify-content: center;
@@ -108,7 +108,7 @@ nav {
 .button-menu .button {
   display: inline-block;
   padding: 10px 20px;
-  background-color: black;
+  background-color: #333333;
   color: white;
   text-decoration: none;
   border-radius: 10px;
@@ -138,7 +138,7 @@ table, th, td{
   justify-content: center;
   padding: .5em;
   margin: 1.25em auto;
-  color: black;
+  color: #333333;
 }
 
 table {
@@ -150,7 +150,7 @@ table {
 .button-add{
   display: inline-block;
   padding: 10px 10px;
-  background-color: black;
+  background-color: #333333;
   color: white;
   text-decoration: none;
   border-radius: 10px;
@@ -165,32 +165,83 @@ table {
   transform: scale(1.1);
 }
 
+.nav-right {
+  margin-left: auto;
+  margin-right: 30px;
+}
 
-.btn-sbm {
+.btn-reg {
+  display: flex;
+  padding: 10px 20px;
+  background-color: #333333;
+  color: white;
+  text-decoration: none;
+  border-radius: 10px;
+  font-size: 16px;
+  transition: background-color 0.1s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  cursor: pointer
+}
 
+.btn-reg:hover {
+  color: khaki;
+  transform: scale(1.08);
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
 }
 .centered {
   text-align: center;
 }
 
-.actors-list {
-  list-style: none;
+.price {
+    display: block;
+}
+
+.dropdown {
+  display: inline-block;
+  position: relative;
+}
+
+.dropdown-title {
+  background: #333333;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+
+}
+.dropdown ul {
+  background: #333333;
+  color: white;
+  font-size: 16px;
+  list-style-type: none;
+  margin: 0;
   padding: 0;
-  margin: 0 auto;
+  position: absolute;
+  width: 130px;
+  left: 1px;
+  transition: all .3s linear;
+  border-radius: 10px;
 }
 
-.actors-list li {
-  margin: 5px 0;
-}
-
-.detail-page {
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-  justify-content: center;
-  margin: 0 auto;
-  padding: 20px;
+.dropdown ul li {
+  padding: .3em .6em;
   text-align: center;
-  height: 100%
+}
+.dropdown ul li a {
+  display: block;
+  padding: .3em .6em;
+  text-decoration: none;
+  text-align: center;
+  color: white;
 }
 
+.dropdown ul li a:hover {
+  color: khaki;
+  transform: scale(1.08);
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+}
+
+.hidden {
+  transform-origin: top;
+  transform: translateY(-200px);
+  opacity: 0;
+}
