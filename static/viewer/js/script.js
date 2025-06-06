@@ -26,3 +26,22 @@ document.addEventListener('click', (event) => {
     }
   });
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+  const modal = document.getElementById("myModal");
+  const closeBtn = modal?.querySelector(".close");
+
+  closeBtn?.addEventListener("click", function () {
+    modal.classList.remove("visible");
+    document.body.classList.remove("modal-open");
+  });
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  const closeBtn = document.getElementById("modal-close");
+  const redirectUrl = closeBtn.getAttribute("data-redirect-url");
+
+  closeBtn.addEventListener("click", function () {
+    window.location.href = redirectUrl;
+  });
+});

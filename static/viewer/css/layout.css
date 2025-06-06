@@ -38,7 +38,7 @@ main {
 
 
 header {
-  background: #333333;
+  background: #222222;
   height: 80px;
   display: flex;
   color: white;
@@ -63,9 +63,8 @@ footer {
 }
 
 h1 {
-
   font-size: 3rem;
-  padding: 20px;
+  padding: 10px;
 }
 
 a.logo {
@@ -78,7 +77,7 @@ a.logo {
 }
 
 a.logo:hover {
-  color: khaki;
+  color: lightblue;
 }
 
 .welcome {
@@ -95,7 +94,7 @@ nav {
   justify-content: space-between;
   font-size: 1.5rem;
   padding: 12px 12px;
-  background-color: khaki;
+  background-color: lightblue;
 }
 
 .button-menu {
@@ -108,7 +107,7 @@ nav {
 .button-menu .button {
   display: inline-block;
   padding: 10px 20px;
-  background-color: #333333;
+  background-color: #222222;
   color: white;
   text-decoration: none;
   border-radius: 10px;
@@ -127,7 +126,7 @@ nav {
   }
 
 .button:hover {
-  color: khaki;
+  color: lightblue;
 }
 
 table, th, td{
@@ -138,7 +137,7 @@ table, th, td{
   justify-content: center;
   padding: .5em;
   margin: 1.25em auto;
-  color: #333333;
+  color: #222222;
 }
 
 table {
@@ -150,7 +149,7 @@ table {
 .button-add{
   display: inline-block;
   padding: 10px 10px;
-  background-color: #333333;
+  background-color: #222222;
   color: white;
   text-decoration: none;
   border-radius: 10px;
@@ -161,7 +160,7 @@ table {
 }
 
 .button-add:hover {
-  color: khaki;
+  color: lightblue;
   transform: scale(1.1);
 }
 
@@ -173,7 +172,7 @@ table {
 .btn-reg {
   display: flex;
   padding: 10px 20px;
-  background-color: #333333;
+  background-color: #222222;
   color: white;
   text-decoration: none;
   border-radius: 10px;
@@ -184,7 +183,7 @@ table {
 }
 
 .btn-reg:hover {
-  color: khaki;
+  color: lightblue;
   transform: scale(1.08);
   box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
 }
@@ -202,14 +201,14 @@ table {
 }
 
 .dropdown-title {
-  background: #333333;
+  background: #222222;
   padding: 10px 20px;
   font-size: 16px;
   cursor: pointer;
 
 }
 .dropdown ul {
-  background: #333333;
+  background: #222222;
   color: white;
   font-size: 16px;
   list-style-type: none;
@@ -235,7 +234,7 @@ table {
 }
 
 .dropdown ul li a:hover {
-  color: khaki;
+  color: lightblue;
   transform: scale(1.08);
   box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
 }
@@ -244,4 +243,108 @@ table {
   transform-origin: top;
   transform: translateY(-200px);
   opacity: 0;
+}
+
+.modal-bg {
+  background: rgba(0, 0, 0, 0.3);
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: none;
+  z-index: 1000;
+}
+
+.modal-bg.visible {
+  display: flex;
+}
+
+.modal-content {
+  background: white;
+  width: 80%;
+  max-width: 1000px;
+  min-width: 700px;
+  min-height: 700px;
+  margin: 3rem auto;
+  border-radius: 10px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+  overflow-y: auto;
+}
+
+.modal-header {
+  display: flex;
+  flex-direction: column;
+  margin:2rem;
+  align-items: flex-start;
+  gap: 0.3rem;
+  position: relative;
+}
+
+
+.modal-footer {
+  flex-basis: 80px;
+  flex-grow: 0;
+
+}
+
+.modal-center {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  margin:0;
+  align-items: flex-start;
+  position: relative;
+  border-top: 5px solid lightblue;
+  border-bottom: 5px solid lightblue;
+}
+
+.modal-header p {
+  margin: 0.2rem 0;
+  line-height: 1.3;
+}
+
+.modal-footer {
+  padding: 1rem;
+}
+
+.modal-header {
+  font-size: 1.2rem;
+}
+
+.modal-center p {
+  font-size: 1.2rem;
+  margin-left: 2rem;
+  line-height: 1.3;
+}
+
+.modal-footer {
+  justify-content: center;
+  gap: 1rem;
+}
+
+.closing-x {
+  align-self: flex-end;
+  background: #222222;
+  width: 2rem;
+  height: 2rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+  margin: .5rem;
+  border: 1px solid #222222;
+  border-radius: 10px;
+}
+
+.closing-x:hover {
+  color: lightblue;
+  transform: scale(1.08);
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+}
+
+.h1-modal {
+    font-size: 1.7rem;
+    padding: 0;
+    margin-bottom: 1em;
 }

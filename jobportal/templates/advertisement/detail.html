@@ -1,24 +1,37 @@
 {% extends "layout.html" %}
 {% load static %}
+
 {% block content %}
 
-  <h1>{{ ad_detail.title }}</h1>
-  <p><strong>Provozovna:</strong> {{ ad_detail.client_id.business_name }}</p>
-  <p><strong>Město:</strong> {{ ad_detail.client_id.city }}</p>
-  <p><strong>Nabízený plat:</strong> {{ ad_detail.salary }} Kč</p>
-  <p><strong>Popis pozice:</strong></p>
-  <p>{{ ad_detail.text_content }}</p>
+<div id="myModal" class="modal-bg visible">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button id="modal-close" class="closing-x" type="button" data-redirect-url="{% url 'ads_list' %}">&times;</button>
 
-  <h2>Odpovědět na inzerát</h2>
+      <h1 class="h1-modal">{{ ad_detail.title }}</h1>
+      <p><strong>Provozovna:</strong> {{ ad_detail.client.business_name }}</p>
+      <p><strong>Město:</strong> {{ ad_detail.client.city }}</p>
+      <p><strong>Nabízený plat:</strong> {{ ad_detail.salary }} </p>
+    </div>
 
-  {% if form_submitted %}
-    <h2>Vaše odpověď byla odeslána.</h2>
-  {% else %}
-    <form method="post">
-      {% csrf_token %}
-      {{ form.as_p }}
-      <button class="button-add" type="submit">Odeslat odpověď</button>
-    </form>
-  {% endif %}
+    <div class="modal-center">
+      <p><strong>Popis pozice:</strong></p>
+      <p>{{ ad_detail.text_content }}</p>
+    </div>
+
+    <div class="modal-footer">
+      <h2>Odpovědět na inzerát</h2>
+      {% if form_submitted %}
+        <p>Vaše odpověď byla odeslána.</p>
+      {% else %}
+        <form method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <button class="button-add" type="submit">Odeslat odpověď</button>
+        </form>
+      {% endif %}
+    </div>
+  </div>
+</div>
 
 {% endblock %}
