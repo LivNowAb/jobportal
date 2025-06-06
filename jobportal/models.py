@@ -3,7 +3,7 @@ from django.db.models import ForeignKey, DO_NOTHING, CharField, DateTimeField, M
     FileField, OneToOneField
 
 
-class BusinessType (Model):
+class BusinessType(Model):
     name = CharField(max_length=128)
 
     def __repr__(self):
@@ -13,7 +13,7 @@ class BusinessType (Model):
         return f'{self.name}'
 
 
-class Region (Model):
+class Region(Model):
     name = CharField(max_length=128)
 
     def __repr__(self):
@@ -23,7 +23,7 @@ class Region (Model):
         return f'{self.name}'
 
 
-class District (Model):
+class District(Model):
     name = CharField(max_length=128)
     region_id = ForeignKey(Region, on_delete=DO_NOTHING)
 
@@ -34,7 +34,7 @@ class District (Model):
         return f'{self.name}'
 
 
-class Position (Model):
+class Position(Model):
     name = CharField(max_length=128)
 
     def __repr__(self):
@@ -44,7 +44,7 @@ class Position (Model):
         return f'{self.name}'
 
 
-class Client (Model):
+class Client(Model):
     user = OneToOneField(User, null=True, on_delete=DO_NOTHING)
     business_type = ForeignKey(BusinessType, on_delete=DO_NOTHING)
     address = CharField(max_length=128)
@@ -63,7 +63,7 @@ class Client (Model):
         return f'{self.business_name} ({self.address})'
 
 
-class Advertisement (Model):
+class Advertisement(Model):
     position = ForeignKey(Position, on_delete=DO_NOTHING)
     title = CharField(max_length=128)
     text_content = TextField()
@@ -79,6 +79,7 @@ class Advertisement (Model):
 
     def __str__(self):
         return f'{self.title}'
+
 
 class Response(Model):
     advertisement = ForeignKey(Advertisement, on_delete=DO_NOTHING, related_name='responses')
