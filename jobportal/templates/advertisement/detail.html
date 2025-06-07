@@ -3,11 +3,11 @@
 {% block content %}
 
   <h1>{{ ad_detail.title }}</h1>
-  <p><strong>Provozovna:</strong> {{ ad_detail.client_id.business_name }}</p>
-  <p><strong>Město:</strong> {{ ad_detail.client_id.city }}</p>
-  <p><strong>Nabízený plat:</strong> {{ ad_detail.salary }} Kč</p>
-  <p><strong>Popis pozice:</strong></p>
-  <p>{{ ad_detail.text_content }}</p>
+    <p><strong>Datum vystavení:</strong> {{ ad_detail.created }}</p>
+    <p><strong>Publikoval podnik:</strong> {{ ad_detail.created_by }}</p>
+    <p><strong>Nabízený plat:</strong> {{ ad_detail.salary }} Kč</p>
+    <p><strong>Popis pozice:</strong></p>
+    <p>{{ ad_detail.text_content }}</p>
 
   <h2>Odpovědět na inzerát</h2>
 

@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
-from django.db.models import ForeignKey, DO_NOTHING, CharField, DateTimeField, Model, TextField, ImageField, EmailField, \
+from django.db.models import ForeignKey, DO_NOTHING, CASCADE, CharField, DateTimeField, Model, TextField, ImageField, EmailField, \
     FileField, OneToOneField
+from django.db import models
 
 
 class BusinessType(Model):
@@ -70,8 +71,10 @@ class Advertisement(Model):
     salary = CharField(max_length=128)
     client = ForeignKey(Client, on_delete=DO_NOTHING, null=True)
     created = DateTimeField(auto_now_add=True)
+    created_by = ForeignKey(User, on_delete=CASCADE, null=True) #cascade? do nothing? je to spravne vubec?
 
     class Meta:
+        permissions = [('can_create_ad', 'Can create advertisement')]
         ordering = ['-created']
 
     def __repr__(self):

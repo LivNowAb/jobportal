@@ -31,6 +31,7 @@ urlpatterns = [
           name="password_change"),
     path("registration/client/profile", ClientProfileView.as_view(template_name="client/index.html"),
          name="client_reg_profile"),
+    # redirects after registration
     path("accounts/profile/", ClientProfileView.as_view(template_name="client/index.html"),
          name="client_log_profile"),
     # redirects to logged user profile
@@ -39,8 +40,4 @@ urlpatterns = [
     # redirects to any user profile with the corresponding pk
     path("pricing/", pricing_list, name="pricing"),
     path("create_ad/", CreateAd.as_view(template_name="advertisement/create.html"), name="ad_creation"),
-    path("create_client/", ClientProfileCreation.as_view(template_name="client/create.html"),
-         name="client_creation"),
-    path("create_client/client/index/", ClientProfileView.as_view(template_name="client/index.html"))
-    #TODO: OPRAVIT
 ]

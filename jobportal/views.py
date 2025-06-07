@@ -1,6 +1,8 @@
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.shortcuts import render, redirect
-from django.views.generic import DetailView, ListView, FormView, TemplateView, CreateView
+from django.urls import reverse_lazy
+from django.views import View
+from django.views.generic import DetailView, ListView, TemplateView, CreateView
 
 from jobportal.forms import RegistrationForm, ResponseForm, AdCreation, ClientCreation
 from jobportal.models import Advertisement, Client
@@ -25,7 +27,7 @@ class AdDetail(DetailView):
     template_name = "advertisement/detail.html"
     context_object_name = 'ad_detail'
 
-    def get_context_data(self, **kwargs):
+    def get_context_data(self, **kwargs):           # popsat jak funguje kod
         context = super().get_context_data(**kwargs)
         if 'submitted' in self.request.GET:
             context['form_submitted'] = True
@@ -54,15 +56,32 @@ class AdsListView(ListView):
     context_object_name = 'ads_list'
 
 
-class RegistrationView(FormView):
-    template_name = "registration/registration.html"
-    form_class = RegistrationForm
-    success_url = "client/profile"
+class RegistrationView(View):       #popsat jak funguje kod
+    def get(self, request):
+        user_form = RegistrationForm()
+        client_form = ClientCreation()
+        return render(request, "registration/registration.html", {
+            "user_form": user_form,
+            "client_form": client_form
+        })
 
-    def form_valid(self, form):
-        user = form.save()
-        return super().form_valid(form)
+    def post(self, request):
+        user_form = RegistrationForm(request.POST)
+        client_form = ClientCreation(request.POST, request.FILES)
 
+        if user_form.is_valid() and client_form.is_valid():
+            user = user_form.save()
+
+            client = client_form.save(commit=False)
+            client.user = user
+            client.save()
+
+            return redirect("client_log_profile")
+        else:
+            return render(request, "registration/registration.html", {
+                "user_form": user_form,
+                "client_form": client_form
+            })
 
 class ClientProfileCreation(PermissionRequiredMixin, CreateView):
     template_name = "client/create.html"
@@ -70,12 +89,7 @@ class ClientProfileCreation(PermissionRequiredMixin, CreateView):
     success_url = "client/index.html"
     permission_required = ""
 
-
-
-# class ClientProfileView(DetailView):
-#     model = Client
-#     template_name = "client/index.html"
-#     context_object_name = 'client_detail'
+    #tohle asi taky nebude potreba? kdyz uz mame vytvoreni podniku v registraci
 
 
 class ClientProfileView(TemplateView):
@@ -90,25 +104,18 @@ class ClientProfileView(TemplateView):
         # fetches Client object that is linked to currently logged user
 
 
-#TODO: CreateAd OPRAVIT
 class CreateAd(PermissionRequiredMixin, CreateView):
+     model = Advertisement
      template_name = "advertisement/create.html"
      form_class= AdCreation
-     success_url = "ads_list"
-     permission_required = ""
+     success_url = reverse_lazy("ads_list")
+     permission_required = "jobportal.can_create_ad"
 
-     def post(self, request, *args, **kwargs):
-         form = AdCreation(request.POST, request.FILES)
-         if form.is_valid():
-             try:
-                 client = Client.objects.get(user=request.user)
-             except Client.DoesNotExist:
-                 return self.render_to_response(
-                     self.get_context_data(form=form, error="Váš přihlášený účet není spojený s žádným podnikem - nelze publikovat inzerát.")
-                 )
-             ad = form.save(commit=False)
-             ad.client = client
-             ad.save()
-             return redirect(f'{self.request.path}?submitted=True')
-         else:
-             return self.form_invalid(form) #NEFUNGUJE
+     def form_valid(self, form):
+         client = Client.objects.get(user=self.request.user)
+         form.instance.created_by = self.request.user
+         form.instance.client = client
+         return super().form_valid(form)
+
+
+

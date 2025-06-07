@@ -26,7 +26,7 @@ class RegistrationForm(UserCreationForm):
     )
 
 
-    class Meta:
+    class Meta:     #tohle smrsknout do registracniho formulare? meta vyuziti??
         model = User
         fields = (
             "username",
@@ -63,13 +63,13 @@ class ClientCreation(forms.ModelForm):
 class AdCreation(forms.ModelForm):
     class Meta:
         model = Advertisement
-        fields = ["heading", "position", "text", "salary"]
+        fields = ["title", "position", "text_content", "salary"]
 
-    heading = CharField(label="Název", max_length=128)
+    title = CharField(label="Název", max_length=128)
     position = ModelChoiceField(label="Pracovní Pozice", queryset=Position.objects,
                                 widget=forms.Select(attrs={"class": "form-control"}))
-    text = CharField(label="Obsah", widget=Textarea(attrs={"class": "form-control", "cols": 40, "rows": 3}),
-                     required=True)
+    text_content = CharField(label="Obsah", widget=Textarea(attrs={"class": "form-control", "cols": 40, "rows": 3}),
+                            required=True)
     salary = CharField(label="Mzda", max_length=250)
 
 

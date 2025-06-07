@@ -2,4 +2,15 @@
 {% load static %}
 {% block content %}
     <h2>Vítejte {{ client_detail }}!</h2>
+    <div>
+        <p><strong>Název podniku:</strong> {{ client_detail.business_name }}</p>
+        <p><strong>Typ provozovny:</strong> {{ client_detail.business_type }}</p>
+        <p><strong>IČO/DIČ:</strong> {{ client_detail.VAT_number }}</p>
+        <p><strong>Adresa provozovny:</strong> {{ client_detail.address }}</p>
+        <p><strong>Město:</strong> {{ client_detail.city }}</p>
+        <p><strong>Okres:</strong> {{ client_detail.district }}</p>
+        <p><strong>Kontaktní e-mail provozovny:</strong> {{ client_detail.contact_email }}</p>
+        <p><strong>Kontaktní telefonní číslo provozovny:</strong> {{ client_detail.contact_phone }}</p>
+        <p><strong>Logo provozovny:</strong> {{ client_detail.logo }}</p>
+    </div>
 {% endblock %}
