@@ -2,23 +2,24 @@
 {% load static %}
 {% block content %}
 <h1>Nabídky práce</h1>
+
 <div>
-    {% for advertisement in ads_list %}
-        <table>
-            <tr>
-                <td>
-                    <a href="{% url 'ad_detail' advertisement.id %}">
-                        <h3>{{ advertisement.title }}</h3>
-                    </a>
-                </td>
-            </tr>
-            <tr>
-                <td>{{ advertisement.created }}</td>
-            </tr>
-            <tr>
-                <td>{{ advertisement.text_content }}</td>
-            </tr>
-        </table>
+  {% for advertisement in ads_list %}
+    <table>
+      <tr>
+        <td>
+          <a href="{% url 'ad_detail' advertisement.id %}">
+            <h3>{{ advertisement.title }}</h3>
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td>{{ advertisement.created }}</td>
+      </tr>
+      <tr>
+        <td>{{ advertisement.text_content }}</td>
+      </tr>
+    </table>
     {% endfor %}
 </div>
 {% endblock %}

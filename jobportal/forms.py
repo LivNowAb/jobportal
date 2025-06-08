@@ -1,11 +1,13 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from django.core.exceptions import ValidationError
+from django.core.validators import validate_email
 from django.forms import CharField, ModelChoiceField, Textarea
 from django.forms.fields import EmailField, ImageField
 
 from .models import Response, Advertisement, Position, Client, BusinessType, District
-
+from .error_messages import ERROR_MESSAGES
 
 class RegistrationForm(UserCreationForm):
     email = forms.EmailField(
@@ -83,3 +85,30 @@ class ResponseForm(forms.ModelForm):
             'message': 'Vaše zpráva',
             'cv': 'Přiložit CV',
         }
+        widgets = {
+            'name': forms.TextInput(attrs={'id': 'fullname'}),
+            'email': forms.EmailInput(attrs={'id': 'email'}),
+            'message': forms.Textarea(attrs={'id': 'message'}),
+            'cv': forms.ClearableFileInput(attrs={'id': 'cv'}),
+        }
+
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        try:
+            validate_email(email)
+        except ValidationError:
+            raise forms.ValidationError(ERROR_MESSAGES['invalid_email'])
+        return email
+
+    def clean_cv(self):
+        cv = self.cleaned_data.get('cv')
+
+        if cv:
+            if cv.size > 10 * 1024 * 1024:
+                raise forms.ValidationError(ERROR_MESSAGES['file_too_large'])
+
+            if not cv.content_type in ['application/pdf', 'application/msword',
+                                   'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+                                   'image/jpeg', 'image/png']:
+                raise forms.ValidationError(ERROR_MESSAGES['invalid_file_type'])
+            return cv

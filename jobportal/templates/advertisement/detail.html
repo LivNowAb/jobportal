@@ -1,27 +1,71 @@
 {% extends "layout.html" %}
 {% load static %}
+
 {% block content %}
 
-  <h1>{{ ad_detail.title }}</h1>
-    <h3>Podrobnosti provozovny</h3>
-    <p><strong>Město:</strong> {{ ad_detail.client.city }}</p>
-    <p><strong>Typ:</strong> {{ ad_detail.client.business_type }}</p>
-    <p><strong>Datum vystavení:</strong> {{ ad_detail.created }}</p>
-    <p><strong>Publikoval podnik:</strong> {{ ad_detail.created_by }}</p>
-    <p><strong>Nabízený plat:</strong> {{ ad_detail.salary }} Kč</p>
-    <p><strong>Popis pozice:</strong></p>
-    <p>{{ ad_detail.text_content }}</p>
+<div id="myModal" class="modal-bg visible">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button id="modal-close" class="closing-x" type="button" data-redirect-url="{% url 'ads_list' %}">&times;</button>
+      <h1 class="h1-modal">{{ ad_detail.title }}</h1>
+    </div>
 
-  <h2>Odpovědět na inzerát</h2>
+    <div class="modal-flow">
+        <div class="modal-header2">
+          <p><strong>Provozovna:</strong> {{ ad_detail.client.business_name }}</p>
+          <p><strong>Město:</strong> {{ ad_detail.client.city }}</p>
+          <p><strong>Nabízený plat:</strong> {{ ad_detail.salary }} </p>
+        </div>
 
-  {% if form_submitted %}
-    <h2>Vaše odpověď byla odeslána.</h2>
-  {% else %}
-    <form method="post">
-      {% csrf_token %}
-      {{ form.as_p }}
-      <button class="button-add" type="submit">Odeslat odpověď</button>
-    </form>
-  {% endif %}
+
+        <div class="modal-center">
+          <p><strong>Popis pozice:</strong></p>
+          <p>{{ ad_detail.text_content }}</p>
+        </div>
+
+        <div class="modal-footer">
+          <h2 class="h2-modal">Odpověď na inzerát</h2>
+
+          {% if form_submitted %}
+            <p>Vaše odpověď byla odeslána, děkujeme.</p>
+          {% else %}
+            <form id="responseForm" method="post" enctype="multipart/form-data">
+              {% csrf_token %}
+
+              <div class="form-group">
+                  <label for="{{ form.name.id_for_label }}"> {{ form.name.label }}</label>
+                  {{ form.name }}
+                  <div id="fullnameError" class="error-message"></div>
+                  {{ form.name.errors }}
+              </div>
+
+              <div class="form-group">
+                  <label for="{{ form.email.id_for_label }}"> {{ form.email.label }}</label>
+                  {{ form.email }}
+                  <div id="emailError" class="error-message"></div>
+                  {{ form.email.errors }}
+              </div>
+
+              <div class="form-group">
+                  <label for="{{ form.message.id_for_label }}"> {{ form.message.label }}</label>
+                  {{ form.message }}
+                  <div id="msgError" class="error-message"></div>
+                  {{ form.message.errors }}
+              </div>
+
+              <div class="form-group">
+                  <label for="{{ form.cv.id_for_label }}"> {{ form.cv.label }}</label>
+                  {{ form.cv }}
+                  <div id="cvError" class="error-message"></div>
+                  {{ form.cv.errors }}
+              </div>
+
+              <button class="button-add" type="submit">Odeslat odpověď</button>
+            </form>
+          {% endif %}
+        </div>
+    </div>
+  </div>
+</div>
 
 {% endblock %}
