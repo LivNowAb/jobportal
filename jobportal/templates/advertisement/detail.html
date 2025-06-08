@@ -14,13 +14,14 @@
         <div class="modal-header2">
           <p><strong>Provozovna:</strong> {{ ad_detail.client.business_name }}</p>
           <p><strong>Město:</strong> {{ ad_detail.client.city }}</p>
-          <p><strong>Nabízený plat:</strong> {{ ad_detail.salary }} </p>
+          <p><strong>Datum vystavení:</strong> {{ ad_detail.created }}</p>
         </div>
 
 
         <div class="modal-center">
           <p><strong>Popis pozice:</strong></p>
           <p>{{ ad_detail.text_content }}</p>
+          <p><strong>Nabízený plat:</strong> {{ ad_detail.salary }}</p>
         </div>
 
         <div class="modal-footer">
