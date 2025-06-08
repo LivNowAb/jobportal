@@ -1,3 +1,4 @@
+from django.contrib.auth import login
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
@@ -26,6 +27,9 @@ class AdDetail(DetailView):
     model = Advertisement
     template_name = "advertisement/detail.html"
     context_object_name = 'ad_detail'
+
+    def get_queryset(self):
+        return super().get_queryset().select_related('client') #select_related() offers better performance
 
     def get_context_data(self, **kwargs):           # popsat jak funguje kod
         context = super().get_context_data(**kwargs)
@@ -56,7 +60,7 @@ class AdsListView(ListView):
     context_object_name = 'ads_list'
 
 
-class RegistrationView(View):       #popsat jak funguje kod
+class RegistrationView(View):
     def get(self, request):
         user_form = RegistrationForm()
         client_form = ClientCreation()
@@ -70,18 +74,21 @@ class RegistrationView(View):       #popsat jak funguje kod
         client_form = ClientCreation(request.POST, request.FILES)
 
         if user_form.is_valid() and client_form.is_valid():
-            user = user_form.save()
+            user = user_form.save()    #saves User to DB
+
+            login(request, user)       #cancels previous session and logs in newly created user
 
             client = client_form.save(commit=False)
             client.user = user
-            client.save()
+            client.save()              #saves Client model to DB
 
-            return redirect("client_log_profile")
+            return redirect("client_log_profile") #nema redirect byt client_reg_profile?
         else:
             return render(request, "registration/registration.html", {
                 "user_form": user_form,
                 "client_form": client_form
             })
+
 
 class ClientProfileCreation(PermissionRequiredMixin, CreateView):
     template_name = "client/create.html"
@@ -89,7 +96,7 @@ class ClientProfileCreation(PermissionRequiredMixin, CreateView):
     success_url = "client/index.html"
     permission_required = ""
 
-    #tohle asi taky nebude potreba? kdyz uz mame vytvoreni podniku v registraci
+    #bude tohle potreba? kdyz uz mame vytvoreni podniku v registraci
 
 
 class ClientProfileView(TemplateView):
@@ -116,6 +123,3 @@ class CreateAd(PermissionRequiredMixin, CreateView):
          form.instance.created_by = self.request.user
          form.instance.client = client
          return super().form_valid(form)
-
-
-

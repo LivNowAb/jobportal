@@ -3,6 +3,9 @@
 {% block content %}
 
   <h1>{{ ad_detail.title }}</h1>
+    <h3>Podrobnosti provozovny</h3>
+    <p><strong>Město:</strong> {{ ad_detail.client.city }}</p>
+    <p><strong>Typ:</strong> {{ ad_detail.client.business_type }}</p>
     <p><strong>Datum vystavení:</strong> {{ ad_detail.created }}</p>
     <p><strong>Publikoval podnik:</strong> {{ ad_detail.created_by }}</p>
     <p><strong>Nabízený plat:</strong> {{ ad_detail.salary }} Kč</p>
