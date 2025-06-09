@@ -10,6 +10,6 @@
       {% if response.cv %}
         <p><a href="{{ response.cv.url }}" download>Stáhnout CV</a></p>
       {% endif %}
-
+      <a href="{% url 'response_delete' response.id %}">Smazat</a>
       <p><a href="{% url 'client_log_profile' %}">← Zpět na profil</a></p>
     {% endblock %}

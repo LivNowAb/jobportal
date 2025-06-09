@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block content %}
+    <h2>Upravit inzerát</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div>
+        <label for="{{ form.title.id_for_label }}">Název inzerátu</label><br>
+        {{ form.title }}
+    </div>
+
+    <div>
+        <label for="{{ form.position.id_for_label }}">Pozice</label><br>
+        {{ form.position }}
+    </div>
+
+    <div>
+        <label for="{{ form.text_content.id_for_label }}">Popis pozice</label><br>
+        {{ form.text_content }}
+    </div>
+
+    <div>
+        <label for="{{ form.salary.id_id_for_label }}">Nabízený plat</label>
+        {{ form.salary }}
+    </div>
+
+        <button type="submit">Uložit</button>
+    </form>
+
+{% endblock %}

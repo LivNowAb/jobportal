@@ -20,7 +20,8 @@ from django.urls import path
 
 from jobportal.models import Contacts
 from jobportal.views import home, AdDetail, AdsListView, RegistrationView, ClientProfileView, pricing_list, \
-    CreateAd, ContactListView, ResponseDetailView
+    CreateAd, ContactListView, ResponseDetailView, ResponseDeleteView, AdvertisementDeleteView, AdvertisementUpdateView, \
+    ClientAdvertisementDetailView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -45,4 +46,8 @@ urlpatterns = [
     path("contacts/", ContactListView.as_view(template_name="contacts/index.html"),
          name="contacts"),
     path('response/<int:pk>/', ResponseDetailView.as_view(), name='response_detail'),
+    path('advertisement/<int:pk>/edit/', AdvertisementUpdateView.as_view(), name='advertisement_edit'),
+path("client/advertisement/<int:pk>/", ClientAdvertisementDetailView.as_view(), name="client_advertisement_detail"),
+    path('advertisement/<int:pk>/delete/', AdvertisementDeleteView.as_view(), name='advertisement_delete'),
+    path('response/<int:pk>/delete/', ResponseDeleteView.as_view(), name='response_delete'),
 ]

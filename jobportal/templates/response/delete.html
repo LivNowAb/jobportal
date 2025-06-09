@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block content %}
+<h2>Přejete si opravdu smazat tuto odpověď?</h2>
+<p>Odpověď od: {{ response.name }}</p>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Smazat</button>
+    <a href="{% url 'client_log_profile' %}"><- Zpět</a>
+</form>
+{% endblock %}

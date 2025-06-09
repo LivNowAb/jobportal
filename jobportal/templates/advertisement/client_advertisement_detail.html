@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block content %}
+    <h2>{{ advertisement.title }}</h2>
+    <p><strong>Pozice:</strong> {{ advertisement.position }}</p>
+    <p><strong>Popis pozice:</strong> {{ advertisement.text_content }}</p>
+    <p><strong>Plat:</strong> {{ advertisement.salary }}</p>
+    <a href="{% url 'advertisement_edit' advertisement.id %}">Upravit</a>
+    <a href="{% url 'advertisement_delete' advertisement.id %}">Smazat</a>
+    <a href="{% url 'client_log_profile' %}" class="btn btn-secondary">Zpět do profilu</a>
+{% endblock %}

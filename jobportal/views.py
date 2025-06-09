@@ -1,9 +1,9 @@
 from django.contrib.auth import login
 from django.contrib.auth.mixins import PermissionRequiredMixin, LoginRequiredMixin
 from django.shortcuts import render, redirect
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.views import View
-from django.views.generic import DetailView, ListView, TemplateView, CreateView
+from django.views.generic import DetailView, ListView, TemplateView, CreateView, UpdateView, DeleteView
 
 from jobportal.forms import RegistrationForm, ResponseForm, AdCreation, ClientCreation
 from jobportal.models import Advertisement, Client, Contacts, Response
@@ -128,7 +128,39 @@ class ContactListView(ListView):
     context_object_name = 'contacts_list'
     template_name = "contacts/index.html"
 
+
 class ResponseDetailView(DetailView):
     model = Response
     template_name = 'response/detail.html'
     context_object_name = 'response'
+
+
+class ClientAdvertisementDetailView(DetailView):
+    model = Advertisement
+    template_name = 'advertisement/client_advertisement_detail.html'
+    context_object_name = 'advertisement'
+
+    def get_queryset(self):
+        return Advertisement.objects.filter(client__user=self.request.user)
+
+
+class AdvertisementUpdateView(UpdateView):
+    model = Advertisement
+    fields = ['title', 'text_content', 'position', 'salary']
+    template_name = 'advertisement/edit.html'
+
+    def get_success_url(self):
+        # self.object je právě upravený inzerát
+        return reverse('client_advertisement_detail', kwargs={'pk': self.object.pk})
+
+
+class AdvertisementDeleteView(DeleteView):
+    model = Advertisement
+    template_name = 'advertisement/delete.html'
+    success_url = reverse_lazy("client_log_profile")
+
+
+class ResponseDeleteView(DeleteView):
+    model = Response
+    template_name = 'response/delete.html'
+    success_url = reverse_lazy("client_log_profile")

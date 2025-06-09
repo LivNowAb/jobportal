@@ -17,13 +17,14 @@
         <ul>
             {% for advertisement in client_detail.advertisements.all %}
             <li>
-                <a href="{% url 'ad_detail' advertisement.id %}">{{ advertisement }}</a>
+                <a href="{% url 'client_advertisement_detail' advertisement.id %}">{{ advertisement }}</a>
+
             {% if advertisement.responses.exists %}
                 <p><strong>Odpovědi na inzerát:</strong></p>
                 <ul>
                     {% for response in advertisement.responses.all %}
                     <li>
-                        <a href="{% url 'response_detail' response.id %}">{{ response.name }}</a>
+                        <a href="{% url 'response_detail' response.id %}">{{ advertisement.title }}: {{ response.name }}</a>
                     </li>
                     {% endfor %}
                 </ul>
