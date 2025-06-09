@@ -97,3 +97,17 @@ class Response(Model):
 
     def __str__(self):
         return f'{self.advertisement}'
+
+class Contacts(Model):
+    name = CharField(max_length=128)
+    role = CharField(max_length=128)
+    email = EmailField()
+    phone = CharField(max_length=15)
+
+    def __repr__(self):
+        return f'{self.name}'
+
+    def __str__(self):
+        return f'{self.name}'
+
+

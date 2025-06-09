@@ -6,7 +6,7 @@ from django.views import View
 from django.views.generic import DetailView, ListView, TemplateView, CreateView
 
 from jobportal.forms import RegistrationForm, ResponseForm, AdCreation, ClientCreation
-from jobportal.models import Advertisement, Client
+from jobportal.models import Advertisement, Client, Contacts
 
 
 # Create your views here.
@@ -123,3 +123,9 @@ class CreateAd(PermissionRequiredMixin, CreateView):
          form.instance.created_by = self.request.user
          form.instance.client = client
          return super().form_valid(form)
+
+class ContactListView(ListView):
+    model = Contacts
+    context_object_name = 'contacts_list'
+    template_name = "contacts/index.html"
+

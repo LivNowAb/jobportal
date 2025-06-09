@@ -145,6 +145,33 @@ table {
   background-color: #fdf8ff;
 }
 
+.contacts-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 4rem;
+}
+
+.contact-box {
+  background: aliceblue;
+  border: 1px solid lightblue;
+  width: 280px;
+  height: 180px;
+  border-radius: 10px;
+  margin-top: 2rem;
+}
+
+.contact-box div {
+  margin-bottom: 0.5em;
+}
+
+.contact-name {
+  color: #222222;
+  font-weight: bold;
+  font-size: 1.3rem;
+  padding: 1em;
+}
+
 .button-add{
   display: inline-block;
   padding: 10px 10px;

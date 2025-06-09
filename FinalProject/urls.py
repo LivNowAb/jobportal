@@ -17,8 +17,10 @@ Including another URLconf
 from django.contrib import admin
 from django.contrib.auth.views import PasswordChangeView, LoginView
 from django.urls import path
+
+from jobportal.models import Contacts
 from jobportal.views import home, AdDetail, AdsListView, RegistrationView, ClientProfileView, pricing_list, \
-    CreateAd, ClientProfileCreation
+    CreateAd, ContactListView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -40,4 +42,6 @@ urlpatterns = [
     # redirects to any user profile with the corresponding pk
     path("pricing/", pricing_list, name="pricing"),
     path("create_ad/", CreateAd.as_view(template_name="advertisement/create.html"), name="ad_creation"),
+    path("contacts/", ContactListView.as_view(template_name="contacts/index.html"),
+         name="contacts"),
 ]
