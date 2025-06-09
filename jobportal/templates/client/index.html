@@ -18,6 +18,18 @@
             {% for advertisement in client_detail.advertisements.all %}
             <li>
                 <a href="{% url 'ad_detail' advertisement.id %}">{{ advertisement }}</a>
+            {% if advertisement.responses.exists %}
+                <p><strong>Odpovědi na inzerát:</strong></p>
+                <ul>
+                    {% for response in advertisement.responses.all %}
+                    <li>
+                        <a href="{% url 'response_detail' response.id %}">{{ response.name }}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+                {% else %}
+                <p><em>Na tento inzerát zatím nikdo neodpověděl.</em></p>
+                {% endif %}
             </li>
             {% endfor %}
         </ul>

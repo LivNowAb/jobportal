@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{% load static %}
+{% block content %}
+
+ <h2>Uchazeč: {{ response.name }}</h2>
+    <p><strong>Email:</strong> {{ response.email }}</p>
+      <p><strong>Zpráva:</strong></p>
+      <p>{{ response.message }}</p>
+
+      {% if response.cv %}
+        <p><a href="{{ response.cv.url }}" download>Stáhnout CV</a></p>
+      {% endif %}
+
+      <p><a href="{% url 'client_log_profile' %}">← Zpět na profil</a></p>
+    {% endblock %}

@@ -6,7 +6,7 @@ from django.views import View
 from django.views.generic import DetailView, ListView, TemplateView, CreateView
 
 from jobportal.forms import RegistrationForm, ResponseForm, AdCreation, ClientCreation
-from jobportal.models import Advertisement, Client, Contacts
+from jobportal.models import Advertisement, Client, Contacts, Response
 
 
 # Create your views here.
@@ -128,3 +128,7 @@ class ContactListView(ListView):
     context_object_name = 'contacts_list'
     template_name = "contacts/index.html"
 
+class ResponseDetailView(DetailView):
+    model = Response
+    template_name = 'response/detail.html'
+    context_object_name = 'response'
