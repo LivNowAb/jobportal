@@ -13,4 +13,13 @@
         <p><strong>Kontaktní telefonní číslo provozovny:</strong> {{ client_detail.contact_phone }}</p>
         <p><strong>Logo provozovny:</strong> {{ client_detail.logo }}</p>
     </div>
+    <div>
+        <ul>
+            {% for advertisement in client_detail.advertisements.all %}
+            <li>
+                <a href="{% url 'ad_detail' advertisement.id %}">{{ advertisement }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
 {% endblock %}

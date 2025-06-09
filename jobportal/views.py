@@ -1,5 +1,5 @@
 from django.contrib.auth import login
-from django.contrib.auth.mixins import PermissionRequiredMixin
+from django.contrib.auth.mixins import PermissionRequiredMixin, LoginRequiredMixin
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views import View
@@ -111,12 +111,11 @@ class ClientProfileView(TemplateView):
         # fetches Client object that is linked to currently logged user
 
 
-class CreateAd(PermissionRequiredMixin, CreateView):
+class CreateAd(LoginRequiredMixin, CreateView):
      model = Advertisement
      template_name = "advertisement/create.html"
      form_class= AdCreation
      success_url = reverse_lazy("ads_list")
-     permission_required = "jobportal.can_create_ad"
 
      def form_valid(self, form):
          client = Client.objects.get(user=self.request.user)

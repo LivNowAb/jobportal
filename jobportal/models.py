@@ -69,7 +69,7 @@ class Advertisement(Model):
     title = CharField(max_length=128)
     text_content = TextField()
     salary = CharField(max_length=128)
-    client = ForeignKey(Client, on_delete=DO_NOTHING, null=True)
+    client = ForeignKey(Client, on_delete=DO_NOTHING, null=True, related_name="advertisements")
     created = DateTimeField(auto_now_add=True)
     created_by = ForeignKey(User, on_delete=CASCADE, null=True) #cascade? do nothing? je to spravne vubec?
 
