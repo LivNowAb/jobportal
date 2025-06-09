@@ -112,3 +112,4 @@ class ResponseForm(forms.ModelForm):
                                    'image/jpeg', 'image/png']:
                 raise forms.ValidationError(ERROR_MESSAGES['invalid_file_type'])
             return cv
+        return None
