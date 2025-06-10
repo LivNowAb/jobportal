@@ -47,7 +47,7 @@ urlpatterns = [
          name="contacts"),
     path('response/<int:pk>/', ResponseDetailView.as_view(), name='response_detail'),
     path('advertisement/<int:pk>/edit/', AdvertisementUpdateView.as_view(), name='advertisement_edit'),
-path("client/advertisement/<int:pk>/", ClientAdvertisementDetailView.as_view(), name="client_advertisement_detail"),
+    path("client/advertisement/<int:pk>/", ClientAdvertisementDetailView.as_view(), name="client_advertisement_detail"),
     path('advertisement/<int:pk>/delete/', AdvertisementDeleteView.as_view(), name='advertisement_delete'),
     path('response/<int:pk>/delete/', ResponseDeleteView.as_view(), name='response_delete'),
 ]
