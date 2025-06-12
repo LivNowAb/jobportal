@@ -27,7 +27,6 @@ class RegistrationForm(UserCreationForm):
         widget=forms.PasswordInput(attrs={'class': 'form-control'})
     )
 
-
     class Meta:     #tohle smrsknout do registracniho formulare? meta vyuziti??
         model = User
         fields = (

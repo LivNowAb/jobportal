@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from django.db.models import ForeignKey, DO_NOTHING, CASCADE, CharField, DateTimeField, Model, TextField, ImageField, EmailField, \
     FileField, OneToOneField
-from django.db import models
+from django.db.models.fields import BooleanField
 
 
 class BusinessType(Model):
@@ -71,7 +71,8 @@ class Advertisement(Model):
     salary = CharField(max_length=128)
     client = ForeignKey(Client, on_delete=DO_NOTHING, null=True, related_name="advertisements")
     created = DateTimeField(auto_now_add=True)
-    created_by = ForeignKey(User, on_delete=CASCADE, null=True) #cascade? do nothing? je to spravne vubec?
+    created_by = ForeignKey(User, on_delete=CASCADE, null=True)
+    status = BooleanField(default=False) #whether ad is paid for
 
     class Meta:
         permissions = [('can_create_ad', 'Can create advertisement')]
@@ -98,7 +99,10 @@ class Response(Model):
     def __str__(self):
         return f'{self.advertisement}'
 
+
 class Contacts(Model):
+    class Meta:
+        verbose_name_plural = "Contacts"
     name = CharField(max_length=128)
     role = CharField(max_length=128)
     email = EmailField()

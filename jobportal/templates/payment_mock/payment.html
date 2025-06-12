@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+{% block content %}
+  <div>
+    <h2>Platba za inzerát</h2>
+    <p>Inzerát: {{ ad_detail.title }}</p> {#TODO: opravit #}
+    <p>Cena: 1500 Kč</p>
+    <form method="post">
+        {% csrf_token %}
+        <a class="button button-success" href="{% url 'payment_success' %}">Potvrdit platbu</a>
+    </form>
+  </div>
+{% endblock %}

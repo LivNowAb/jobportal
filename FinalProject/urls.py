@@ -18,9 +18,8 @@ from django.contrib import admin
 from django.contrib.auth.views import PasswordChangeView, LoginView
 from django.urls import path
 
-from jobportal.models import Contacts
 from jobportal.views import home, AdDetail, AdsListView, RegistrationView, ClientProfileView, pricing_list, \
-    CreateAd, ContactListView
+    CreateAd, ContactListView, PaymentView, PaymentSuccessView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -44,4 +43,7 @@ urlpatterns = [
     path("create_ad/", CreateAd.as_view(template_name="advertisement/create.html"), name="ad_creation"),
     path("contacts/", ContactListView.as_view(template_name="contacts/index.html"),
          name="contacts"),
+    path("payment/<int:pk>", PaymentView.as_view(template_name="payment_mock/payment.html"), name='payment'),
+    path("payment/confirmation", PaymentSuccessView.as_view(template_name="payment_mock/payment_success.html"),
+                                                                    name="payment_success"),
 ]
