@@ -15,6 +15,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.contrib.auth.views import PasswordChangeView, LoginView
 from django.urls import path
 from django.contrib.auth.views import (
     LoginView, LogoutView, PasswordChangeView, PasswordChangeDoneView,
@@ -26,6 +27,8 @@ from jobportal.views import (
     CreateAd, ContactListView, ResponseDetailView, ResponseDeleteView,
     AdvertisementDeleteView, AdvertisementUpdateView, ClientAdvertisementDetailView
 )
+from jobportal.views import home, AdDetail, AdsListView, RegistrationView, ClientProfileView, pricing_list, \
+    CreateAd, ContactListView, PaymentView, PaymentSuccessView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -46,6 +49,11 @@ urlpatterns = [
     path("accounts/profile/<int:pk>", ClientProfileView.as_view(template_name="client/index.html"), name="client_detail"),
     path("pricing/", pricing_list, name="pricing"),
     path("create_ad/", CreateAd.as_view(template_name="advertisement/create.html"), name="ad_creation"),
+    path("contacts/", ContactListView.as_view(template_name="contacts/index.html"),
+         name="contacts"),
+    path("payment/<int:pk>", PaymentView.as_view(template_name="payment_mock/payment.html"), name='payment'),
+    path("payment/confirmation", PaymentSuccessView.as_view(template_name="payment_mock/payment_success.html"),
+                                                                    name="payment_success"),
     path("contacts/", ContactListView.as_view(template_name="contacts/index.html"), name="contacts"),
     path('response/<int:pk>/', ResponseDetailView.as_view(), name='response_detail'),
     path('response/<int:pk>/delete/', ResponseDeleteView.as_view(), name='response_delete'),

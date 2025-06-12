@@ -1,5 +1,5 @@
 from django.contrib.auth import login
-from django.contrib.auth.mixins import PermissionRequiredMixin, LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy, reverse
 from django.views import View
@@ -12,9 +12,6 @@ from jobportal.models import Advertisement, Client, Contacts, Response
 # Create your views here.
 def home(request):
     return render(request, "index.html")
-
-def ad_list(request):
-    return render(request, "advertisement/index.html")
 
 def client_list(request):
     return render(request, "client/index.html")
@@ -82,21 +79,12 @@ class RegistrationView(View):
             client.user = user
             client.save()              #saves Client model to DB
 
-            return redirect("client_log_profile") #nema redirect byt client_reg_profile?
+            return redirect("client_log_profile")
         else:
             return render(request, "registration/registration.html", {
                 "user_form": user_form,
                 "client_form": client_form
             })
-
-
-class ClientProfileCreation(PermissionRequiredMixin, CreateView):
-    template_name = "client/create.html"
-    form_class = ClientCreation
-    success_url = "client/index.html"
-    permission_required = ""
-
-    #bude tohle potreba? kdyz uz mame vytvoreni podniku v registraci
 
 
 class ClientProfileView(TemplateView):
@@ -112,22 +100,35 @@ class ClientProfileView(TemplateView):
 
 
 class CreateAd(LoginRequiredMixin, CreateView):
-     model = Advertisement
-     template_name = "advertisement/create.html"
-     form_class= AdCreation
-     success_url = reverse_lazy("ads_list")
+    model = Advertisement
+    template_name = "advertisement/create.html"
+    form_class = AdCreation
 
-     def form_valid(self, form):
-         client = Client.objects.get(user=self.request.user)
-         form.instance.created_by = self.request.user
-         form.instance.client = client
-         return super().form_valid(form)
+    def form_valid(self, form):
+        client = Client.objects.get(user=self.request.user)
+        form.instance.created_by = self.request.user
+        form.instance.client = client
+        self.object = form.save()
+
+        return redirect('payment', pk=self.object.id)
 
 class ContactListView(ListView):
     model = Contacts
     context_object_name = 'contacts_list'
     template_name = "contacts/index.html"
 
+
+class PaymentView(LoginRequiredMixin, DetailView):
+    model = Advertisement
+    template_name = "payment_mock/payment.html"
+    context_object_name = "payment"
+
+    def get_queryset(self):
+        return Advertisement.objects.filter(created_by=self.request.user) #users can access only their own ads
+
+
+class PaymentSuccessView(LoginRequiredMixin, TemplateView):
+    template_name = "payment_mock/payment_success.html"
 
 class ResponseDetailView(DetailView):
     model = Response
