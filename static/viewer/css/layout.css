@@ -228,7 +228,7 @@ table {
 
 .dropdown-title {
   background: #222222;
-  padding: 10px 20px;
+  padding: 10px 30px;
   font-size: 16px;
   cursor: pointer;
 
@@ -241,7 +241,7 @@ table {
   margin: 0;
   padding: 0;
   position: absolute;
-  width: 130px;
+  width: 150px;
   left: 1px;
   transition: all .3s linear;
   border-radius: 10px;
@@ -257,6 +257,22 @@ table {
   text-decoration: none;
   text-align: center;
   color: white;
+}
+.dropdown-button {
+  all: unset;
+  margin: 0;
+  padding: 0;
+  display: block;
+  text-decoration: none;
+  text-align: center;
+  color: white;
+  width: 100%;
+}
+
+.dropdown-button:hover {
+  color: lightblue;
+  transform: scale(1.08);
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
 }
 
 .dropdown ul li a:hover {

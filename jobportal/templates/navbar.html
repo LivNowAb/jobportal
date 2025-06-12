@@ -11,11 +11,26 @@
 
   <div class="nav-right dropdown">
     <a class="btn-reg dropdown-title">Pro firmy</a>
+       {% if user.is_authenticated %}
         <ul class="hidden">
-            <li data-action="action1"><a href="{%  url 'login' %}">Přihlášení</a></li>
-            <li data-action="action2"><a href="{%  url 'registration' %}">Registrace</a></li>
-            <li data-action="action2"><a href="{%  url 'client_log_profile' %}">Můj profil</a></li>
+            <li>
+                <form method="post" action="{% url 'logout' %}">
+                    {% csrf_token %}
+                    <button class="dropdown-button">
+                        Odhlásit
+                    </button>
+                </form>
+            </li>
+            <li><a href="{%  url 'password_change' %}">Změna hesla</a></li>
+            <li><a href="{%  url 'client_log_profile' %}">Můj profil</a></li>
         </ul>
+      {% else %}
+        <ul class="hidden">
+            <li><a href="{%  url 'login' %}">Přihlášení</a></li>
+            <li><a href="{%  url 'registration' %}">Registrace</a></li>
+            <li><a href="{%  url 'password_reset' %}">Zapomenuté heslo</a></li>
+        </ul>
+      {% endif %}
   </div>
 
 </nav>
