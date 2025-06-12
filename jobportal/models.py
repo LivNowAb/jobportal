@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
-from django.db.models import ForeignKey, DO_NOTHING, CASCADE, CharField, DateTimeField, Model, TextField, ImageField, EmailField, \
-    FileField, OneToOneField
+from django.db.models import (ForeignKey, DO_NOTHING, CASCADE, CharField, DateTimeField, Model, TextField, ImageField,
+                              EmailField, FileField, OneToOneField)
 from django.db.models.fields import BooleanField
 
 

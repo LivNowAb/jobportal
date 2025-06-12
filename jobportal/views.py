@@ -107,7 +107,7 @@ class CreateAd(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         client = Client.objects.get(user=self.request.user)
         form.instance.created_by = self.request.user
-        form.instance.client = client
+        form.instance.client = client   #user and client model must match author
         self.object = form.save()
 
         return redirect('payment', pk=self.object.id)
@@ -151,7 +151,7 @@ class AdvertisementUpdateView(UpdateView):
     template_name = 'advertisement/edit.html'
 
     def get_success_url(self):
-        # self.object je právě upravený inzerát
+        #self.object is the ad currently being edited
         return reverse('client_advertisement_detail', kwargs={'pk': self.object.pk})
 
 

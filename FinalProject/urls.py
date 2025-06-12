@@ -15,20 +15,17 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.contrib.auth.views import PasswordChangeView, LoginView
 from django.urls import path
 from django.contrib.auth.views import (
     LoginView, LogoutView, PasswordChangeView, PasswordChangeDoneView,
-    PasswordResetView, PasswordResetDoneView, PasswordResetConfirmView, PasswordResetCompleteView
-)
+    PasswordResetView, PasswordResetDoneView, PasswordResetConfirmView, PasswordResetCompleteView)
 
 from jobportal.views import (
-    home, AdDetail, AdsListView, RegistrationView, ClientProfileView, pricing_list,
-    CreateAd, ContactListView, ResponseDetailView, ResponseDeleteView,
-    AdvertisementDeleteView, AdvertisementUpdateView, ClientAdvertisementDetailView
-)
-from jobportal.views import home, AdDetail, AdsListView, RegistrationView, ClientProfileView, pricing_list, \
-    CreateAd, ContactListView, PaymentView, PaymentSuccessView
+    home, AdDetail, AdsListView, RegistrationView, ClientProfileView, pricing_list, \
+    CreateAd, ContactListView, PaymentView, PaymentSuccessView, ResponseDetailView,
+    ResponseDeleteView, AdvertisementUpdateView, \
+    ClientAdvertisementDetailView, AdvertisementDeleteView)
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -37,27 +34,37 @@ urlpatterns = [
     path('advertisement/ads_list/', AdsListView.as_view(), name='ads_list'),
     path("login/", LoginView.as_view(template_name="registration/login.html"), name="login"),
     path("logout/", LogoutView.as_view(), name="logout"),
-    path("registration/", RegistrationView.as_view(), name="registration"),   # Změna hesla
-    path("password_change/", PasswordChangeView.as_view(template_name="registration/password_change.html"), name="password_change"),
-    path("password_change/done/", PasswordChangeDoneView.as_view(template_name="registration/password_change_done.html"), name="password_change_done"),
-    path("password_reset/", PasswordResetView.as_view(template_name="registration/password_reset_form.html"), name="password_reset"),
-    path("password_reset/done/", PasswordResetDoneView.as_view(template_name="registration/password_reset_done.html"), name="password_reset_done"),
-    path("reset/<uidb64>/<token>/", PasswordResetConfirmView.as_view(template_name="registration/password_reset_confirm.html"), name="password_reset_confirm"),
-    path("reset/done/", PasswordResetCompleteView.as_view(template_name="registration/password_reset_complete.html"), name="password_reset_complete"),
-    path("registration/client/profile", ClientProfileView.as_view(template_name="client/index.html"), name="client_reg_profile"),
-    path("accounts/profile/", ClientProfileView.as_view(template_name="client/index.html"), name="client_log_profile"),
-    path("accounts/profile/<int:pk>", ClientProfileView.as_view(template_name="client/index.html"), name="client_detail"),
+    path("registration/", RegistrationView.as_view(), name="registration"),
+    path("password_change/", PasswordChangeView.as_view(
+        template_name="registration/password_change.html"), name="password_change"),
+    path("password_change/done/", PasswordChangeDoneView.as_view(
+        template_name="registration/password_change_done.html"), name="password_change_done"),
+    path("password_reset/", PasswordResetView.as_view(
+        template_name="registration/password_reset_form.html"), name="password_reset"),
+    path("password_reset/done/", PasswordResetDoneView.as_view(
+        template_name="registration/password_reset_done.html"), name="password_reset_done"),
+    path("reset/<uidb64>/<token>/", PasswordResetConfirmView.as_view(
+        template_name="registration/password_reset_confirm.html"), name="password_reset_confirm"),
+    path("reset/done/", PasswordResetCompleteView.as_view(
+        template_name="registration/password_reset_complete.html"), name="password_reset_complete"),
+    path("registration/client/profile", ClientProfileView.as_view(template_name="client/index.html"),
+         name="client_reg_profile"),
+    path("accounts/profile/", ClientProfileView.as_view(template_name="client/index.html"),
+         name="client_log_profile"),
+    path("accounts/profile/<int:pk>", ClientProfileView.as_view(template_name="client/index.html"),
+         name="client_detail"),
     path("pricing/", pricing_list, name="pricing"),
     path("create_ad/", CreateAd.as_view(template_name="advertisement/create.html"), name="ad_creation"),
     path("contacts/", ContactListView.as_view(template_name="contacts/index.html"),
          name="contacts"),
     path("payment/<int:pk>", PaymentView.as_view(template_name="payment_mock/payment.html"), name='payment'),
     path("payment/confirmation", PaymentSuccessView.as_view(template_name="payment_mock/payment_success.html"),
-                                                                    name="payment_success"),
+        name="payment_success"),
     path("contacts/", ContactListView.as_view(template_name="contacts/index.html"), name="contacts"),
     path('response/<int:pk>/', ResponseDetailView.as_view(), name='response_detail'),
     path('response/<int:pk>/delete/', ResponseDeleteView.as_view(), name='response_delete'),
     path('advertisement/<int:pk>/edit/', AdvertisementUpdateView.as_view(), name='advertisement_edit'),
-    path("client/advertisement/<int:pk>/", ClientAdvertisementDetailView.as_view(), name="client_advertisement_detail"),
+    path("client/advertisement/<int:pk>/", ClientAdvertisementDetailView.as_view(),
+         name="client_advertisement_detail"),
     path('advertisement/<int:pk>/delete/', AdvertisementDeleteView.as_view(), name='advertisement_delete'),
 ]
