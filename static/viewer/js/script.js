@@ -182,3 +182,29 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
+// filters
+
+document.addEventListener('DOMContentLoaded', function () {
+  const regionSelect = document.getElementById('region');
+  const districtSelect = document.getElementById('district');
+  const allDistrictOptions = Array.from(districtSelect.options).slice(1);
+
+  function filterDistrictByRegion(regionId) {
+    districtSelect.innerHTML = `<option value="">-- Vyberte okres --</option>`;
+    if (!regionId) return;
+
+    const filteredOptions = allDistrictOptions.filter(
+        option => option.dataset.region === regionId
+  );
+    filteredOptions.forEach(option => districtSelect.appendChild(option));
+  }
+
+  regionSelect.addEventListener('change', function () {
+    filterDistrictByRegion(this.value);
+});
+  const selectedRegion = regionSelect.value;
+  if (selectedRegion) {
+    filterDistrictByRegion(selectedRegion);
+  }
+});
+

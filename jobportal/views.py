@@ -1,12 +1,13 @@
 from django.contrib.auth import login
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect
+from django.db.models.query import QuerySet
 from django.urls import reverse_lazy, reverse
 from django.views import View
 from django.views.generic import DetailView, ListView, TemplateView, CreateView, UpdateView, DeleteView
 
 from jobportal.forms import RegistrationForm, ResponseForm, AdCreation, ClientCreation
-from jobportal.models import Advertisement, Client, Contacts, Response
+from jobportal.models import Advertisement, Client, Contacts, Response, Region, District, Position
 
 
 # Create your views here.
@@ -55,6 +56,28 @@ class AdsListView(ListView):
     model = Advertisement
     template_name = "advertisement/ads_list.html"
     context_object_name = 'ads_list'
+
+    def get_queryset(self):
+        queryset = super().get_queryset().select_related('client__district__region_id', 'position')
+        region = self.request.GET.get('region')
+        district = self.request.GET.get('district')
+        position = self.request.GET.get('position')
+
+        if region:
+            queryset = queryset.filter(client__district__region_id=region)
+        if district:
+            queryset = queryset.filter(client__district_id=district)
+        if position:
+            queryset = queryset.filter(position=position)
+
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['regions'] = Region.objects.all()
+        context['districts'] = District.objects.all()
+        context['positions'] = Position.objects.all()
+        return context
 
 
 class RegistrationView(View):
