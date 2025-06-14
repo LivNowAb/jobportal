@@ -16,8 +16,9 @@
     <div>
         <ul>
             {% for advertisement in client_detail.advertisements.all %}
-            <li>
+            <li class="ad-item" data-created="{{ advertisement.created_at|date:"Y-m-d" }}">
                 <a href="{% url 'client_advertisement_detail' advertisement.id %}">{{ advertisement }}</a>
+                <span class="status"></span>
 
             {% if advertisement.responses.exists %}
                 <p><strong>Odpovědi na inzerát:</strong></p>

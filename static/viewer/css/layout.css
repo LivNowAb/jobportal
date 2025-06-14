@@ -468,3 +468,6 @@ table {
   font-weight: bold;
  }
 
+.inactive {
+  color: #555555
+}

@@ -208,3 +208,23 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 });
 
+// show only active ads (14 days)
+
+document.addEventListener("DOMContentLoaded", function () {
+  document.querySelectorAll('.ad-item').forEach(ad => {
+    const createdStr = ad.dataset.created;
+    const createdDate = new Date(createdStr);
+    const today = new Date();
+    const diff = (today - createdDate) / (1000 * 60 * 60 * 24);
+
+    if (diff > 14) {
+      ad.classList.add('inactive');
+      const status = ad.querySelector('.status');
+      if (status) {
+        status.textContent = "(Neaktivní)";
+        status.style.color = "gray";
+      }
+    }
+  });
+});
+

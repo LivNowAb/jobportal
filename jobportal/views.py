@@ -1,8 +1,11 @@
+from datetime import timedelta
+
 from django.contrib.auth import login
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect
 from django.db.models.query import QuerySet
 from django.urls import reverse_lazy, reverse
+from django.utils import timezone
 from django.views import View
 from django.views.generic import DetailView, ListView, TemplateView, CreateView, UpdateView, DeleteView
 
@@ -59,6 +62,10 @@ class AdsListView(ListView):
 
     def get_queryset(self):
         queryset = super().get_queryset().select_related('client__district__region_id', 'position')
+
+        cutoff_date = timezone.now() - timedelta(days=14)
+        queryset = queryset.filter(created__gte=cutoff_date)
+
         region = self.request.GET.get('region')
         district = self.request.GET.get('district')
         position = self.request.GET.get('position')
