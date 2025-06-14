@@ -12,7 +12,7 @@ body {
   display: flex;
   flex-direction: column;
   background: white;
-  color: black;
+  color: #1d3557;
   font-family: Arial, Helvetica, sans-serif;
   text-align: center;
 }
@@ -20,7 +20,7 @@ body {
 
 .main-home {
   height: 100vh;
-  color: black;
+  color: #1d3557;
   font-size: 2rem;
   display: flex;
   text-align: center;
@@ -60,6 +60,7 @@ footer {
   align-items: center;
   text-align: center;
   padding: 0 20px;
+  margin-top: 2rem;
 }
 
 h1 {
@@ -82,7 +83,7 @@ a.logo:hover {
 
 .welcome {
   display: block;
-  color: #222222;
+  color: #1d3557;
   font-size: 5rem;
   align-items: center;
   justify-content: center;
@@ -173,7 +174,7 @@ table a:hover {
 }
 
 .contact-name {
-  color: #222222;
+  color: #1d3557;
   font-weight: bold;
   font-size: 1.3rem;
   padding: 1em;
@@ -311,6 +312,7 @@ table a:hover {
 
 .modal-content {
   background: white;
+  color: #1d3557;
   width: 90vw;
   max-width: 900px;
   min-width: 300px;
