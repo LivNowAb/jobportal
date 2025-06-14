@@ -478,9 +478,6 @@ table a:hover {
   font-weight: bold;
  }
 
-.inactive {
-  color: #555555
-}
 
 .read-more {
   cursor: pointer;
@@ -488,7 +485,98 @@ table a:hover {
   text-decoration: underline
 }
 
-.read-more:hover {
-  scale: 1.08;
+.dashboard-wrapper {
+  display: flex;
+  gap: 4rem;
+  align-items: flex-start;
+  flex-grow: 1;
+  width: 100%;
+  margin-left: 2rem;
+  margin-top: 2rem;
+  padding: 0 2rem;
+}
 
+.client-dashboard {
+  display: flex;
+  flex: 1 1 25%;
+  flex-direction:column;
+  align-items: flex-start;
+  min-width: 450px;
+  border: 2px solid #cae9ff;
+  border-radius: 10px;
+  background: aliceblue;
+  padding-left: 1.5em;
+  box-sizing: border-box;
+}
+
+.client-ads {
+  flex: 2 1 40%;
+  text-align: left;
+  padding-right: 2rem;
+}
+.advertisement-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.advertisement-card {
+  border: 2px solid #cae9ff;
+  border-radius: 10px;
+  padding: 1rem 1.5rem;
+  background-color: white;
+  flex-direction: column;
+}
+
+.ad-header {
+  display: flex;
+
+  margin-bottom: 1rem;
+}
+
+.ad-title {
+  font-size: 1.1rem;
+  font-weight: bold;
+  text-decoration: none;
+  max-width: 70%;
+  word-break:break-word;
+  color: #1d3557;
+}
+
+.ad-title:hover {
+  text-decoration: underline;
+}
+
+.ad-date {
+  font-size: 0.9rem;
+  color: #888;
+  margin-left: auto;
+}
+
+.responses ul {
+  margin-top: 0.5rem;
+  padding: 0;
+}
+
+.responses li {
+  margin-bottom: 0.3rem;
+  list-style: none;
+}
+
+.responses a {
+  color: #1d3557;
+}
+
+.no-responses {
+  font-style: italic;
+  color: #999;
+}
+.ad-item {
+  display: block;
+}
+
+.inactive .status {
+  margin-left: 5px;
+  font-size: .9rem;
+  color: hotpink;
 }

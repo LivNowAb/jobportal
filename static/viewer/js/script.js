@@ -217,12 +217,11 @@ document.addEventListener("DOMContentLoaded", function () {
     const today = new Date();
     const diff = (today - createdDate) / (1000 * 60 * 60 * 24);
 
-    if (diff > 14) {
+    if (diff > 3) {
       ad.classList.add('inactive');
       const status = ad.querySelector('.status');
       if (status) {
-        status.textContent = "(Neaktivní)";
-        status.style.color = "gray";
+        status.textContent = " (Neaktivní)";
       }
     }
   });

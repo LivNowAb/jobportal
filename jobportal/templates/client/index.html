@@ -2,38 +2,44 @@
 {% load static %}
 {% block content %}
     <h2>Vítejte {{ client_detail }}!</h2>
-    <div>
-        <p><strong>Název podniku:</strong> {{ client_detail.business_name }}</p>
-        <p><strong>Typ provozovny:</strong> {{ client_detail.business_type }}</p>
-        <p><strong>IČO/DIČ:</strong> {{ client_detail.VAT_number }}</p>
-        <p><strong>Adresa provozovny:</strong> {{ client_detail.address }}</p>
-        <p><strong>Město:</strong> {{ client_detail.city }}</p>
-        <p><strong>Okres:</strong> {{ client_detail.district }}</p>
-        <p><strong>Kontaktní e-mail provozovny:</strong> {{ client_detail.contact_email }}</p>
-        <p><strong>Kontaktní telefonní číslo provozovny:</strong> {{ client_detail.contact_phone }}</p>
-        <p><strong>Logo provozovny:</strong> {{ client_detail.logo }}</p>
-    </div>
-    <div>
-        <ul>
+    <div class="dashboard-wrapper">
+        <div class="client-dashboard">
+            <p><strong>Název podniku:</strong> {{ client_detail.business_name }}</p>
+            <p><strong>Typ provozovny:</strong> {{ client_detail.business_type }}</p>
+            <p><strong>IČO/DIČ:</strong> {{ client_detail.VAT_number }}</p>
+            <p><strong>Adresa provozovny:</strong> {{ client_detail.address }}</p>
+            <p><strong>Město:</strong> {{ client_detail.city }}</p>
+            <p><strong>Okres:</strong> {{ client_detail.district }}</p>
+            <p><strong>Kontaktní e-mail provozovny:</strong> {{ client_detail.contact_email }}</p>
+            <p><strong>Kontaktní telefonní číslo provozovny:</strong> {{ client_detail.contact_phone }}</p>
+            <p><strong>Logo provozovny:</strong> {{ client_detail.logo }}</p>
+        </div>
+        <div class="client-ads advertisement-list">
             {% for advertisement in client_detail.advertisements.all %}
-            <li class="ad-item" data-created="{{ advertisement.created_at|date:"Y-m-d" }}">
-                <a href="{% url 'client_advertisement_detail' advertisement.id %}">{{ advertisement }}</a>
-                <span class="status"></span>
+                 <div class="ad-item advertisement-card {% if not advertisement.is_active %}inactive{% endif %}" data-created="{{ advertisement.created|date:"Y-m-d" }}">
 
-            {% if advertisement.responses.exists %}
-                <p><strong>Odpovědi na inzerát:</strong></p>
-                <ul>
-                    {% for response in advertisement.responses.all %}
-                    <li>
-                        <a href="{% url 'response_detail' response.id %}">{{ advertisement.title }}: {{ response.name }}</a>
-                    </li>
-                    {% endfor %}
-                </ul>
-                {% else %}
-                <p><em>Na tento inzerát zatím nikdo neodpověděl.</em></p>
-                {% endif %}
-            </li>
-            {% endfor %}
-        </ul>
-    </div>
+                    <div class="ad-header">
+                        <a href="{% url 'client_advertisement_detail' advertisement.id %}" class="ad-title">{{ advertisement.title }}</a>
+                        <span class="ad-date">{{ advertisement.created|date:"d.m.Y" }}</span>
+                        <span class="status"></span>
+                     </div>
+                    {% if advertisement.responses.exists %}
+                        <div class="responses">
+                        <p><strong>Odpovědi na inzerát:</strong></p>
+                        <ul>
+                            {% for response in advertisement.responses.all %}
+                            <li>
+                                <a href="{% url 'response_detail' response.id %}">{{ advertisement.title }}: {{ response.name }}</a>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                        </div>
+                    {% else %}
+                    <p><em>Na tento inzerát zatím nikdo neodpověděl.</em></p>
+                    {% endif %}
+                 </div>
+                {% endfor %}
+            </div>
+        </div>
+
 {% endblock %}
