@@ -228,3 +228,19 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
+// text content - show more
+
+document.addEventListener("DOMContentLoaded", function () {
+  document.querySelectorAll(".read-more").forEach(span => {
+    span.addEventListener('click', function () {
+      const container = this.parentElement;
+      const fullText = container.dataset.full;
+      container.innerHTML = fullText;
+    });
+  });
+});
+
+
+
+
+

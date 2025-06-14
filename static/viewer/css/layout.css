@@ -471,3 +471,14 @@ table {
 .inactive {
   color: #555555
 }
+
+.read-more {
+  cursor: pointer;
+  color: blue;
+  text-decoration: underline
+}
+
+.read-more:hover {
+  scale: 1.08;
+
+}

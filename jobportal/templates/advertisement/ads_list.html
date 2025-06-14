@@ -60,7 +60,16 @@
             <td>{{ advertisement.created }}</td>
           </tr>
           <tr>
-            <td>{{ advertisement.text_content }}</td>
+            <td>
+                <div class="ad-text" data-full="{{ advertisement.text_content|escape }}">
+                    {% if advertisement.text_content|wordcount > 20 %}
+                        {{ advertisement.text_content|truncatewords:20 }}
+                    <span class="read-more">zobrazit více</span>
+                    {% else %}
+                        {{ advertisement.text_content }}
+                    {% endif %}
+                </div>
+            </td>
           </tr>
     </table>
   {% endfor %}
