@@ -50,18 +50,20 @@
      <table>
           <tr>
             <td>
-              <a href="{% url 'ad_detail' advertisement.id %}">
-                <h3>{{ advertisement.title }}</h3>
-              </a>
-              <p>{{ advertisement.client.city }}</p>
+                <div class="ads-header">
+                  <a href="{% url 'ad_detail' advertisement.id %}">
+                    <h3 class="ads-title">{{ advertisement.title }}</h3>
+                  </a>
+                  <p class="ads-date">{{ advertisement.created }}</p>
+                </div>
+                <div class="ads-loc-name">
+                    {{ advertisement.client.business_name }}, {{ advertisement.client.city }}
+                </div>
             </td>
           </tr>
           <tr>
-            <td>{{ advertisement.created }}</td>
-          </tr>
-          <tr>
             <td>
-                <div class="ad-text" data-full="{{ advertisement.text_content|escape }}">
+                <div class="ads-text" data-full="{{ advertisement.text_content|escape }}">
                     {% if advertisement.text_content|wordcount > 20 %}
                         {{ advertisement.text_content|truncatewords:20 }}
                     <span class="read-more">zobrazit více</span>

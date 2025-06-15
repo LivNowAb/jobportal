@@ -133,8 +133,8 @@ nav {
 table, th, td{
   border-collapse: collapse;
   text-align: left;
-  padding: .5em;
-  margin: 1.25em auto;
+  padding: .2em;
+  margin: 1em auto;
   color: #222222;
 }
 
@@ -153,6 +153,33 @@ table a:hover {
   text-decoration: underline;
 }
 
+.ads-header {
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ads-title {
+  margin-top: 1.5rem;
+  font-size: 1.2rem;
+  color: #1d3557;
+}
+
+.ads-date{
+  font-size: 0.9rem;
+  color: #888;
+}
+
+.ads-loc-name {
+  margin-top: .2rem;
+  font-size: .95rem;
+  color: #1d3557;
+  margin-bottom: 1rem;
+}
+
+.ads-text {
+  margin-bottom: .5rem;
+}
 .contacts-wrapper {
   display: flex;
   flex-wrap: wrap;
@@ -478,7 +505,6 @@ table a:hover {
   font-weight: bold;
  }
 
-
 .read-more {
   cursor: pointer;
   color: blue;
@@ -565,8 +591,11 @@ table a:hover {
 
 .responses a {
   color: #1d3557;
+  text-decoration: none;
 }
-
+.responses a:hover {
+  text-decoration: underline;
+}
 .no-responses {
   font-style: italic;
   color: #999;
