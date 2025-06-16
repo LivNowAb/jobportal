@@ -1,21 +1,22 @@
 {% extends "layout.html" %}
 {% load static %}
 {% block content %}
-<h1>Nabídky práce</h1>
 
-<div>
+
+<div class="filters">
+
     <form method="get" action="{% url 'ads_list' %}">
-        <label for="region">Kraj:</label>
-        <select name="region" id="region">
-            <option value="">vyberte</option>
+        <label for="region"></label>
+        <select class="filters-small" name="region" id="region">
+            <option value="">Kraj</option>
             {% for region in regions %}
                 <option value="{{ region.id }}" {% if request.GET.region == region.id %}selected{% endif %}>{{ region.name }}</option>
             {% endfor %}
         </select>
 
-        <label for="district">Okres:</label>
-        <select name="district" id="district">
-            <option value="">vyberte</option>
+        <label for="district"></label>
+        <select class="filters-small" name="district" id="district">
+            <option value="">Okres</option>
             {% for district in districts %}
                 <option value="{{ district.id }}"
                         data-region="{{ district.region_id_id }}"
@@ -25,9 +26,9 @@
             {% endfor %}
         </select>
 
-        <label for="position">Pozice:</label>
-        <select name="position" id="position">
-            <option value="">vyberte</option>
+        <label for="position"></label>
+        <select class="filters-large" name="position" id="position">
+            <option value="">Pozice</option>
             {% for position in positions %}
                 <option value="{{ position.id }}" {% if request.GET.position == position.id %}selected{% endif %}>
                     {{ position.name }}
@@ -35,7 +36,7 @@
             {% endfor %}
         </select>
 
-        <button type="submit">Filtrovat</button>
+        <button class="button-filter" type="submit">Filtrovat</button>
     </form>
 </div>
 <div>
