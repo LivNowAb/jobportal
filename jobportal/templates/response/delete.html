@@ -2,11 +2,24 @@
 {% load static %}
 
 {% block content %}
-<h2>Přejete si opravdu smazat tuto odpověď?</h2>
-<p>Odpověď od: {{ response.name }}</p>
-<form method="post">
-    {% csrf_token %}
-    <button type="submit">Smazat</button>
-    <a href="{% url 'client_log_profile' %}"><- Zpět</a>
-</form>
+
+<div class="ad-wrapper">
+    <div class="back">
+        <a class="button-client" href="{% url 'client_log_profile' %}">Zpět do profilu</a>
+    </div>
+</div>
+
+<div class="client-ads-detail">
+    <h2>Přejete si opravdu smazat tuto odpověď?</h2>
+    <p>Odpověď od: {{ response.name }}</p>
+
+    <form method="post">
+        {% csrf_token %}
+        <div class="client-buttons">
+            <button type="submit" class="button-client">Smazat</button>
+            <a class="button-client" href="{% url 'response_detail' response.id %}">Zpět</a>
+        </div>
+    </form>
+</div>
+
 {% endblock %}

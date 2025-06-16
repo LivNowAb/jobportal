@@ -2,11 +2,23 @@
 {% load static %}
 
 {% block content %}
+
+<div class="ad-wrapper">
+    <div class="back">
+        <a class="button-client" href="{% url 'client_log_profile' %}">Zpět do profilu</a>
+    </div>
+</div>
+
+<div class="client-ads-detail">
     <h2>{{ advertisement.title }}</h2>
     <p><strong>Pozice:</strong> {{ advertisement.position }}</p>
     <p><strong>Popis pozice:</strong> {{ advertisement.text_content }}</p>
     <p><strong>Plat:</strong> {{ advertisement.salary }}</p>
-    <a href="{% url 'advertisement_edit' advertisement.id %}">Upravit</a>
-    <a href="{% url 'advertisement_delete' advertisement.id %}">Smazat</a>
-    <a href="{% url 'client_log_profile' %}" class="btn btn-secondary">Zpět do profilu</a>
+
+    <div class="client-buttons">
+        <a class="button-client" href="{% url 'advertisement_edit' advertisement.id %}">Upravit</a>
+        <a class="button-client" href="{% url 'advertisement_delete' advertisement.id %}">Smazat</a>
+    </div>
+</div>
+
 {% endblock %}

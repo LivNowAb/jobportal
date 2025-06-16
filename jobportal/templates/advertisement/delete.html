@@ -2,11 +2,22 @@
 {% load static %}
 
 {% block content %}
-<h2>Přejete si opravdu smazat tento inzerát?</h2>
-<p>{{ object }}</p>
-<form method="post">
-    {% csrf_token %}
-    <button type="submit">Smazat</button>
-    <a href="{% url 'client_log_profile' %}"><- Zpět</a>
-</form>
+
+<div class="ad-wrapper">
+    <div class="back">
+        <a class="button-client" href="{% url 'client_log_profile' %}">Zpět do profilu</a>
+    </div>
+</div>
+
+<div class="client-ads-detail">
+    <h2>Přejete si opravdu smazat tento inzerát?</h2>
+    <p>{{ object }}</p>
+
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="button-client">Smazat</button>
+        <a class="button-client" href="{% url 'client_advertisement_detail' advertisement.id  %}">Zpět</a>
+    </form>
+</div>
+
 {% endblock %}

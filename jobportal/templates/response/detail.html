@@ -1,15 +1,27 @@
 {% extends "layout.html" %}
 {% load static %}
+
 {% block content %}
 
- <h2>Uchazeč: {{ response.name }}</h2>
-    <p><strong>Email:</strong> {{ response.email }}</p>
-      <p><strong>Zpráva:</strong></p>
-      <p>{{ response.message }}</p>
+<div class="ad-wrapper">
+    <div class="back">
+        <a class="button-client" href="{% url 'client_log_profile' %}">Zpět do profilu</a>
+    </div>
+</div>
 
-      {% if response.cv %}
-        <p><a href="{{ response.cv.url }}" download>Stáhnout CV</a></p>
-      {% endif %}
-      <a href="{% url 'response_delete' response.id %}">Smazat</a>
-      <p><a href="{% url 'client_log_profile' %}">← Zpět na profil</a></p>
-    {% endblock %}
+<div class="client-ads-detail">
+    <h2>Uchazeč: {{ response.name }}</h2>
+    <p><strong>Email:</strong> {{ response.email }}</p>
+    <p><strong>Zpráva:</strong></p>
+    <p>{{ response.message }}</p>
+
+    {% if response.cv %}
+        <p><a class="button-client" href="{{ response.cv.url }}" download>Stáhnout CV</a></p>
+    {% endif %}
+
+    <div class="client-buttons">
+        <a class="button-client" href="{% url 'response_delete' response.id %}">Smazat</a>
+    </div>
+</div>
+
+{% endblock %}
