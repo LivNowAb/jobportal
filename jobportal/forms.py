@@ -50,13 +50,11 @@ class ClientCreation(forms.ModelForm):
                   "contact_phone", "logo"]
 
     business_name = CharField(label="Název podniku", max_length=250)
-    business_type = ModelChoiceField(label="Typ provozovny", queryset=BusinessType.objects,
-                                widget=forms.Select(attrs={"class": "form-control"}))
+    business_type = ModelChoiceField(label="Typ provozovny", queryset=BusinessType.objects.all())
     VAT_number = CharField(label="IČO/DIČ", max_length=25, required=True)
     address = CharField(label="Adresa provozovny", max_length=250)
     city = CharField(label="Město", max_length=250)
-    district = ModelChoiceField(label="Okres", queryset=District.objects,
-                                widget=forms.Select(attrs={"class": "form-control"}))
+    district = ModelChoiceField(label="Okres", queryset=District.objects.all())
     contact_email = EmailField(label="Kontaktní e-mail provozovny")
     contact_phone = CharField(label="Kontaktní telefonní číslo provozovny", max_length=128)
     logo = ImageField(label="Logo provozovny", required=False)

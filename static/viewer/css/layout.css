@@ -807,3 +807,42 @@ table a:hover {
 .button-filter:hover {
   transform: scale(1.1);
 }
+
+.form-log-wrapper {
+  border: 2px solid #cae9ff;
+  padding: .5em 1em;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 2rem;
+}
+
+.form-log label {
+  display: block;
+  margin-bottom: 0.2rem;
+  margin-top: 0.2rem;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.form-log input,
+.form-log select,
+.form-log textarea {
+  padding: .5rem;
+  margin-bottom: .7rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: border-color 0.2s;
+}
+
+.form-log input:focus,
+.form-log textarea:focus {
+  outline: none;
+  border: 4px solid #cae9ff;
+}
+
+.form-log input[type="file"] {
+  padding: 0.2rem;
+}
+

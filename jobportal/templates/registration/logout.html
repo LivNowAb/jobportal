@@ -1,6 +1,10 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-<h2>Byli jste odhlášeni</h2>
-<p><a href="{% url 'login' %}">Přihlásit se znovu</a></p>
+<div class="form-log-wrapper">
+    <h2>Byli jste odhlášeni</h2>
+    <div class="client-buttons">
+        <a class="button-client" href="{% url 'login' %}">Přihlásit se znovu</a>
+    </div>
+</div>
 {% endblock %}

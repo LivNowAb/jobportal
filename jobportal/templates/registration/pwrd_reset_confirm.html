@@ -1,10 +1,29 @@
-{% extends 'layout.html' %}
+{% extends "layout.html" %}
 
 {% block content %}
-<h2>Nastavení nového hesla</h2>
-<form method="post">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit">Nastavit nové heslo</button>
-</form>
+    {% if form.non_field_errors %}
+        <p>{{ form.non_field_errors }}</p>
+    {% endif %}
+
+    <div class="form-log-wrapper">
+        <h2>Obnovení hesla</h2>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-log">
+                <label for="{{ form.new_password1.id_for_label }}">Nové heslo</label>
+                {{ form.new_password1 }}
+                {{ form.new_password1.errors }}
+            </div>
+
+            <div class="form-log">
+                <label for="{{ form.new_password2.id_for_label }}">Potvrzení nového hesla</label>
+                {{ form.new_password2 }}
+                {{ form.new_password2.errors }}
+            </div>
+
+            <div class="client-buttons">
+                <button class="button-client" type="submit">Obnovit heslo</button>
+            </div>
+        </form>
+    </div>
 {% endblock %}

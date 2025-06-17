@@ -1,23 +1,97 @@
 {% extends "layout.html" %}
 
 {% block content %}
+<div class="form-log-wrapper">
+    <h2>Registrace</h2>
 
-<div>
-    <div>
-        <h2>Registrace</h2>
-    </div>
-    <div>
-        <form method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            <h3>Účet</h3>
-            {{ user_form.as_p }}
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
 
-            <h3>Podnik</h3>
-            {{ client_form.as_p }}
+        <h3>Účet</h3>
 
-            <button type="submit">Registration</button>
-        </form>
-    </div>
+        <div class="form-log">
+            <label>Uživatelské jméno</label>
+            {{ user_form.username }}
+            {{ user_form.username.errors }}
+        </div>
+
+        <div class="form-log">
+            <label>Email</label>
+            {{ user_form.email }}
+            {{ user_form.email.errors }}
+        </div>
+
+        <div class="form-log">
+            <label>Heslo</label>
+            {{ user_form.password1 }}
+            {{ user_form.password1.errors }}
+        </div>
+
+        <div class="form-log">
+            <label>Heslo znovu</label>
+            {{ user_form.password2 }}
+            {{ user_form.password2.errors }}
+        </div>
+
+        <h3>Podnik</h3>
+
+        <div class="form-log">
+            <label>Název podniku</label>
+            {{ client_form.business_name }}
+            {{ client_form.business_name.errors }}
+        </div>
+
+        <div class="form-log">
+            <label>Typ provozovny</label>
+            {{ client_form.business_type }}
+            {{ client_form.business_type.errors }}
+        </div>
+
+        <div class="form-log">
+            <label>IČO/DIČ</label>
+            {{ client_form.VAT_number }}
+            {{ client_form.VAT_number.errors }}
+        </div>
+
+        <div class="form-log">
+            <label>Adresa provozovny</label>
+            {{ client_form.address }}
+            {{ client_form.address.errors }}
+        </div>
+
+        <div class="form-log">
+            <label>Město</label>
+            {{ client_form.city }}
+            {{ client_form.city.errors }}
+        </div>
+
+        <div class="form-log">
+            <label>Okres</label>
+            {{ client_form.district }}
+            {{ client_form.district.errors }}
+        </div>
+
+        <div class="form-log">
+            <label>Kontaktní e-mail provozovny</label>
+            {{ client_form.contact_email }}
+            {{ client_form.contact_email.errors }}
+        </div>
+
+        <div class="form-log">
+            <label>Kontaktní telefonní číslo</label>
+            {{ client_form.contact_phone }}
+            {{ client_form.contact_phone.errors }}
+        </div>
+
+        <div class="form-log">
+            <label>Logo provozovny</label>
+            {{ client_form.logo }}
+            {{ client_form.logo.errors }}
+        </div>
+
+        <div class="client-buttons">
+            <button class="button-client" type="submit">Registrovat</button>
+        </div>
+    </form>
 </div>
-
 {% endblock %}

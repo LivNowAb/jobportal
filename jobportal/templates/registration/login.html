@@ -1,11 +1,32 @@
 {% extends "layout.html" %}
 {%  load static %}
 {% block content %}
+
+    {% if form.non_field_errors %}
+  <div class="form-errors">
+    {{ form.non_field_errors }}
+  </div>
+{% endif %}
+    <div class="form-log-wrapper">
     <h2>Přihlášení</h2>
     <form method="post">
       {% csrf_token %}
-      {{ form }}
-      <button type="submit">Log In</button>
-    </form>
 
+        <div class="form-log">
+            <label>Uživatelské jméno</label>
+            {{ form.username }}
+            {{ form.username.errors }}
+        </div>
+
+        <div class="form-log">
+            <label>Heslo</label>
+            {{ form.password }}
+            {{ form.password.errors }}
+        </div>
+      <div class="client-buttons">
+      <button class="button-client" type="submit">Přihlásit se</button>
+        </div>
+
+    </form>
+   </div>
 {% endblock %}

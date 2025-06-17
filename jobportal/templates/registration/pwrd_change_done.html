@@ -1,6 +1,10 @@
 {% extends 'layout.html' %}
 
 {% block content %}
+    <div class="form-log-wrapper">
 <h2>Heslo bylo změněno</h2>
-<p><a href="{% url 'home' %}">Zpět na hlavní stránku</a></p>
+        <div class="client-buttons">
+          <a class="button-client" href="{% url 'client_log_profile' %}">Zpět na profil</a>
+    </div>
+</div>
 {% endblock %}

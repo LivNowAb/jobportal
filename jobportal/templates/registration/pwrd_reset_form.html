@@ -1,10 +1,20 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-<h2>Obnovení hesla</h2>
-<form method="post">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit">Odeslat e-mail pro obnovení hesla</button>
-</form>
+    {% if form.non_field_errors %}
+        <p>{{ form.non_field_errors }}</p>
+    {% endif %}
+
+    <div class="form-log-wrapper">
+        <h2>Obnovení hesla</h2>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-log">
+                <label for="{{ form.email.id_for_label }}">E-mail:</label>
+                {{ form.email }}
+                {{ form.email.errors }}
+            </div>
+            <button class="button-client" type="submit">Obnovit</button>
+        </form>
+    </div>
 {% endblock %}
