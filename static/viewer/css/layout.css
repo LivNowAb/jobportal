@@ -13,10 +13,9 @@ body {
   flex-direction: column;
   background: white;
   color: #1d3557;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Arial, sans-serif;
   text-align: center;
 }
-
 
 .main-home {
   height: 100vh;
@@ -39,16 +38,15 @@ main {
 
 header {
   background: #1d3557;
-  height: 80px;
+  height: 90px;
   display: flex;
   color: white;
   font-style: normal;
-  font-family: Arial, Helvetica, sans-serif;
+
   justify-content: flex-start;
   align-items: center;
   text-align: center;
   box-sizing: border-box;
-  flex: 50px 0 0;
 }
 
 footer {
@@ -68,8 +66,8 @@ h1 {
   padding: 10px;
 }
 
-a.logo {
-  font-size: 3rem;
+.logo-title {
+  font-size: 3.3rem;
   font-weight: bold;
   color: white;
   text-decoration: none;
@@ -77,9 +75,16 @@ a.logo {
   padding: 0;
 }
 
-a.logo:hover {
+.logo-title:hover {
   color: #cae9ff;
 }
+
+.logo-img {
+  height: 90px;
+  width: auto;
+  margin-right: 15px;
+}
+
 
 .welcome {
   display: block;
@@ -155,7 +160,6 @@ table a:hover {
 
 .ads-header {
   display:flex;
-  justify-content: space-between;
   align-items: center;
 }
 
@@ -163,10 +167,13 @@ table a:hover {
   margin-top: 1.5rem;
   font-size: 1.2rem;
   color: #1d3557;
+  margin-right: auto;
 }
 
 .ads-date{
   font-size: 0.9rem;
+  min-width: 145px;
+  max-width: 145px;
   color: #888;
 }
 
@@ -180,6 +187,14 @@ table a:hover {
 .ads-text {
   margin-bottom: .5rem;
 }
+
+.ads-logo {
+  max-height: 100px;
+  max-width: 100px;
+  object-fit: contain;
+  margin-right: 1rem;
+}
+
 .contacts-wrapper {
   display: flex;
   flex-wrap: wrap;
@@ -253,7 +268,7 @@ table a:hover {
 }
 
 .price {
-    display: block;
+  display: block;
 }
 
 .dropdown {
@@ -513,12 +528,10 @@ table a:hover {
 
 .dashboard-wrapper {
   display: flex;
-  gap: 4rem;
+  gap: 1.5rem;
   align-items: flex-start;
-  flex-grow: 1;
+  justify-content: space-between;
   width: 100%;
-  margin-left: 2rem;
-  margin-top: 2rem;
   padding: 0 2rem;
 }
 
@@ -528,18 +541,36 @@ table a:hover {
   flex-direction:column;
   align-items: flex-start;
   min-width: 450px;
+  max-width: 700px;
   border: 2px solid #cae9ff;
   border-radius: 10px;
   background: aliceblue;
   padding-left: 1.5em;
-  box-sizing: border-box;
 }
 
 .client-ads {
-  flex: 2 1 40%;
+  flex: 1 1 75%;
+  display: flex;
   text-align: left;
-  padding-right: 2rem;
+  gap: 1rem;
+  width: 100%;
 }
+@media only screen and (max-width: 750px) {
+  .dashboard-wrapper {
+    flex-direction: column;
+  }
+
+  .client-dashboard {
+    display: none;
+  }
+
+  .client-ads {
+    flex: 1 1 100%;
+    width: 100%;
+    padding: 0;
+  }
+}
+
 .advertisement-list {
   display: flex;
   flex-direction: column;
@@ -551,7 +582,7 @@ table a:hover {
   border-radius: 10px;
   padding: 1rem 1.5rem;
   background-color: white;
-  flex-direction: column;
+  width: 100%;
 }
 
 .ad-header {
@@ -654,7 +685,7 @@ table a:hover {
 
 .back {
   position: absolute;
-  top: 180px;
+  top: 195px;
   left: 20px;
   z-index: 10;
 }
@@ -707,7 +738,9 @@ table a:hover {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #cae9ff;
+  background-image: url('/static/media/bg-filters9.jpeg');
+  background-size: cover;
+  background-position: center;
   width: 100vw;
   height: 220px;
 }
@@ -745,7 +778,7 @@ table a:hover {
 
 .filters select:focus {
   outline: none;
-  border: 3px solid #1d3557;
+  border: 3px solid #cae9ff;
 }
 .filters-large select {
   width: 270px;
@@ -756,8 +789,8 @@ table a:hover {
   all: unset;
   display: inline-block;
   padding: 10px 10px;
-  background-color: #1d3557;
-  color: white;
+  background-color: white;
+  color: #1d3557;
   text-decoration: none;
   border-radius: 10px;
   font-size: 16px;
@@ -768,6 +801,5 @@ table a:hover {
 }
 
 .button-filter:hover {
-  color: #cae9ff;
   transform: scale(1.1);
 }

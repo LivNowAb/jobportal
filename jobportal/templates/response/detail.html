@@ -15,11 +15,11 @@
     <p><strong>Zpráva:</strong></p>
     <p>{{ response.message }}</p>
 
+    <div class="client-buttons">
     {% if response.cv %}
-        <p><a class="button-client" href="{{ response.cv.url }}" download>Stáhnout CV</a></p>
+        <a class="button-client" href="{{ response.cv.url }}" download>Stáhnout CV</a>
     {% endif %}
 
-    <div class="client-buttons">
         <a class="button-client" href="{% url 'response_delete' response.id %}">Smazat</a>
     </div>
 </div>

@@ -1,7 +1,7 @@
 <nav>
   <div class="button-menu">
-    <a class="button" href="{% url 'home' %}">Hlavní stránka</a>
-    <a class="button" href="{% url 'ads_list' %}">Inzeráty</a>
+    <a class="button" href="{% url 'home' %}">Nabídky práce</a>
+
       {% if user.is_authenticated %}
     <a class="button" href="{% url 'ad_creation' %}">Přidat inzerát</a>
       {% endif %}

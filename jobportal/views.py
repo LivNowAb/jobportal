@@ -57,8 +57,8 @@ class AdDetail(DetailView):
 
 class AdsListView(ListView):
     model = Advertisement
-    template_name = "advertisement/ads_list.html"
-    context_object_name = 'ads_list'
+    template_name = "index.html"
+    context_object_name = 'home'
 
     def get_queryset(self):
         queryset = super().get_queryset().select_related('client__district__region_id', 'position')
