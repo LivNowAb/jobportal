@@ -114,3 +114,16 @@ class ResponseForm(forms.ModelForm):
                 raise forms.ValidationError(ERROR_MESSAGES['invalid_file_type'])
             return cv
         return None
+
+
+class PaymentForm(forms.Form):
+    card_number = forms.CharField(label="Číslo karty", max_length=16,
+                                  widget=forms.TextInput(attrs={'placeholder': '1234 5678 9012 3456'}), required=True)
+    cardholder_name = forms.CharField(label="Držitel karty", max_length=100,
+                                      widget=forms.TextInput(attrs={'placeholder': 'Jan Novák'}), required=True)
+    expiry_date = forms.CharField(label="Platnost karty do", max_length=5,
+                                  widget=forms.TextInput(attrs={'placeholder': 'MM/YY'}), required=True)
+    cvv = forms.CharField(label="Kód CVC", max_length=3, widget=forms.PasswordInput(attrs={'placeholder': '123'}),
+                          required=True)
+
+

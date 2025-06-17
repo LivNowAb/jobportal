@@ -3,11 +3,17 @@
   <div>
     <h2>Platba za inzerát</h2>
     <p>Inzerát: {{ payment.title }}</p>
-      {% if payment.highlight %}
-      <p>Cena 2500 Kč </p>
-      {% else %}
+
+    {% if payment.highlight %}
+      <p>Cena: 2500 Kč</p>
+    {% else %}
       <p>Cena: 1500 Kč</p>
-      {% endif %}
+    {% endif %}
+
+    <form class="payment-form">
+      {{ payment_form.as_p }}
+    </form>
+
     <form method="post" action="{% url 'payment_success' %}?ad_id={{ payment.pk }}">
       {% csrf_token %}
       <button type="submit">Potvrdit platbu</button>

@@ -9,7 +9,7 @@ from django.utils import timezone
 from django.views import View
 from django.views.generic import DetailView, ListView, TemplateView, CreateView, UpdateView, DeleteView
 
-from jobportal.forms import RegistrationForm, ResponseForm, AdCreation, ClientCreation
+from jobportal.forms import RegistrationForm, ResponseForm, AdCreation, ClientCreation, PaymentForm
 from jobportal.models import Advertisement, Client, Contacts, Response, Region, District, Position
 
 
@@ -159,6 +159,10 @@ class PaymentView(LoginRequiredMixin, DetailView):
     def get_queryset(self):
         return Advertisement.objects.filter(created_by=self.request.user) #users can access only their own ads
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['payment_form'] = PaymentForm()
+        return context
 
 class PaymentSuccessView(LoginRequiredMixin, View):
     template_name = "payment_mock/payment_success.html"
