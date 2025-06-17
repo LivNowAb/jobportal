@@ -69,7 +69,7 @@ class Advertisement(Model):
     title = CharField(max_length=128)
     text_content = TextField()
     salary = CharField(max_length=128)
-    client = ForeignKey(Client, on_delete=DO_NOTHING, null=True, related_name="advertisements")
+    client = ForeignKey(Client, on_delete=CASCADE, null=True, related_name="advertisements")
     created = DateTimeField(auto_now_add=True)
     created_by = ForeignKey(User, on_delete=CASCADE, null=True)
     highlight = BooleanField(default=False)
@@ -87,7 +87,7 @@ class Advertisement(Model):
 
 
 class Response(Model):
-    advertisement = ForeignKey(Advertisement, on_delete=DO_NOTHING, related_name='responses')
+    advertisement = ForeignKey(Advertisement, on_delete=CASCADE, related_name='responses')
     name = CharField(max_length=100)
     email = EmailField()
     message = TextField()
