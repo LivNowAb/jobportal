@@ -3,11 +3,12 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.core.validators import validate_email
-from django.forms import CharField, ModelChoiceField, Textarea
+from django.forms import CharField, ModelChoiceField, Textarea, BooleanField
 from django.forms.fields import EmailField, ImageField
 
 from .models import Response, Advertisement, Position, Client, BusinessType, District
 from .error_messages import ERROR_MESSAGES
+
 
 class RegistrationForm(UserCreationForm):
     email = forms.EmailField(
@@ -64,7 +65,7 @@ class ClientCreation(forms.ModelForm):
 class AdCreation(forms.ModelForm):
     class Meta:
         model = Advertisement
-        fields = ["title", "position", "text_content", "salary"]
+        fields = ["title", "position", "text_content", "salary", "highlight"]
 
     title = CharField(label="Název", max_length=128)
     position = ModelChoiceField(label="Pracovní Pozice", queryset=Position.objects,
@@ -72,6 +73,7 @@ class AdCreation(forms.ModelForm):
     text_content = CharField(label="Obsah", widget=Textarea(attrs={"class": "form-control", "cols": 40, "rows": 3}),
                             required=True)
     salary = CharField(label="Mzda", max_length=250)
+    highlight = BooleanField(label="Topovat inzerát (1000 Kč)", required=False)
 
 
 class ResponseForm(forms.ModelForm):
@@ -112,3 +114,16 @@ class ResponseForm(forms.ModelForm):
                 raise forms.ValidationError(ERROR_MESSAGES['invalid_file_type'])
             return cv
         return None
+
+
+class PaymentForm(forms.Form):
+    card_number = forms.CharField(label="Číslo karty", max_length=16,
+                                  widget=forms.TextInput(attrs={'placeholder': '1234 5678 9012 3456'}), required=True)
+    cardholder_name = forms.CharField(label="Držitel karty", max_length=100,
+                                      widget=forms.TextInput(attrs={'placeholder': 'Jan Novák'}), required=True)
+    expiry_date = forms.CharField(label="Platnost karty do", max_length=5,
+                                  widget=forms.TextInput(attrs={'placeholder': 'MM/YY'}), required=True)
+    cvv = forms.CharField(label="Kód CVC", max_length=3, widget=forms.PasswordInput(attrs={'placeholder': '123'}),
+                          required=True)
+
+

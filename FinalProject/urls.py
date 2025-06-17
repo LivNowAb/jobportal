@@ -60,7 +60,7 @@ urlpatterns = [
     path("contacts/", ContactListView.as_view(template_name="contacts/index.html"),
          name="contacts"),
     path("payment/<int:pk>", PaymentView.as_view(template_name="payment_mock/payment.html"), name='payment'),
-    path("payment/confirmation", PaymentSuccessView.as_view(template_name="payment_mock/payment_success.html"),
+    path("payment/success", PaymentSuccessView.as_view(template_name="payment_mock/payment_success.html"),
         name="payment_success"),
     path("contacts/", ContactListView.as_view(template_name="contacts/index.html"), name="contacts"),
     path('response/<int:pk>/', ResponseDetailView.as_view(), name='response_detail'),

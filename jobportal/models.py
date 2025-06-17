@@ -72,11 +72,12 @@ class Advertisement(Model):
     client = ForeignKey(Client, on_delete=DO_NOTHING, null=True, related_name="advertisements")
     created = DateTimeField(auto_now_add=True)
     created_by = ForeignKey(User, on_delete=CASCADE, null=True)
-    status = BooleanField(default=False) #whether ad is paid for
+    highlight = BooleanField(default=False)
+    published = BooleanField(default=False)
 
     class Meta:
         permissions = [('can_create_ad', 'Can create advertisement')]
-        ordering = ['-created']
+        ordering = ['-highlight', '-created']
 
     def __repr__(self):
         return f'{self.title}'

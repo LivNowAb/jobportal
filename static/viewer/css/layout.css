@@ -641,6 +641,10 @@ table a:hover {
   color: hotpink;
 }
 
+.highlight {
+  background-color: lightblue;
+}
+
 .client-ads-detail {
   border: 2px solid #cae9ff;
   padding: 1rem;
