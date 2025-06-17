@@ -609,3 +609,7 @@ table a:hover {
   font-size: .9rem;
   color: hotpink;
 }
+
+.highlight {
+  background-color: lightblue;
+}

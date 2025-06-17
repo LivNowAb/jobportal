@@ -2,7 +2,7 @@ from datetime import timedelta
 
 from django.contrib.auth import login
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.db.models.query import QuerySet
 from django.urls import reverse_lazy, reverse
 from django.utils import timezone
@@ -65,6 +65,8 @@ class AdsListView(ListView):
 
         cutoff_date = timezone.now() - timedelta(days=14)
         queryset = queryset.filter(created__gte=cutoff_date)
+
+        queryset = queryset.filter(published=True)
 
         region = self.request.GET.get('region')
         district = self.request.GET.get('district')
@@ -138,6 +140,7 @@ class CreateAd(LoginRequiredMixin, CreateView):
         client = Client.objects.get(user=self.request.user)
         form.instance.created_by = self.request.user
         form.instance.client = client   #user and client model must match author
+        form.instance.published = False  #saves as draft, payment must be confirmed before publishing
         self.object = form.save()
 
         return redirect('payment', pk=self.object.id)
@@ -157,8 +160,18 @@ class PaymentView(LoginRequiredMixin, DetailView):
         return Advertisement.objects.filter(created_by=self.request.user) #users can access only their own ads
 
 
-class PaymentSuccessView(LoginRequiredMixin, TemplateView):
+class PaymentSuccessView(LoginRequiredMixin, View):
     template_name = "payment_mock/payment_success.html"
+
+    def post(self, request, *args, **kwargs):
+        ad_id = self.request.GET.get('ad_id')
+        ad = get_object_or_404(Advertisement, pk=ad_id, created_by=self.request.user)
+
+        ad.published = True
+        ad.save()
+
+        return render(request, self.template_name, {'ad': ad})
+
 
 class ResponseDetailView(DetailView):
     model = Response
@@ -195,3 +208,4 @@ class ResponseDeleteView(DeleteView):
     model = Response
     template_name = 'response/delete.html'
     success_url = reverse_lazy("client_log_profile")
+
