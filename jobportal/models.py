@@ -53,7 +53,7 @@ class Client(Model):
     district = ForeignKey(District, on_delete=DO_NOTHING)
     business_name = CharField(max_length=30)
     VAT_number = CharField(max_length=50)
-    logo = ImageField(null=True, blank=True)
+    logo = ImageField(upload_to='static/media/', null=True, blank=True)
     contact_email = EmailField(null=True)
     contact_phone = CharField(max_length=15)
 
@@ -92,7 +92,7 @@ class Response(Model):
     email = EmailField()
     message = TextField()
     created = DateTimeField(auto_now_add=True)
-    cv = FileField(upload_to='cvs/', null=True, blank=True)
+    cv = FileField(upload_to='static/media/cvs/', null=True, blank=True)
 
     def __repr__(self):
         return f'{self.advertisement}'
