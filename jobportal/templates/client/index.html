@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% load static %}
 {% block content %}
-    <h2>Vítejte {{ client_detail }}!</h2>
+    <h2>Vítejte, {{ client_detail }}!</h2>
     <div class="dashboard-wrapper">
         <div class="client-dashboard">
             <p><strong>Název podniku:</strong> {{ client_detail.business_name }}</p>
@@ -12,33 +12,42 @@
             <p><strong>Okres:</strong> {{ client_detail.district }}</p>
             <p><strong>Kontaktní e-mail provozovny:</strong> {{ client_detail.contact_email }}</p>
             <p><strong>Kontaktní telefonní číslo provozovny:</strong> {{ client_detail.contact_phone }}</p>
-            <p><strong>Logo provozovny:</strong> {{ client_detail.logo }}</p>
+            <p><strong>Logo provozovny:</strong> <img src="{{ client_detail.logo.url }}" alt="logo"></p>
         </div>
         <div class="client-ads advertisement-list">
-            {% for advertisement in client_detail.advertisements.all %}
-                 <div class="ad-item advertisement-card {% if not advertisement.is_active %}inactive{% endif %}" data-created="{{ advertisement.created|date:"Y-m-d" }}">
-                    <div class="ad-header">
-                        <a href="{% url 'client_advertisement_detail' advertisement.id %}" class="ad-title">{{ advertisement.title }}</a>
-                        <span class="ad-date">{{ advertisement.created|date:"d.m.Y" }}</span>
-                        <span class="status"></span>
-                     </div>
-                    {% if advertisement.responses.exists %}
-                        <div class="responses">
-                        <p><strong>Odpovědi na inzerát:</strong></p>
-                        <ul>
-                            {% for response in advertisement.responses.all %}
-                            <li>
-                                <a href="{% url 'response_detail' response.id %}">{{ advertisement.title }}: {{ response.name }}</a>
-                            </li>
-                            {% endfor %}
-                        </ul>
+            {% if client_detail.advertisements.all %}
+                {% for advertisement in client_detail.advertisements.all %}
+                    <div class="ad-item advertisement-card {% if not advertisement.is_active %}inactive{% endif %}"
+                         data-created="{{ advertisement.created|date:"Y-m-d" }}">
+                        <div class="ad-header">
+                            <a href="{% url 'client_advertisement_detail' advertisement.id %}"
+                               class="ad-title">{{ advertisement.title }}</a>
+                            <span class="ad-date">{{ advertisement.created|date:"d.m.Y" }}</span>
+                            <span class="status"></span>
                         </div>
-                    {% else %}
-                    <p><em>Na tento inzerát zatím nikdo neodpověděl.</em></p>
-                    {% endif %}
-                 </div>
+                        {% if advertisement.responses.exists %}
+                            <div class="responses">
+                                <p><strong>Odpovědi na inzerát:</strong></p>
+                                <ul>
+                                    {% for response in advertisement.responses.all %}
+                                        <li>
+                                            <a href="{% url 'response_detail' response.id %}">{{ advertisement.title }}: {{ response.name }}</a>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        {% else %}
+                            <p><em>Na tento inzerát zatím nikdo neodpověděl.</em></p>
+                        {% endif %}
+                    </div>
                 {% endfor %}
-            </div>
+            {% else %}
+                <div class="advertisement-card-blank">
+                    <p>Zatím jste nevytvořili žádné inzeráty.</p>
+                    <p><a href="{% url 'ad_creation' %}" class="button-client">Přidat první inzerát</a></p>
+                </div>
+            {% endif %}
         </div>
+    </div>
 
 {% endblock %}

@@ -1,20 +1,66 @@
 {% extends "layout.html" %}
 
 {% block content %}
-<div>
-    <div>
-        <h2>Založit nový inzerát</h2>
+<div class="ad-wrapper">
+    <div class="back">
+        <a class="button-client" href="{% url 'client_log_profile' %}">Zpět do profilu</a>
+    </div>
+</div>
+
+    <div class="client-ads-detail">
+    <div class="form-log">
+        <h2>Přidat nový inzerát</h2>
         <h3>Cena publikování inzerátu na 14 dní činí 1500 Kč</h3>
     </div>
     <div>
         <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
-            {{ form.as_p }}
+
+        <div class="form-edit">
+        {{ form.title.label_tag }}
+                {{ form.title }}
+                {% if form.title.errors %}
+                    <div class="form-error">{{ form.title.errors }}</div>
+                {% endif %}
+            </div>
+            <div class="form-edit">
+                {{ form.position.label_tag }}
+                {{ form.position }}
+                {% if form.position.errors %}
+                    <div class="form-error">{{ form.position.errors }}</div>
+                {% endif %}
+            </div>
+
+            <div class="form-edit">
+                {{ form.text_content.label_tag }}
+                {{ form.text_content }}
+                {% if form.text_content.errors %}
+                    <div class="form-error">{{ form.text_content.errors }}</div>
+                {% endif %}
+            </div>
+
+            <div class="form-edit">
+                {{ form.salary.label_tag }}
+                {{ form.salary }}
+                {% if form.salary.errors %}
+                    <div class="form-error">{{ form.salary.errors }}</div>
+                {% endif %}
+            </div>
+
+            <div >
+                {{ form.highlight.label_tag }}
+                {{ form.highlight }}
+                {% if form.highlight.errors %}
+                    <div class="form-error">{{ form.highlight.errors }}</div>
+                {% endif %}
+            </div>
+
             {% if error %}
                 <div class="alert alert-danger">{{ error }}</div>
             {% endif %}
-            <div>
-                <button type="submit">Pokračovat k platbě</button>
+
+            <div class="client-buttons">
+                <button type="submit" class="button-client">Pokračovat k platbě</button>
             </div>
         </form>
     </div>

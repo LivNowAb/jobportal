@@ -35,7 +35,7 @@ urlpatterns = [
     path('advertisement/detail/<int:pk>', AdDetail.as_view(), name='ad_detail'),
 
     path("login/", LoginView.as_view(template_name="registration/login.html"), name="login"),
-    path("logout/", LogoutView.as_view(), name="logout"),
+    path("logout/", LogoutView.as_view(template_name="registration/logout.html"), name="logout"),
     path("registration/", RegistrationView.as_view(), name="registration"),
     path("password_change/", PasswordChangeView.as_view(
         template_name="registration/pwrd_change.html"), name="password_change"),
@@ -69,7 +69,5 @@ urlpatterns = [
     path("client/advertisement/<int:pk>/", ClientAdvertisementDetailView.as_view(),
          name="client_advertisement_detail"),
     path('advertisement/<int:pk>/delete/', AdvertisementDeleteView.as_view(), name='advertisement_delete'),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

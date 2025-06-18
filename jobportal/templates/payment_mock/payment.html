@@ -1,6 +1,7 @@
 {% extends "layout.html" %}
 {% block content %}
-  <div>
+
+    <div>
     <h2>Platba za inzerát</h2>
     <p>Inzerát: {{ payment.title }}</p>
 
@@ -9,14 +10,17 @@
     {% else %}
       <p>Cena: 1500 Kč</p>
     {% endif %}
+    </div>
+    <div class="payment-form">
+    <img src="/static/media/stripe.png" class="payment-img">
 
-    <form class="payment-form">
-      {{ payment_form.as_p }}
-    </form>
 
-    <form method="post" action="{% url 'payment_success' %}?ad_id={{ payment.pk }}">
+    <form method="post" action="{% url 'payment_success' %}?ad_id={{ payment.pk }}" id="paymentForm">
       {% csrf_token %}
-      <button type="submit">Potvrdit platbu</button>
+        {{ payment_form.as_p }}
+      <button type="submit" class="payment-button">Potvrdit platbu</button>
     </form>
-  </div>
+    </div>
+
+
 {% endblock %}
