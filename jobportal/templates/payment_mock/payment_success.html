@@ -1,7 +1,14 @@
 {% extends 'layout.html' %}
+{% load static %}
+
 {% block content %}
-    <div>
+    <div class="form-log-wrapper">
         <h2>Platbu jsme úspěšně přijali. Děkujeme.</h2>
-        <h3>Váš inzerát je nyní vystaven na nástěnce</h3>
+        <h3>Váš inzerát je nyní vystaven na nástěnce.</h3>
+        <div class="client-buttons">
+            <a class="button-client" href="{% url 'client_log_profile' %}">Zpět na profil</a>
+            <a class="button-client" href="{% url 'home' %}">Zobrazit inzeráty</a>
+        </div>
     </div>
 {% endblock %}
+

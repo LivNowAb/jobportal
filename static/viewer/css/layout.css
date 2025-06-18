@@ -330,6 +330,7 @@ table a:hover {
     text-align: center;
     margin: 0 2rem;
 }
+
 .dropdown {
     display: inline-block;
     position: relative;
@@ -648,6 +649,7 @@ table a:hover {
     background-color: white;
     width: 100%;
 }
+
 .advertisement-card-blank {
     font-weight: bold;
     color: #1d3557;
@@ -658,6 +660,7 @@ table a:hover {
     background-color: white;
     width: 100%;
 }
+
 .ad-header {
     display: flex;
 
@@ -983,14 +986,13 @@ table a:hover {
 
 .payment-form {
     border: 1px solid black;
+    border-radius: 5px;
+    padding: .7rem 1rem;
+    margin-top: .7rem;
+    max-width: 350px;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin: .5rem 1.5rem;
-    border-radius: 5px;
-    min-width: 280px;
-    padding-top: 1.5rem;
+    gap: .3rem;
 }
 
 .payment-form label {
@@ -998,27 +1000,38 @@ table a:hover {
     justify-content: flex-start;
     font-size: 1em;
     font-weight: bold;
-    padding-bottom: 2px;
+    padding: 5px 0;
+}
+
+.payment-short {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.payment-short input {
+    width: 100%;
 }
 
 .payment-form input {
-    width: 230px;
+    width: 100%;
     font-size: 1rem;
     height: 30px;
     border: 1px solid #666666;
     border-radius: 5px;
+    padding: 0 0.5rem;
+    margin-bottom: 0.5rem;
 }
 
 .payment-img {
-    width: 232px;
-    height: 85px;
+    width: 316px;
+    height: 110px;
 }
 
 .payment-button {
     margin-top: 10px;
-    margin-bottom: 20px;
-    min-width: 230px;
     padding: 10px;
+    width: 100%;
     background: dimgray;
     color: white;
     border: none;
@@ -1033,8 +1046,28 @@ table a:hover {
 }
 
 .form-row {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  margin-bottom: 1rem;
+    display: flex;
+    gap: 1rem;
+}
+
+
+.form-error {
+    color: crimson;
+    font-size: 0.9em;
+    margin-top: 4px;
+}
+
+.alert {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 2rem;
+    padding: 2em;
+    margin: 2rem;
+}
+
+.client-logo {
+    width: 150px;
+    height: 150px;
+    border: .5px solid #1d3557;
 }

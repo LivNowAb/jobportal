@@ -1,26 +1,60 @@
 {% extends "layout.html" %}
+{% load static %}
+
 {% block content %}
 
     <div>
-    <h2>Platba za inzerát</h2>
-    <p>Inzerát: {{ payment.title }}</p>
+        <h2>Platba za inzerát</h2>
+        <p>Inzerát: {{ payment.title }}</p>
 
     {% if payment.highlight %}
-      <p>Cena: 2500 Kč</p>
+        <p>Cena: 2500 Kč</p>
     {% else %}
-      <p>Cena: 1500 Kč</p>
+        <p>Cena: 1500 Kč</p>
     {% endif %}
     </div>
     <div class="payment-form">
-    <img src="/static/media/stripe.png" class="payment-img">
+        <img src="/static/media/stripe.png" class="payment-img">
 
 
-    <form method="post" action="{% url 'payment_success' %}?ad_id={{ payment.pk }}" id="paymentForm">
-      {% csrf_token %}
-        {{ payment_form.as_p }}
-      <button type="submit" class="payment-button">Potvrdit platbu</button>
-    </form>
-    </div>
+        <form method="post" action="{% url 'payment_success' %}?ad_id={{ payment.pk }}" id="paymentForm">
+            {% csrf_token %}
 
+            <div>
+                <label for="{{ payment_form.cardholder_name.id_for_label }}">Jméno držitele karty</label>
+                {{ payment_form.cardholder_name }}
+                {% if payment_form.cardholder_name.errors %}
+                    <div class="form-error">{{ payment_form.cardholder_name.errors }}</div>
+                {% endif %}
+            </div>
+
+            <div>
+                <label for="{{ payment_form.card_number.id_for_label }}">Číslo karty</label>
+                {{ payment_form.card_number }}
+                {% if payment_form.card_number.errors %}
+                    <div class="form-error">{{ payment_form.card_number.errors }}</div>
+                {% endif %}
+            </div>
+
+            <div class="form-row">
+                <div class="payment-short">
+                    <label for="{{ payment_form.expiry_date.id_for_label }}">Datum expirace</label>
+                    {{ payment_form.expiry_date }}
+                    {% if payment_form.expiry_date.errors %}
+                        <div class="form-error">{{ payment_form.expiry_date.errors }}</div>
+                    {% endif %}
+                </div>
+
+                <div class="payment-short">
+                    <label for="{{ payment_form.cvv.id_for_label }}">CVV/CVC</label>
+                    {{ payment_form.cvv }}
+                    {% if payment_form.cvv.errors %}
+                        <div class="form-error">{{ payment_form.cvv.errors }}</div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <button type="submit" class="payment-button">Potvrdit platbu</button>
+        </form>
 
 {% endblock %}
