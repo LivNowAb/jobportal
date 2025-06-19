@@ -2,6 +2,7 @@ from django.contrib.auth.models import User
 from django.db.models import (ForeignKey, DO_NOTHING, CASCADE, CharField, DateTimeField, Model, TextField, ImageField,
                               EmailField, FileField, OneToOneField)
 from django.db.models.fields import BooleanField
+from django.utils import timezone
 
 
 class BusinessType(Model):
@@ -74,10 +75,17 @@ class Advertisement(Model):
     created_by = ForeignKey(User, on_delete=CASCADE, null=True)
     highlight = BooleanField(default=False)
     published = BooleanField(default=False)
+    published_date = DateTimeField(null=True, blank=True)
 
     class Meta:
         permissions = [('can_create_ad', 'Can create advertisement')]
-        ordering = ['-highlight', '-created']
+        ordering = ['-highlight', '-published_date']
+
+    def publish(self):
+        if not self.published_date:
+            self.published_date = timezone.now()
+        self.published = True
+        self.save()
 
     def __repr__(self):
         return f'{self.title}'

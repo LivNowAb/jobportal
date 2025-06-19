@@ -170,9 +170,7 @@ class PaymentSuccessView(LoginRequiredMixin, View):
     def post(self, request, *args, **kwargs):
         ad_id = self.request.GET.get('ad_id')
         ad = get_object_or_404(Advertisement, pk=ad_id, created_by=self.request.user)
-
-        ad.published = True
-        ad.save()
+        ad.publish()
 
         return render(request, self.template_name, {'ad': ad})
 

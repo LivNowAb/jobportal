@@ -25,6 +25,11 @@
                             <span class="ad-date">{{ advertisement.created|date:"d.m.Y" }}</span>
                             <span class="status"></span>
                         </div>
+                        {% if not advertisement.published %}
+                            <p>
+                                <a href="{% url 'payment' advertisement.id %}" class="button-client">Zaplatit</a>
+                            </p>
+                        {% endif %}
                         {% if advertisement.responses.exists %}
                             <div class="responses">
                                 <p><strong>Odpovědi na inzerát:</strong></p>

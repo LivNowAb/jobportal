@@ -3,6 +3,11 @@
 
 {% block content %}
 
+    <div class="ad-wrapper">
+    <div class="back">
+        <a class="button-client" href="{% url 'client_log_profile' %}">Zpět do profilu</a>
+    </div>
+    </div>
     <div>
         <h2>Platba za inzerát</h2>
         <p>Inzerát: {{ payment.title }}</p>
