@@ -14,7 +14,7 @@
     {% endif %}
     </div>
     <div class="payment-form">
-        <img src="/static/media/stripe.png" class="payment-img">
+        <img src="/static/media/stripe.png" class="payment-img" alt="stripe">
 
 
         <form method="post" action="{% url 'payment_success' %}?ad_id={{ payment.pk }}" id="paymentForm">

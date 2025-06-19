@@ -217,7 +217,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const today = new Date();
         const diff = (today - createdDate) / (1000 * 60 * 60 * 24);
 
-        if (diff > 5) {
+        if (diff > 14) {
             ad.classList.add('inactive');
             const status = ad.querySelector('.status');
             if (status) {
@@ -282,19 +282,18 @@ document.addEventListener("DOMContentLoaded", function () {
         if (!expiryRegex.test(expiryDate.value)) {
             showError(expiryDate, "Zadejte datum ve formátu MM/YY");
             isValid = false;
-        } else {
-            const [monthStr, yearStr] = expiryDate.value.split("/");
-            const month = parseInt(monthStr, 10);
-            const year = parseInt("20" + yearStr, 10);
+        }
+        const [monthStr, yearStr] = expiryDate.value.split("/");
+        const month = parseInt(monthStr, 10);
+        const year = parseInt("20" + yearStr, 10);
 
-            const now = new Date();
-            const currentMonth = now.getMonth() + 1;
-            const currentYear = now.getFullYear();
+        const now = new Date();
+        const currentMonth = now.getMonth() + 1;
+        const currentYear = now.getFullYear();
 
-            if (year < currentYear || (year === currentYear && month < currentMonth)) {
-                showError(expiryDate, "Karta již expirovala");
-                isValid = false;
-            }
+        if (year < currentYear || (year === currentYear && month < currentMonth)) {
+            showError(expiryDate, "Karta již expirovala");
+            isValid = false;
         }
 
 
@@ -311,10 +310,202 @@ document.addEventListener("DOMContentLoaded", function () {
         function showError(input, message) {
             const error = document.createElement("div");
             error.className = "form-error";
-            error.style.color = "red";
-            error.style.fontSize = "0.9em";
             error.textContent = message;
             input.parentNode.appendChild(error);
         }
     });
+});
+
+// registration validation
+
+document.addEventListener("DOMContentLoaded", function () {
+    const fields = {
+        username: document.getElementById("id_username"),
+        email: document.getElementById("id_email"),
+        password1: document.getElementById("id_password1"),
+        password2: document.getElementById("id_password2"),
+        business_name: document.getElementById("id_business_name"),
+        business_type: document.getElementById("id_business_type"),
+        vat: document.getElementById("id_VAT_number"),
+        address: document.getElementById("id_address"),
+        city: document.getElementById("id_city"),
+        district: document.getElementById("id_district"),
+        contact_email: document.getElementById("id_contact_email"),
+        phone: document.getElementById("id_contact_phone"),
+        logo: document.getElementById("id_logo")
+    };
+
+    function showError(input, message) {
+        removeError(input);
+        const error = document.createElement("div");
+        error.className = "form-error";
+        error.textContent = message;
+        input.parentNode.appendChild(error);
+    }
+
+    function removeError(input) {
+        const existing = input.parentNode.querySelector(".form-error");
+        if (existing) {
+            existing.remove();
+        }
+    }
+
+    fields.username.addEventListener("blur", function () {
+        const val = this.value.trim();
+        const usernameRegex = /^[\w.@+-]{4,150}$/;
+        if (!val) {
+            showError(this, "Uživatelské jméno je povinné.");
+        } else if (!usernameRegex.test(val)) {
+            showError(this, "Povoleno: písmena, čísla a znaky @/./+/-/_, celkem alespoň 4 znaky.");
+            return;
+        }
+        removeError(this);
+    });
+
+    fields.email.addEventListener("blur", function () {
+        const val = this.value.trim();
+        const emailRegex = /^\S+@\S+\.\S+$/;
+        if (!val || !emailRegex.test(val)) {
+            showError(this, "Zadejte platný e-mail.");
+            return;
+        }
+        removeError(this);
+    });
+
+    fields.password1.addEventListener("blur", function () {
+        const val = this.value;
+        if (val.length < 8) {
+            showError(this, "Heslo musí mít alespoň 8 znaků.");
+            return;
+        }
+        if (/^\d+$/.test(val)) {
+            showError(this, "Heslo nesmí být pouze čísla.");
+            return;
+        }
+        removeError(this);
+    });
+
+    fields.password2.addEventListener("blur", function () {
+        if (this.value !== fields.password1.value) {
+            showError(this, "Hesla se neshodují.");
+            return;
+        }
+        removeError(this);
+    });
+
+    fields.business_name.addEventListener("blur", function () {
+        if (!this.value.trim()) {
+            showError(this, "Zadejte název podniku.");
+            return;
+        }
+        removeError(this);
+    });
+
+    fields.business_type.addEventListener("blur", function () {
+        if (!this.value || this.value === "") {
+            showError(this, "Vyberte typ provozovny.");
+            return;
+        }
+        removeError(this);
+    });
+
+    fields.vat.addEventListener("blur", function () {
+        const val = this.value.trim().toUpperCase();
+
+        const icoRegex = /^\d{8}$/;
+        const dicRegex = /^CZ\d{8,10}$/;
+
+        if (!val) {
+            showError(this, "Zadejte alespoň IČO nebo DIČ.");
+            return;
+        }
+
+        if (!icoRegex.test(val) && !dicRegex.test(val)) {
+            showError(this, "Zadejte platné IČO (8 číslic) nebo DIČ (např. CZ12345678).");
+            return;
+        }
+
+        removeError(this);
+
+    });
+
+    fields.address.addEventListener("blur", function () {
+        if (!this.value.trim()) {
+            showError(this, "Zadejte adresu.");
+            return;
+        }
+        removeError(this);
+    });
+
+    fields.city.addEventListener("blur", function () {
+        if (!this.value.trim()) {
+            showError(this, "Zadejte město.");
+            return;
+        }
+        removeError(this);
+    });
+
+    fields.district.addEventListener("blur", function () {
+        if (!this.value || this.value === "") {
+            showError(this, "Vyberte okres.");
+            return;
+        }
+        removeError(this);
+    });
+
+    fields.contact_email.addEventListener("blur", function () {
+        const val = this.value.trim();
+        const emailRegex = /^\S+@\S+\.\S+$/;
+        if (!val || !emailRegex.test(val)) {
+            showError(this, "Zadejte platný kontaktní e-mail.");
+            return;
+        }
+        removeError(this);
+
+    });
+
+    fields.phone.addEventListener("blur", function () {
+        const val = this.value.trim();
+        if (!/^\d{9,15}$/.test(val)) {
+            showError(this, "Zadejte platné telefonní číslo (9–15 číslic).");
+            return;
+        }
+        removeError(this);
+    });
+
+    fields.logo.addEventListener("change", function () {
+        removeError(this);
+        const file = this.files[0];
+
+        if (!file) return; // logo není povinné
+
+        const allowedTypes = ["image/jpeg", "image/png", "image/webp", "image/svg+xml"];
+
+        if (!allowedTypes.includes(file.type)) {
+            showError(this, "Povolené formáty loga jsou JPG, PNG, WebP nebo SVG.");
+            return;
+        }
+        removeError(this);
+    });
+
+    const form = document.querySelector("form");
+
+    form.addEventListener("submit", function (e) {
+        let isValid = true;
+
+
+        Object.keys(fields).forEach((key) => {
+            const input = fields[key];
+            input.dispatchEvent(new Event("blur"));
+            const error = input.parentNode.querySelector(".form-error");
+            if (error) {
+                isValid = false;
+            }
+        });
+
+        if (!isValid) {
+            e.preventDefault();
+        }
+    });
+
 });

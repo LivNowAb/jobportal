@@ -1050,11 +1050,15 @@ table a:hover {
     gap: 1rem;
 }
 
-
-.form-error {
+.form-error,
+.errorlist {
     color: crimson;
     font-size: 0.9em;
-    margin-top: 4px;
+    margin: 2px 0 20px 0;
+}
+.errorlist {
+    list-style: none;
+    padding-left: 0;
 }
 
 .alert {
