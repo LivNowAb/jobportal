@@ -215,8 +215,8 @@ table a:hover {
 
 .ads-date {
     font-size: 0.9rem;
-    min-width: 145px;
-    max-width: 145px;
+    min-width: 90px;
+    max-width: 90px;
     color: #888;
 }
 
@@ -920,6 +920,7 @@ table a:hover {
     .ads-header {
         flex-direction: column;
         align-items: flex-start;
+
     }
 
     .ads-logo {

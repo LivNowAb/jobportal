@@ -64,7 +64,7 @@ class AdsListView(ListView):
         queryset = super().get_queryset().select_related('client__district__region_id', 'position')
 
         cutoff_date = timezone.now() - timedelta(days=14)
-        queryset = queryset.filter(created__gte=cutoff_date)
+        queryset = queryset.filter(published_date__gte=cutoff_date)
 
         queryset = queryset.filter(published=True)
 
@@ -123,6 +123,9 @@ class ClientProfileView(TemplateView):
     model = Client
     template_name = "client/index.html"
     context_object_name = 'client_detail'
+
+    class Meta:
+       ordering = ['-published_date']
 
     def get_context_data(self, **kwargs):
         context = super(ClientProfileView, self).get_context_data(**kwargs)

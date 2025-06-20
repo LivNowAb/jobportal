@@ -65,7 +65,7 @@
                         <img src="{{  advertisement.client.logo.url }}" class="ads-logo" alt="">
                         {% endif %}
 
-                        <p class="ads-date">{{ advertisement.created }}</p>
+                        <p class="ads-date">{{ advertisement.published_date|date:"d.m.Y" }}</p>
                     </div>
                     <div class="ads-loc-name">
                         {{ advertisement.client.business_name }}, {{ advertisement.client.city }}
