@@ -13,7 +13,7 @@
         <h3>Cena publikování inzerátu na 14 dní činí 1500 Kč</h3>
     </div>
     <div>
-        <form method="post" enctype="multipart/form-data">
+        <form method="post" enctype="multipart/form-data"> <!--mock payment form-->
             {% csrf_token %}
 
         <div class="form-edit">
@@ -60,7 +60,7 @@
             {% endif %}
 
             <div class="client-buttons">
-                <button type="submit" class="button-client">Pokračovat k platbě</button>
+                <button type="submit" class="button-client">Pokračovat k platbě</button> <!-- sets published to True in Advertisement Model -->
             </div>
         </form>
     </div>
