@@ -27,23 +27,24 @@ class AdDetail(DetailView):
     context_object_name = 'ad_detail'
 
     def get_queryset(self):
-        return super().get_queryset().select_related('client') #select_related() offers better performance
+        return super().get_queryset().select_related('client')  # select_related() offers better performance
+        # super() calls parent class and overrides default method
 
-    def get_context_data(self, **kwargs):           # popsat jak funguje kod
+    def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         if 'submitted' in self.request.GET:
             context['form_submitted'] = True
         else:
             context['form_submitted'] = False
             context['form'] = ResponseForm()
-        return context
+        return context  # displays a blank form if submitted is False
 
     def post(self, request, *args, **kwargs):
         self.object = self.get_object()
         form = ResponseForm(request.POST, request.FILES)
         if form.is_valid():
             response = form.save(commit=False)
-            response.advertisement = self.object
+            response.advertisement = self.object  # links response to advertisement
             response.save()
             return redirect(f'{self.request.path}?submitted=True')
         else:
@@ -58,14 +59,14 @@ class AdsListView(ListView):
     context_object_name = 'home'
 
     def get_queryset(self):
-        queryset = super().get_queryset().select_related('client__district__region_id', 'position')
+        queryset = super().get_queryset().select_related('client__district__region_id', 'position') # filter
 
-        cutoff_date = timezone.now() - timedelta(days=14)
+        cutoff_date = timezone.now() - timedelta(days=14) # expiring ads older than 14 days
         queryset = queryset.filter(published_date__gte=cutoff_date)
 
-        queryset = queryset.filter(published=True)
+        queryset = queryset.filter(published=True) # displays only paid for ads
 
-        region = self.request.GET.get('region')
+        region = self.request.GET.get('region') # filtering options
         district = self.request.GET.get('district')
         position = self.request.GET.get('position')
 
@@ -75,6 +76,7 @@ class AdsListView(ListView):
             queryset = queryset.filter(client__district_id=district)
         if position:
             queryset = queryset.filter(position=position)
+            # applies filters based on user input
 
         return queryset
 
@@ -82,7 +84,7 @@ class AdsListView(ListView):
         context = super().get_context_data(**kwargs)
         context['regions'] = Region.objects.all()
         context['districts'] = District.objects.all()
-        context['positions'] = Position.objects.all()
+        context['positions'] = Position.objects.all() # populates filter dropdowns
         return context
 
 
@@ -122,7 +124,7 @@ class ClientProfileView(TemplateView):
     context_object_name = 'client_detail'
 
     class Meta:
-       ordering = ['-published_date']
+        ordering = ['-published_date']
 
     def get_context_data(self, **kwargs):
         context = super(ClientProfileView, self).get_context_data(**kwargs)
@@ -149,74 +151,6 @@ class ResponseDeleteView(DeleteView):
     model = Response
     template_name = 'response/delete.html'
     success_url = reverse_lazy("client_log_profile")
-
-
-class AdsListView(ListView):
-    model = Advertisement
-    template_name = "index.html"
-    context_object_name = 'home'
-    paginate_by = 10
-
-    def get_queryset(self):
-        queryset = super().get_queryset().select_related('client__district__region_id', 'position')  # filter
-
-        cutoff_date = timezone.now() - timedelta(days=14)  # expiring ads older than 14 days
-        queryset = queryset.filter(created__gte=cutoff_date)
-
-        queryset = queryset.filter(published=True)  # displays only paid for ads
-
-        region = self.request.GET.get('region')  # filtering options
-        district = self.request.GET.get('district')
-        position = self.request.GET.get('position')
-
-        if region:
-            queryset = queryset.filter(client__district__region_id=region)
-        if district:
-            queryset = queryset.filter(client__district_id=district)
-        if position:
-            queryset = queryset.filter(position=position)
-            # applies filters based on user input
-
-        return queryset
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['regions'] = Region.objects.all()  # populates filter dropdowns
-        context['districts'] = District.objects.all()
-        context['positions'] = Position.objects.all()
-        return context
-
-
-class AdDetail(DetailView):
-    model = Advertisement
-    template_name = "advertisement/detail.html"
-    context_object_name = 'ad_detail'
-
-    def get_queryset(self):
-        return super().get_queryset().select_related('client')  # select_related() offers better performance
-        # super() calls parent class and overrides default method
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        if 'submitted' in self.request.GET:
-            context['form_submitted'] = True
-        else:
-            context['form_submitted'] = False
-            context['form'] = ResponseForm()
-        return context  # displays a blank form if submitted is False
-
-    def post(self, request, *args, **kwargs):
-        self.object = self.get_object()
-        form = ResponseForm(request.POST, request.FILES)
-        if form.is_valid():
-            response = form.save(commit=False)
-            response.advertisement = self.object  # links response to advertisement
-            response.save()
-            return redirect(f'{self.request.path}?submitted=True')
-        else:
-            context = self.get_context_data()
-            context['form'] = form
-            return self.render_to_response(context)
 
 
 class CreateAd(LoginRequiredMixin, CreateView):
