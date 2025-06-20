@@ -1,50 +1,53 @@
 {% extends "layout.html" %}
+
 {% load static %}
 {% block content %}
 
 
-<div class="filters">
+    <div class="filters">
 
-    <form method="get" action="{% url 'home' %}">
-        <label for="region"></label>
-        <select class="filters-small" name="region" id="region">
-            <option value="">Kraj</option>
-            {% for region in regions %}
-                <option value="{{ region.id }}" {% if request.GET.region == region.id %}selected{% endif %}>{{ region.name }}</option>
-            {% endfor %}
-        </select>
+        <form method="get" action="{% url 'home' %}">
+            <label for="region"></label>
+            <select class="filters-small" name="region" id="region">
+                <option value="">Kraj</option>
+                {% for region in regions %}
+                    <option value="{{ region.id }}"
+                            {% if request.GET.region == region.id %}selected{% endif %}>{{ region.name }}
+                    </option>
+                {% endfor %}
+            </select>
 
-        <label for="district"></label>
-        <select class="filters-small" name="district" id="district">
-            <option value="">Okres</option>
-            {% for district in districts %}
-                <option value="{{ district.id }}"
-                        data-region="{{ district.region_id_id }}"
-                        {% if district.GET.region == district.id %}selected{% endif %}>
-                    {{ district.name }}
-                </option>
-            {% endfor %}
-        </select>
+            <label for="district"></label>
+            <select class="filters-small" name="district" id="district">
+                <option value="">Okres</option>
+                {% for district in districts %}
+                    <option value="{{ district.id }}"
+                            data-region="{{ district.region_id_id }}"
+                            {% if district.GET.region == district.id %}selected{% endif %}>
+                        {{ district.name }}
+                    </option>
+                {% endfor %}
+            </select>
 
-        <label for="position"></label>
-        <select class="filters-large" name="position" id="position">
-            <option value="">Pozice</option>
-            {% for position in positions %}
-                <option value="{{ position.id }}" {% if request.GET.position == position.id %}selected{% endif %}>
-                    {{ position.name }}
-                </option>
-            {% endfor %}
-        </select>
+            <label for="position"></label>
+            <select class="filters-large" name="position" id="position">
+                <option value="">Pozice</option>
+                {% for position in positions %}
+                    <option value="{{ position.id }}" {% if request.GET.position == position.id %}selected{% endif %}>
+                        {{ position.name }}
+                    </option>
+                {% endfor %}
+            </select>
 
-        <button class="button-filter" type="submit">Filtrovat</button>
-    </form>
-</div>
-<div>
-    <p>Počet inzerátů: {{ home|length }}</p>
-</div>
-{% if not home %}
-    <p>Žádné inzeráty k zobrazení.</p>
-{% endif %}
+            <button class="button-filter" type="submit">Filtrovat</button>
+        </form>
+    </div>
+    <div>
+        <p>Počet inzerátů: {{ page_obj.paginator.count }}</p>
+    </div>
+    {% if not home %}
+        <p>Žádné inzeráty k zobrazení.</p>
+    {% endif %}
 
 <div>
     {% for advertisement in home %}
@@ -63,6 +66,24 @@
                          </h3>
                         {% if advertisement.client.logo %}
                         <img src="{{  advertisement.client.logo.url }}" class="ads-logo" alt="">
+                        {% endif %}
+    <div>
+        {% for advertisement in home %}
+            <table>
+                {% if advertisement.highlight %}
+                    <tr class="highlight">
+                        {% else %}
+                    <tr>
+                {% endif %}
+                <td>
+                    <div class="ads-header">
+                        <h3 class="ads-title">
+                            <a href="{% url 'ad_detail' advertisement.id %}">
+                                {{ advertisement.title }}
+                            </a>
+                        </h3>
+                        {% if advertisement.client.logo %}
+                            <img src="{{ advertisement.client.logo.url }}" class="ads-logo" alt="">
                         {% endif %}
 
                         <p class="ads-date">{{ advertisement.published_date|date:"d.m.Y" }}</p>
@@ -91,4 +112,47 @@
     </table>
   {% endfor %}
 </div>
+                        <p class="ads-date">{{ advertisement.created }}</p>
+                    </div>
+                    <div class="ads-loc-name">
+                        {{ advertisement.client.business_name }}, {{ advertisement.client.city }}
+                    </div>
+                </td>
+                </tr>
+                {% if advertisement.highlight %}
+                    <tr class="highlight">
+                        {% else %}
+                    <tr>
+                {% endif %}
+                <td>
+                    <div class="ads-text" data-full="{{ advertisement.text_content|escape }}">
+                        {% if advertisement.text_content|wordcount > 20 %}
+                            {{ advertisement.text_content|truncatewords:20 }}
+                            <span class="read-more">zobrazit více</span>
+                        {% else %}
+                            {{ advertisement.text_content }}
+                        {% endif %}
+                    </div>
+                </td>
+                </tr>
+            </table>
+        {% endfor %}
+    </div>
+    {% if is_paginated %}
+    <div class="pagination">
+        {% if page_obj.has_previous %}
+            <a href="?{% if request.GET %}{{ request.GET.urlencode|cut:'page='|add:'&' }}{% endif %}page={{ page_obj.previous_page_number }}">
+                « Předchozí
+            </a>
+        {% endif %}
+
+        <span>Stránka {{ page_obj.number }} z {{ page_obj.paginator.num_pages }}</span>
+
+        {% if page_obj.has_next %}
+            <a href="?{% if request.GET %}{{ request.GET.urlencode|cut:'page='|add:'&' }}{% endif %}page={{ page_obj.next_page_number }}">
+                Další »
+            </a>
+        {% endif %}
+    </div>
+{% endif %}
 {% endblock %}
