@@ -2,22 +2,22 @@
 
 {% block content %}
 
-<div>
     <div>
-        <h2>Registrace</h2>
-    </div>
-    <div>
-        <form method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            <h3>Účet</h3>
-            {{ user_form.as_p }}
+        <div>
+            <h2>Registrace</h2>
+        </div>
+        <div>
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <h3>Účet</h3>
+                {{ user_form.as_p }}
 
-            <h3>Podnik</h3>
-            {{ client_form.as_p }}
+                <h3>Podnik</h3>
+                {{ client_form.as_p }}
 
-            <button type="submit">Registration</button>
-        </form>
+                <button type="submit">Registration</button>
+            </form>
+        </div>
     </div>
-</div>
 
 {% endblock %}

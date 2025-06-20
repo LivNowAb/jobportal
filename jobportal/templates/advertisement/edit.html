@@ -3,42 +3,42 @@
 
 {% block content %}
 
-<div class="ad-wrapper">
-    <div class="back">
-        <a class="button-client" href="{% url 'client_log_profile' %}">Zpět do profilu</a>
+    <div class="ad-wrapper">
+        <div class="back">
+            <a class="button-client" href="{% url 'client_log_profile' %}">Zpět do profilu</a>
+        </div>
     </div>
-</div>
 
-<div class="form-wrapper">
-    <h2>Upravit inzerát</h2>
-    <form method="post">
-        {% csrf_token %}
+    <div class="form-wrapper">
+        <h2>Upravit inzerát</h2>
+        <form method="post">
+            {% csrf_token %}
 
-        <div class="form-edit">
-            <label for="{{ form.title.id_for_label }}">Název inzerátu</label>
-            {{ form.title }}
-        </div>
+            <div class="form-edit">
+                <label for="{{ form.title.id_for_label }}">Název inzerátu</label>
+                {{ form.title }}
+            </div>
 
-        <div class="form-edit">
-            <label for="{{ form.position.id_for_label }}">Pozice</label>
-            {{ form.position }}
-        </div>
+            <div class="form-edit">
+                <label for="{{ form.position.id_for_label }}">Pozice</label>
+                {{ form.position }}
+            </div>
 
-        <div class="form-edit">
-            <label for="{{ form.text_content.id_for_label }}">Popis pozice</label>
-            {{ form.text_content }}
-        </div>
+            <div class="form-edit">
+                <label for="{{ form.text_content.id_for_label }}">Popis pozice</label>
+                {{ form.text_content }}
+            </div>
 
-        <div class="form-edit">
-            <label for="{{ form.salary.id_for_label }}">Nabízený plat</label>
-            {{ form.salary }}
-        </div>
+            <div class="form-edit">
+                <label for="{{ form.salary.id_for_label }}">Nabízený plat</label>
+                {{ form.salary }}
+            </div>
 
-        <div class="client-buttons">
-            <button class="button-client" type="submit">Uložit</button>
-            <a class="button-client" href="{% url 'client_advertisement_detail' advertisement.id %}">Zpět</a>
-        </div>
-    </form>
-</div>
+            <div class="client-buttons">
+                <button class="button-client" type="submit">Uložit</button>
+                <a class="button-client" href="{% url 'client_advertisement_detail' advertisement.id %}">Zpět</a>
+            </div>
+        </form>
+    </div>
 
 {% endblock %}

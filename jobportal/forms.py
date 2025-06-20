@@ -11,36 +11,14 @@ from .error_messages import ERROR_MESSAGES
 
 
 class RegistrationForm(UserCreationForm):
-    email = forms.EmailField(
-        required=True,
-        widget=forms.EmailInput(attrs={
-            "class": "form-control"
-        }))
+    username = forms.CharField(label="Uživatelské jméno", widget=forms.TextInput(attrs={"class": "form-control"}))
+    email = forms.EmailField(label="Email", required=True, widget=forms.EmailInput(attrs={"class": "form-control"}))
+    password1 = forms.CharField(label="Heslo", widget=forms.PasswordInput(attrs={"class": "form-control"}))
+    password2 = forms.CharField(label="Heslo znovu", widget=forms.PasswordInput(attrs={"class": "form-control"}))
 
-    password1 = forms.CharField(
-        label='Heslo',
-        widget=forms.PasswordInput(attrs=
-                                   {'class': 'form-control'})
-    )
-
-    password2 = forms.CharField(
-        label='Heslo znovu',
-        widget=forms.PasswordInput(attrs={'class': 'form-control'})
-    )
-
-    class Meta:     #tohle smrsknout do registracniho formulare? meta vyuziti??
+    class Meta:
         model = User
-        fields = (
-            "username",
-            "email",
-            "password1",
-            "password2"
-        )
-        widgets = {
-            "username": forms.TextInput(attrs={
-                "class": "form-control"
-            }),
-        }
+        fields = ["username", "email", "password1", "password2"]
 
 
 class ClientCreation(forms.ModelForm):
@@ -51,7 +29,7 @@ class ClientCreation(forms.ModelForm):
 
     business_name = CharField(label="Název podniku", max_length=250)
     business_type = ModelChoiceField(label="Typ provozovny", queryset=BusinessType.objects,
-                                widget=forms.Select(attrs={"class": "form-control"}))
+                                     widget=forms.Select(attrs={"class": "form-control"}))
     VAT_number = CharField(label="IČO/DIČ", max_length=25, required=True)
     address = CharField(label="Adresa provozovny", max_length=250)
     city = CharField(label="Město", max_length=250)
@@ -71,7 +49,7 @@ class AdCreation(forms.ModelForm):
     position = ModelChoiceField(label="Pracovní Pozice", queryset=Position.objects,
                                 widget=forms.Select(attrs={"class": "form-control"}))
     text_content = CharField(label="Obsah", widget=Textarea(attrs={"class": "form-control", "cols": 40, "rows": 3}),
-                            required=True)
+                             required=True)
     salary = CharField(label="Mzda", max_length=250)
     highlight = BooleanField(label="Topovat inzerát (1000 Kč)", required=False)
 
@@ -109,8 +87,8 @@ class ResponseForm(forms.ModelForm):
                 raise forms.ValidationError(ERROR_MESSAGES['file_too_large'])
 
             if not cv.content_type in ['application/pdf', 'application/msword',
-                                   'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-                                   'image/jpeg', 'image/png']:
+                                       'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+                                       'image/jpeg', 'image/png']:
                 raise forms.ValidationError(ERROR_MESSAGES['invalid_file_type'])
             return cv
         return None
@@ -125,5 +103,3 @@ class PaymentForm(forms.Form):
                                   widget=forms.TextInput(attrs={'placeholder': 'MM/YY'}), required=True)
     cvv = forms.CharField(label="Kód CVC", max_length=3, widget=forms.PasswordInput(attrs={'placeholder': '123'}),
                           required=True)
-
-

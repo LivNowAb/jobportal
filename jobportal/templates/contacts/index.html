@@ -2,18 +2,18 @@
 {% load static %}
 
 {% block content %}
-<h1>Kontakty</h1>
+    <h1>Kontakty</h1>
 
-<div class="contacts-wrapper">
-  {% for contact in contacts_list %}
-    <div class="contact-box">
-      <div class="contact-name">{{ contact.name }}</div>
-        <div>{{ contact.role }}</div>
-      <div><a href="mailto:{{ contact.email }}">{{ contact.email }}</a></div>
-      <div><a href="tel:{{ contact.phone }}">{{ contact.phone }}</a></div>
+    <div class="contacts-wrapper">
+        {% for contact in contacts_list %}
+            <div class="contact-box">
+                <div class="contact-name">{{ contact.name }}</div>
+                <div>{{ contact.role }}</div>
+                <div><a href="mailto:{{ contact.email }}">{{ contact.email }}</a></div>
+                <div><a href="tel:{{ contact.phone }}">{{ contact.phone }}</a></div>
+            </div>
+        {% empty %}
+            <p>Žádné kontakty nejsou k dispozici.</p>
+        {% endfor %}
     </div>
-  {% empty %}
-    <p>Žádné kontakty nejsou k dispozici.</p>
-  {% endfor %}
-</div>
 {% endblock %}

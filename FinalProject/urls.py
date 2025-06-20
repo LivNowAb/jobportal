@@ -23,7 +23,7 @@ from django.contrib.auth.views import (
 
 from FinalProject import settings
 from jobportal.views import (
-    home, AdDetail, AdsListView, RegistrationView, ClientProfileView, pricing_list, \
+    AdDetail, AdsListView, RegistrationView, ClientProfileView, pricing_list, \
     CreateAd, ContactListView, PaymentView, PaymentSuccessView, ResponseDetailView,
     ResponseDeleteView, AdvertisementUpdateView, \
     ClientAdvertisementDetailView, AdvertisementDeleteView)
@@ -53,8 +53,10 @@ urlpatterns = [
          name="client_reg_profile"),
     path("accounts/profile/", ClientProfileView.as_view(template_name="client/index.html"),
          name="client_log_profile"),
+    # redirects to currently logged  user
     path("accounts/profile/<int:pk>", ClientProfileView.as_view(template_name="client/index.html"),
          name="client_detail"),
+    # redirects to any existing user with the given pk
     path("pricing/", pricing_list, name="pricing"),
     path("create_ad/", CreateAd.as_view(template_name="advertisement/create.html"), name="ad_creation"),
     path("contacts/", ContactListView.as_view(template_name="contacts/index.html"),

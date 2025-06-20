@@ -1,36 +1,37 @@
 <nav>
-  <div class="button-menu">
-    <a class="button" href="{% url 'home' %}">Nabídky práce</a>
+    <div class="button-menu">
+        <a class="button" href="{% url 'home' %}">Nabídky práce</a>
 
-      {% if user.is_authenticated %}
-    <a class="button" href="{% url 'ad_creation' %}">Přidat inzerát</a>
-      {% endif %}
-    <a class="button" href="{% url 'pricing' %}">Ceník</a>
-    <a class="button" href="{% url 'contacts' %}">Kontakty</a>
-  </div>
+        {% if user.is_authenticated %}
+            <a class="button" href="{% url 'ad_creation' %}">Přidat inzerát</a>
+        {% endif %}
 
-  <div class="nav-right dropdown">
-    <a class="btn-reg dropdown-title">Pro firmy</a>
-       {% if user.is_authenticated %}
-        <ul class="hidden">
-            <li>
-                <form method="post" action="{% url 'logout' %}">
-                    {% csrf_token %}
-                    <button class="dropdown-button">
-                        Odhlásit
-                    </button>
-                </form>
-            </li>
-            <li><a href="{%  url 'password_change' %}">Změna hesla</a></li>
-            <li><a href="{%  url 'client_log_profile' %}">Můj profil</a></li>
-        </ul>
-      {% else %}
-        <ul class="hidden">
-            <li><a href="{%  url 'login' %}">Přihlášení</a></li>
-            <li><a href="{%  url 'registration' %}">Registrace</a></li>
-            <li><a href="{%  url 'password_reset' %}">Zapomenuté heslo</a></li>
-        </ul>
-      {% endif %}
-  </div>
+        <a class="button" href="{% url 'pricing' %}">Ceník</a>
+        <a class="button" href="{% url 'contacts' %}">Kontakty</a>
+    </div>
+
+    <div class="nav-right dropdown">
+        <a class="btn-reg dropdown-title">Pro firmy</a>
+        {% if user.is_authenticated %}
+            <ul class="hidden">
+                <li>
+                    <form method="post" action="{% url 'logout' %}">
+                        {% csrf_token %}
+                        <button class="dropdown-button">
+                            Odhlásit
+                        </button>
+                    </form>
+                </li>
+                <li><a href="{% url 'password_change' %}">Změna hesla</a></li>
+                <li><a href="{% url 'client_log_profile' %}">Můj profil</a></li>
+            </ul>
+        {% else %}
+            <ul class="hidden">
+                <li><a href="{% url 'login' %}">Přihlášení</a></li>
+                <li><a href="{% url 'registration' %}">Registrace</a></li>
+                <li><a href="{% url 'password_reset' %}">Zapomenuté heslo</a></li>
+            </ul>
+        {% endif %}
+    </div>
 
 </nav>

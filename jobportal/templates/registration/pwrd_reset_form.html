@@ -1,10 +1,10 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-<h2>Obnovení hesla</h2>
-<form method="post">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit">Odeslat e-mail pro obnovení hesla</button>
-</form>
+    <h2>Obnovení hesla</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Odeslat e-mail pro obnovení hesla</button>
+    </form>
 {% endblock %}
