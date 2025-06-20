@@ -57,6 +57,7 @@ class AdsListView(ListView):
     model = Advertisement
     template_name = "index.html"
     context_object_name = 'home'
+    paginate_by = 10
 
     def get_queryset(self):
         queryset = super().get_queryset().select_related('client__district__region_id', 'position') # filter
