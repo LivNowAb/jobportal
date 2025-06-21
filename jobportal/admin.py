@@ -1,6 +1,6 @@
 from django.contrib import admin
 from jobportal.models import Client, Advertisement, Position, District, Region, BusinessType, Response, Contacts
-from jobportal.views import ContactListView
+
 
 # Register your models here.
 admin.site.register(Client)

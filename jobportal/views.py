@@ -86,6 +86,11 @@ class AdsListView(ListView):
         context['regions'] = Region.objects.all()
         context['districts'] = District.objects.all()
         context['positions'] = Position.objects.all() # populates filter dropdowns
+
+        query = self.request.GET.copy() #pagination
+        query.pop('page', None)
+        context['query_string'] = query.urlencode()
+
         return context
 
 
