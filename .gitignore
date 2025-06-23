@@ -3,3 +3,4 @@
 *.pyc
 /jobportal/migrations/
 /static/media
+/.env
