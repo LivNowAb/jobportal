@@ -17,46 +17,30 @@ body {
     text-align: center;
 }
 
-.main-home {
-    height: 100vh;
-    color: #1d3557;
-    font-size: 2rem;
+header, main, footer {
     display: flex;
+    align-items: center;
     text-align: center;
-    justify-content: center;
-    flex-direction: column;
-    margin: 0 auto;
 }
 
 main {
-    display: flex;
     flex-direction: column;
-    align-items: center;
     flex-grow: 1;
 }
-
 
 header {
     background: #1d3557;
     height: 90px;
-    display: flex;
     color: white;
     font-style: normal;
-
     justify-content: flex-start;
-    align-items: center;
-    text-align: center;
-    box-sizing: border-box;
 }
 
 footer {
     background: #1d3557;
     height: 50px;
-    display: flex;
     color: white;
     justify-content: center;
-    align-items: center;
-    text-align: center;
     padding: 0 20px;
     margin-top: 2rem;
 }
@@ -85,24 +69,17 @@ h1 {
     margin-right: 15px;
 }
 
-.welcome {
-    display: block;
-    color: #1d3557;
-    font-size: 5rem;
-    align-items: center;
-    justify-content: center;
-    width: 100vw;
+.nav-container, nav, .button-menu {
+    display: flex;
 }
 
 .nav-container {
-    display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
 }
 
 nav {
-    display: flex;
     justify-content: space-between;
     font-size: 1.5rem;
     padding: 12px 12px;
@@ -110,7 +87,6 @@ nav {
 }
 
 .button-menu {
-    display: flex;
     justify-content: space-around;
     align-items: center;
     gap: 20px;
@@ -238,6 +214,139 @@ table a:hover {
     margin-right: 1rem;
 }
 
+.highlight {
+    background-color: aliceblue;
+}
+
+.filters {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('/static/media/bg-filters9.jpeg');
+    background-size: cover;
+    background-position: center;
+    width: 100vw;
+    height: 220px;
+}
+
+.filters form {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.filters-small select {
+    width: 210px;
+    min-width: 210px;
+}
+
+.filters select {
+    margin-right: .1rem;
+    margin-left: .1em;
+    background-color: white;
+    font-size: 1rem;
+    height: 50px;
+    border-radius: 10px;
+    text-align: center;
+    text-align-last: center;
+    justify-content: center;
+    align-items: center;
+    color: #1d3557;
+    font-weight: normal;
+    padding: .2rem 1rem;
+    min-width: 210px;
+    cursor: pointer;
+    box-sizing: border-box;
+    appearance: none;
+}
+
+.filters select:focus {
+    outline: none;
+    border: 3px solid #cae9ff;
+}
+
+.filters-large select {
+    width: 270px;
+    min-width: 270px;
+}
+
+.button-filter {
+    all: unset;
+    display: inline-block;
+    padding: 10px 10px;
+    background-color: white;
+    color: #1d3557;
+    text-decoration: none;
+    border-radius: 10px;
+    font-size: 16px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.1s ease;
+    margin: 20px;
+    cursor: pointer;
+}
+
+.button-filter:hover {
+    transform: scale(1.1);
+}
+
+@media (max-width: 768px) {
+    .filters {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .filters form {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.5rem;
+        width: 100%;
+        padding: 0 1rem;
+    }
+
+    .filters select {
+        align-self: center;
+        width: 50%;
+        height: 100%;
+        font-size: 1rem;
+        margin-top: .3rem;
+        margin-bottom: .3rem;
+    }
+
+    .button-filter {
+        align-self: center;
+        width: 30%;
+        margin: .3rem;
+    }
+
+    .ads-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .ads-logo {
+        width: 80px;
+        height: auto;
+        margin-top: 0.5rem;
+    }
+
+    .ads-title {
+        font-size: 1.2rem;
+    }
+
+    .ads-text {
+        font-size: 0.95rem;
+    }
+
+    .ads-loc-name,
+    .ads-date {
+        font-size: 0.9rem;
+    }
+
+    table {
+        width: 100%;
+    }
+}
+
 .contacts-wrapper {
     display: flex;
     flex-wrap: wrap;
@@ -275,7 +384,8 @@ table a:hover {
     border-radius: 10px;
     font-size: 16px;
     transition: background-color 0.1s ease;
-    margin: 20px
+    margin: 20px;
+    cursor: pointer;
 }
 
 .button-add:hover {
@@ -305,10 +415,6 @@ table a:hover {
     color: #cae9ff;
     transform: scale(1.08);
     box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
-}
-
-.centered {
-    text-align: center;
 }
 
 .price {
@@ -341,7 +447,6 @@ table a:hover {
     padding: 10px 30px;
     font-size: 16px;
     cursor: pointer;
-
 }
 
 .dropdown ul {
@@ -358,9 +463,8 @@ table a:hover {
     border-radius: 10px;
 }
 
-.dropdown ul li {
+.dropdown li {
     padding: .3em .6em;
-    text-align: center;
 }
 
 .dropdown ul li a {
@@ -530,6 +634,16 @@ table a:hover {
     max-width: calc(100% - 50px);
 }
 
+.h2-modal {
+    margin-top: 0;
+    margin-bottom: 2.5rem;
+}
+
+.modal-footer p {
+    color: green;
+    font-size: 1.2rem;
+}
+
 .form-group {
     margin-bottom: 1rem;
     display: flex;
@@ -562,16 +676,6 @@ table a:hover {
     padding: 0.2rem;
 }
 
-.h2-modal {
-    margin-top: 0;
-    margin-bottom: 2.5rem;
-}
-
-.modal-footer p {
-    color: green;
-    font-size: 1.2rem;
-}
-
 .error-message {
     display: block;
     text-align: left;
@@ -583,30 +687,37 @@ table a:hover {
 
 .read-more {
     cursor: pointer;
-    color: blue;
+    color: #1d3557;
     text-decoration: underline
 }
 
-.dashboard-wrapper {
+.dashboard-wrapper, .client-dashboard {
     display: flex;
-    gap: 1.5rem;
     align-items: flex-start;
+}
+
+.dashboard-wrapper {
+    gap: 1.5rem;
     justify-content: space-between;
     width: 100%;
     padding: 0 2rem;
 }
 
 .client-dashboard {
-    display: flex;
     flex: 1 1 25%;
     flex-direction: column;
-    align-items: flex-start;
     min-width: 450px;
     max-width: 700px;
     border: 2px solid #cae9ff;
     border-radius: 10px;
     background: aliceblue;
     padding-left: 1.5em;
+}
+
+.client-logo {
+    width: 150px;
+    height: 150px;
+    border: 1px solid #1d3557;
 }
 
 .client-ads {
@@ -660,7 +771,6 @@ table a:hover {
 
 .ad-header {
     display: flex;
-
     margin-bottom: 1rem;
 }
 
@@ -711,14 +821,10 @@ table a:hover {
     display: block;
 }
 
-.inactive .status {
+.status {
     margin-left: 5px;
     font-size: .9rem;
     color: hotpink;
-}
-
-.highlight {
-    background-color: aliceblue;
 }
 
 .client-ads-detail {
@@ -812,136 +918,6 @@ table a:hover {
 .form-edit textarea:focus {
     outline: none;
     border: 4px solid #cae9ff;
-}
-
-.filters {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-image: url('/static/media/bg-filters9.jpeg');
-    background-size: cover;
-    background-position: center;
-    width: 100vw;
-    height: 220px;
-}
-
-.filters form {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-}
-
-.filters-small select {
-    width: 210px;
-    min-width: 210px;
-}
-
-.filters select {
-    margin-right: .1rem;
-    margin-left: .1em;
-    background-color: white;
-    font-size: 1rem;
-    height: 50px;
-    border-radius: 10px;
-    text-align: center;
-    text-align-last: center;
-    justify-content: center;
-    align-items: center;
-    color: #1d3557;
-    font-weight: normal;
-    padding: .2rem 1rem;
-    min-width: 210px;
-    cursor: pointer;
-    box-sizing: border-box;
-    appearance: none;
-}
-
-.filters select:focus {
-    outline: none;
-    border: 3px solid #cae9ff;
-}
-
-.filters-large select {
-    width: 270px;
-    min-width: 270px;
-}
-
-.button-filter {
-    all: unset;
-    display: inline-block;
-    padding: 10px 10px;
-    background-color: white;
-    color: #1d3557;
-    text-decoration: none;
-    border-radius: 10px;
-    font-size: 16px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.1s ease;
-    margin: 20px;
-    cursor: pointer;
-}
-
-.button-filter:hover {
-    transform: scale(1.1);
-}
-
-@media (max-width: 768px) {
-    .filters {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .filters form {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 0.5rem;
-        width: 100%;
-        padding: 0 1rem;
-    }
-
-    .filters select {
-        align-self: center;
-        width: 50%;
-        height: 100%;
-        font-size: 1rem;
-        margin-top: .3rem;
-        margin-bottom: .3rem;
-    }
-
-    .button-filter {
-        align-self: center;
-        width: 30%;
-        margin: .3rem;
-    }
-
-    .ads-header {
-        flex-direction: column;
-        align-items: flex-start;
-
-    }
-
-    .ads-logo {
-        width: 80px;
-        height: auto;
-        margin-top: 0.5rem;
-    }
-
-    .ads-title {
-        font-size: 1.2rem;
-    }
-
-    .ads-text {
-        font-size: 0.95rem;
-    }
-
-    .ads-loc-name,
-    .ads-date {
-        font-size: 0.9rem;
-    }
-
-    table {
-        width: 100%;
-    }
 }
 
 .form-log-wrapper {
@@ -1054,6 +1030,7 @@ table a:hover {
     font-size: 0.9em;
     margin: 2px 0 20px 0;
 }
+
 .errorlist {
     list-style: none;
     padding-left: 0;
@@ -1068,38 +1045,33 @@ table a:hover {
     margin: 2rem;
 }
 
-.client-logo {
-    width: 150px;
-    height: 150px;
-    border: 1px solid #1d3557;
-}
-
 .pagination {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 4px;
-  margin: 20px 0;
-  font-family: sans-serif;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin: 20px 0;
+    font-family: sans-serif;
 }
 
 .pagination a,
 .pagination .page-number {
-  padding: 8px 12px;
-  text-decoration: none;
-  border-radius: 5px;
-  transition: 0.3s;
-  color: #1d3557;
+    padding: 8px 12px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: 0.3s;
+    color: #1d3557;
 }
 
 .pagination a:hover {
-  background-color: #cae9ff;
+    background-color: #cae9ff;
 }
 
 .page-arrow {
     border: 1px solid #cae9ff;
 }
+
 .pagination .current {
-  background-color: #cae9ff;
-  font-weight: bold;
+    background-color: #cae9ff;
+    font-weight: bold;
 }
