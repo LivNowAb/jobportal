@@ -2,5 +2,5 @@
 /db.sqlite3
 *.pyc
 /jobportal/migrations/
-/static/media
 /.env
+/static/media
