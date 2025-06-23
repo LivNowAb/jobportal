@@ -94,10 +94,22 @@ class ResponseForm(forms.ModelForm):
 
 class PaymentForm(forms.Form):
     card_number = forms.CharField(label="Číslo karty", max_length=16,
-                                  widget=forms.TextInput(attrs={'placeholder': '1234 5678 9012 3456'}), required=True)
+                                  widget=forms.TextInput(attrs={'placeholder': '1234567890123456'}), required=True)
     cardholder_name = forms.CharField(label="Držitel karty", max_length=100,
                                       widget=forms.TextInput(attrs={'placeholder': 'Jan Novák'}), required=True)
     expiry_date = forms.CharField(label="Platnost karty do", max_length=5,
                                   widget=forms.TextInput(attrs={'placeholder': 'MM/YY'}), required=True)
     cvv = forms.CharField(label="Kód CVC", max_length=3, widget=forms.PasswordInput(attrs={'placeholder': '123'}),
                           required=True)
+
+    def clean_card_number(self):
+        value = self.cleaned_data['card_number']
+        if not value.isdigit() or len(value) != 16:
+            raise ValidationError("Číslo karty musí mít 16 číslic.")
+        return value
+
+    def clean_cvv(self):
+        value = self.cleaned_data['cvv']
+        if not value.isdigit() or len(value) != 3:
+            raise ValidationError("CVV musí mít 3 číslice.")
+        return value

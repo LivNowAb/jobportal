@@ -1071,7 +1071,7 @@ table a:hover {
 .client-logo {
     width: 150px;
     height: 150px;
-    border: .5px solid #1d3557;
+    border: 1px solid #1d3557;
 }
 
 .pagination {

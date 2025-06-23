@@ -5,7 +5,7 @@
     <div class="dashboard-wrapper">
         <div class="client-dashboard">
             {% if client_detail.logo %}
-            <p><strong></strong> <img src="{{ client_detail.logo.url }}" alt="logo" class="client-logo"></p>
+                <p><strong></strong> <img src="{{ client_detail.logo.url }}" alt="logo" class="client-logo"></p>
             {% endif %}
             <p><strong>Název podniku:</strong> {{ client_detail.business_name }}</p>
             <p><strong>Typ provozovny:</strong> {{ client_detail.business_type }}</p>
