@@ -212,10 +212,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
 document.addEventListener("DOMContentLoaded", function () {
     document.querySelectorAll('.ad-item').forEach(ad => {
-        const createdStr = ad.dataset.created;
-        const createdDate = new Date(createdStr);
+        const publishedStr = ad.dataset.published;
+        const publishedDate = new Date(publishedStr);
         const today = new Date();
-        const diff = (today - createdDate) / (1000 * 60 * 60 * 24);
+        const diff = (today - publishedDate) / (1000 * 60 * 60 * 24);
 
         if (diff > 14) {
             ad.classList.add('inactive');
