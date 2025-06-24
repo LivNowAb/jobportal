@@ -123,7 +123,7 @@ nav {
     cursor: pointer;
 }
 
-#nav-menu {
+.nav-menu {
     display: flex;
     gap: 20px;
     flex-wrap: wrap;
@@ -135,7 +135,7 @@ nav {
         gap: .2rem;
     }
 
-    #nav-menu {
+    .nav-menu {
         display: none;
         flex-direction: column;
         width: 28%;
@@ -143,7 +143,7 @@ nav {
         gap: .3rem;
     }
 
-    #nav-menu.show {
+    .nav-menu.show {
         display: flex;
     }
 
@@ -347,33 +347,6 @@ table a:hover {
     }
 }
 
-.contacts-wrapper {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 4rem;
-}
-
-.contact-box {
-    background: aliceblue;
-    border: 3px solid #cae9ff;
-    width: 280px;
-    height: 180px;
-    border-radius: 10px;
-    margin-top: 2rem;
-}
-
-.contact-box div {
-    margin-bottom: 0.5em;
-}
-
-.contact-name {
-    color: #1d3557;
-    font-weight: bold;
-    font-size: 1.3rem;
-    padding: 1em;
-}
-
 .button-add {
     all: unset;
     display: inline-block;
@@ -415,26 +388,6 @@ table a:hover {
     color: #cae9ff;
     transform: scale(1.08);
     box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
-}
-
-.price {
-    display: flex;
-    flex-direction: row;
-    margin: 2rem;
-    font-size: 1.5rem;
-    border: 3px solid #cae9ff;
-    background: aliceblue;
-    border-radius: 10px;
-}
-
-.service {
-    margin: 0 2rem;
-    text-align: left;
-}
-
-.pricing {
-    text-align: center;
-    margin: 0 2rem;
 }
 
 .dropdown {
@@ -1024,6 +977,7 @@ table a:hover {
     gap: 1rem;
 }
 
+/* errorlist - default class used by Django for form.errors */
 .form-error,
 .errorlist {
     color: crimson;
@@ -1034,6 +988,53 @@ table a:hover {
 .errorlist {
     list-style: none;
     padding-left: 0;
+}
+
+.price {
+    display: flex;
+    flex-direction: row;
+    margin: 2rem;
+    font-size: 1.5rem;
+    border: 3px solid #cae9ff;
+    background: aliceblue;
+    border-radius: 10px;
+}
+
+.service {
+    margin: 0 2rem;
+    text-align: left;
+}
+
+.pricing {
+    text-align: center;
+    margin: 0 2rem;
+}
+
+.contacts-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 4rem;
+}
+
+.contact-box {
+    background: aliceblue;
+    border: 3px solid #cae9ff;
+    width: 280px;
+    height: 180px;
+    border-radius: 10px;
+    margin-top: 2rem;
+}
+
+.contact-box div {
+    margin-bottom: 0.5em;
+}
+
+.contact-name {
+    color: #1d3557;
+    font-weight: bold;
+    font-size: 1.3rem;
+    padding: 1em;
 }
 
 .alert {
