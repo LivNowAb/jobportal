@@ -33,7 +33,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', AdsListView.as_view(), name="home"),
     path('advertisement/detail/<int:pk>', AdDetail.as_view(), name='ad_detail'),
-
     path("login/", LoginView.as_view(template_name="registration/login.html"), name="login"),
     path("logout/", LogoutView.as_view(template_name="registration/logout.html"), name="logout"),
     path("registration/", RegistrationView.as_view(), name="registration"),
