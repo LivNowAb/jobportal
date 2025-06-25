@@ -2,8 +2,15 @@
 {% load static %}
 
 {% block content %}
-<div class="alert">
-        <p>Jejda, něco se pokazilo!</p>
-        <p>400: Chybný požadavek</p>
+
+    <div class="alert-container">
+        <div class="alert">
+            <p>Jejda, něco se pokazilo!</p>
+            <p>400: Chybný požadavek</p>
+        </div>
+        <div class="alert img">
+            <img src="{% static 'media/error_img.png' %}" alt="error">
+        </div>
     </div>
+
 {% endblock %}

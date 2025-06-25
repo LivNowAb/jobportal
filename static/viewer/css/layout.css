@@ -1037,13 +1037,28 @@ table a:hover {
     padding: 1em;
 }
 
+.alert-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+    gap: 5rem;
+}
+
 .alert {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    font-size: 2rem;
-    padding: 2em;
-    margin: 2rem;
+    font-size: 1.5rem;
+}
+
+.alert-img {
+    height: 300px;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .pagination {
