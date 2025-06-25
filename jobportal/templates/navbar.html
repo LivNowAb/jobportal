@@ -1,9 +1,9 @@
 <nav>
-<div class="nav-container">
-    <div class="hamburger" onclick="toggleMenu()">☰</div>
-</div>
-  <div class="button-menu" id="nav-menu">
-    <a class="button" href="{% url 'home' %}">Nabídky práce</a>
+    <div class="nav-container">
+        <div class="hamburger" onclick="toggleMenu()">☰</div>
+    </div>
+    <div class="button-menu nav-menu" id="nav-menu">
+        <a class="button" href="{% url 'home' %}">Nabídky práce</a>
 
         {% if user.is_authenticated %}
             <a class="button" href="{% url 'ad_creation' %}">Přidat inzerát</a>
@@ -36,5 +36,4 @@
             </ul>
         {% endif %}
     </div>
-
 </nav>

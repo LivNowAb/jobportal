@@ -20,7 +20,7 @@
             {% if client_detail.advertisements.all %}
                 {% for advertisement in client_detail.advertisements.all %}
                     <div class="ad-item advertisement-card {% if not advertisement.is_active %}inactive{% endif %}"
-                         data-created="{{ advertisement.published_date|date:"Y-m-d" }}">
+                         data-published="{{ advertisement.published_date|date:"Y-m-d" }}">
                         <div class="ad-header">
                             <a href="{% url 'client_advertisement_detail' advertisement.id %}"
                                class="ad-title">{{ advertisement.title }}</a>

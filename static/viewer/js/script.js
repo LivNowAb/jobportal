@@ -212,10 +212,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
 document.addEventListener("DOMContentLoaded", function () {
     document.querySelectorAll('.ad-item').forEach(ad => {
-        const createdStr = ad.dataset.created;
-        const createdDate = new Date(createdStr);
+        const publishedStr = ad.dataset.published;
+        const publishedDate = new Date(publishedStr);
         const today = new Date();
-        const diff = (today - createdDate) / (1000 * 60 * 60 * 24);
+        const diff = (today - publishedDate) / (1000 * 60 * 60 * 24);
 
         if (diff > 14) {
             ad.classList.add('inactive');
@@ -233,8 +233,7 @@ document.addEventListener("DOMContentLoaded", function () {
     document.querySelectorAll(".read-more").forEach(span => {
         span.addEventListener('click', function () {
             const container = this.parentElement;
-            const fullText = container.dataset.full;
-            container.innerHTML = fullText;
+            container.innerHTML = container.dataset.full;
         });
     });
 });
@@ -255,7 +254,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     form.addEventListener("submit", function (event) {
         let isValid = true;
-        let messages = [];
 
         const cardNumber = form.querySelector('input[name="card_number"]');
         const cardholderName = form.querySelector('input[name="cardholder_name"]');
@@ -280,20 +278,24 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const expiryRegex = /^(0[1-9]|1[0-2])\/\d{2}$/;
         if (!expiryRegex.test(expiryDate.value)) {
-            showError(expiryDate, "Zadejte datum ve formátu MM/YY");
+            showError(expiryDate, "Zadejte datum ve formátu MM/RR");
             isValid = false;
         }
-        const [monthStr, yearStr] = expiryDate.value.split("/");
-        const month = parseInt(monthStr, 10);
-        const year = parseInt("20" + yearStr, 10);
 
-        const now = new Date();
-        const currentMonth = now.getMonth() + 1;
-        const currentYear = now.getFullYear();
+        if (expiryRegex.test(expiryDate.value)) {
+            const [monthStr, yearStr] = expiryDate.value.split("/");
+            const month = parseInt(monthStr, 10);
+            const year = parseInt("20" + yearStr, 10);
 
-        if (year < currentYear || (year === currentYear && month < currentMonth)) {
-            showError(expiryDate, "Karta již expirovala");
-            isValid = false;
+            const now = new Date();
+            const currentMonth = now.getMonth() + 1;
+            const currentYear = now.getFullYear();
+
+
+            if (year < currentYear || (year === currentYear && month < currentMonth)) {
+                showError(expiryDate, "Karta již expirovala");
+                isValid = false;
+            }
         }
 
 
