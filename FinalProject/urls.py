@@ -58,8 +58,7 @@ urlpatterns = [
     # redirects to any existing user with the given pk
     path("pricing/", pricing_list, name="pricing"),
     path("create_ad/", CreateAd.as_view(template_name="advertisement/create.html"), name="ad_creation"),
-    path("contacts/", ContactListView.as_view(template_name="contacts/index.html"),
-         name="contacts"),
+    path("contacts/", ContactListView.as_view(template_name="contacts/index.html"), name="contacts"),
     path("payment/<int:pk>", PaymentView.as_view(template_name="payment_mock/payment.html"), name='payment'),
     path("payment/success", PaymentSuccessView.as_view(template_name="payment_mock/payment_success.html"),
         name="payment_success"),

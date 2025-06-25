@@ -58,6 +58,7 @@ class AdsListView(ListView):
 
     def get_queryset(self):
         queryset = super().get_queryset().select_related('client__district__region_id', 'position') # filter
+        # super() calls parent class and overrides default method
 
         cutoff_date = timezone.now() - timedelta(days=14) # expiring ads older than 14 days
         queryset = queryset.filter(published_date__gte=cutoff_date)
@@ -84,8 +85,8 @@ class AdsListView(ListView):
         context['districts'] = District.objects.all()
         context['positions'] = Position.objects.all() # populates filter dropdowns
 
-        query = self.request.GET.copy() #pagination
-        query.pop('page', None)
+        query = self.request.GET.copy() # necessary for pagination, makes a mutable copy of the GET parameters above
+        query.pop('page', None) # pops page to ensure selected filters apply over to the next page
         context['query_string'] = query.urlencode()
 
         return context
@@ -98,7 +99,6 @@ class AdDetail(DetailView):
 
     def get_queryset(self):
         return super().get_queryset().select_related('client')  # select_related() offers better performance
-        # super() calls parent class and overrides default method
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -132,7 +132,7 @@ class CreateAd(LoginRequiredMixin, CreateView):
         client = Client.objects.get(user=self.request.user)
         form.instance.created_by = self.request.user
         form.instance.client = client  # user and client model must match ad author
-        form.instance.published = False  # saves as draft, payment must go through before publishing
+        form.instance.published = False  # saves as draft, payment must go through before ad gets published
         self.object = form.save()
 
         return redirect('payment', pk=self.object.id)
@@ -165,6 +165,7 @@ class ResponseDetailView(DetailView):
     model = Response
     template_name = 'response/detail.html'
     context_object_name = 'response'
+
 
 class ResponseDeleteView(DeleteView):
     model = Response
