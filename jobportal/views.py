@@ -16,41 +16,38 @@ from jobportal.models import Advertisement, Client, Contacts, Response, Region, 
 def home(request):
     return render(request, "index.html")
 
-
 def pricing_list(request):
     return render(request, "pricing.html")
 
 
-class AdDetail(DetailView):
-    model = Advertisement
-    template_name = "advertisement/detail.html"
-    context_object_name = 'ad_detail'
+class RegistrationView(View):
+    def get(self, request):
+        user_form = RegistrationForm()
+        client_form = ClientCreation()
+        return render(request, "registration/registration.html", {
+            "user_form": user_form,
+            "client_form": client_form
+        })
 
-    def get_queryset(self):
-        return super().get_queryset().select_related('client')  # select_related() offers better performance
-        # super() calls parent class and overrides default method
+    def post(self, request):
+        user_form = RegistrationForm(request.POST)
+        client_form = ClientCreation(request.POST, request.FILES)
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        if 'submitted' in self.request.GET:
-            context['form_submitted'] = True
+        if user_form.is_valid() and client_form.is_valid():
+            user = user_form.save()  # saves User to DB
+
+            login(request, user)  # cancels previous session and logs in newly created user
+
+            client = client_form.save(commit=False)
+            client.user = user
+            client.save()  # saves Client model to DB
+
+            return redirect("client_log_profile")
         else:
-            context['form_submitted'] = False
-            context['form'] = ResponseForm()
-        return context  # displays a blank form if submitted is False
-
-    def post(self, request, *args, **kwargs):
-        self.object = self.get_object()
-        form = ResponseForm(request.POST, request.FILES)
-        if form.is_valid():
-            response = form.save(commit=False)
-            response.advertisement = self.object  # links response to advertisement
-            response.save()
-            return redirect(f'{self.request.path}?submitted=True')
-        else:
-            context = self.get_context_data()
-            context['form'] = form
-            return self.render_to_response(context)
+            return render(request, "registration/registration.html", {
+                "user_form": user_form,
+                "client_form": client_form
+            })
 
 
 class AdsListView(ListView):
@@ -94,34 +91,51 @@ class AdsListView(ListView):
         return context
 
 
-class RegistrationView(View):
-    def get(self, request):
-        user_form = RegistrationForm()
-        client_form = ClientCreation()
-        return render(request, "registration/registration.html", {
-            "user_form": user_form,
-            "client_form": client_form
-        })
+class AdDetail(DetailView):
+    model = Advertisement
+    template_name = "advertisement/detail.html"
+    context_object_name = 'ad_detail'
 
-    def post(self, request):
-        user_form = RegistrationForm(request.POST)
-        client_form = ClientCreation(request.POST, request.FILES)
+    def get_queryset(self):
+        return super().get_queryset().select_related('client')  # select_related() offers better performance
+        # super() calls parent class and overrides default method
 
-        if user_form.is_valid() and client_form.is_valid():
-            user = user_form.save()  # saves User to DB
-
-            login(request, user)  # cancels previous session and logs in newly created user
-
-            client = client_form.save(commit=False)
-            client.user = user
-            client.save()  # saves Client model to DB
-
-            return redirect("client_log_profile")
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        if 'submitted' in self.request.GET:
+            context['form_submitted'] = True
         else:
-            return render(request, "registration/registration.html", {
-                "user_form": user_form,
-                "client_form": client_form
-            })
+            context['form_submitted'] = False
+            context['form'] = ResponseForm()
+        return context  # displays a blank form if submitted is False
+
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        form = ResponseForm(request.POST, request.FILES)
+        if form.is_valid():
+            response = form.save(commit=False)
+            response.advertisement = self.object  # links response to advertisement
+            response.save()
+            return redirect(f'{self.request.path}?submitted=True')
+        else:
+            context = self.get_context_data()
+            context['form'] = form
+            return self.render_to_response(context)
+
+
+class CreateAd(LoginRequiredMixin, CreateView):
+    model = Advertisement
+    template_name = "advertisement/create.html"
+    form_class = AdCreation
+
+    def form_valid(self, form):
+        client = Client.objects.get(user=self.request.user)
+        form.instance.created_by = self.request.user
+        form.instance.client = client  # user and client model must match ad author
+        form.instance.published = False  # saves as draft, payment must go through before publishing
+        self.object = form.save()
+
+        return redirect('payment', pk=self.object.id)
 
 
 class ClientProfileView(TemplateView):
@@ -152,26 +166,10 @@ class ResponseDetailView(DetailView):
     template_name = 'response/detail.html'
     context_object_name = 'response'
 
-
 class ResponseDeleteView(DeleteView):
     model = Response
     template_name = 'response/delete.html'
     success_url = reverse_lazy("client_log_profile")
-
-
-class CreateAd(LoginRequiredMixin, CreateView):
-    model = Advertisement
-    template_name = "advertisement/create.html"
-    form_class = AdCreation
-
-    def form_valid(self, form):
-        client = Client.objects.get(user=self.request.user)
-        form.instance.created_by = self.request.user
-        form.instance.client = client  # user and client model must match ad author
-        form.instance.published = False  # saves as draft, payment must go through before publishing
-        self.object = form.save()
-
-        return redirect('payment', pk=self.object.id)
 
 
 class AdvertisementUpdateView(UpdateView):
