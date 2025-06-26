@@ -4,3 +4,4 @@
 /jobportal/migrations/
 /.env
 /static/media
+/api/migrations/

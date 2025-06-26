@@ -22,6 +22,8 @@ from django.contrib.auth.views import (
     PasswordResetView, PasswordResetDoneView, PasswordResetConfirmView, PasswordResetCompleteView)
 
 from FinalProject import settings
+from api.views import Advertisements, AdvertisementDetail
+from jobportal.models import Advertisement
 from jobportal.views import (
     AdDetail, AdsListView, RegistrationView, ClientProfileView, pricing_list, \
     CreateAd, ContactListView, PaymentView, PaymentSuccessView, ResponseDetailView,
@@ -68,5 +70,8 @@ urlpatterns = [
     path("client/advertisement/<int:pk>/", ClientAdvertisementDetailView.as_view(),
          name="client_advertisement_detail"),
     path('advertisement/<int:pk>/delete/', AdvertisementDeleteView.as_view(), name='advertisement_delete'),
+
+    path('api/advertisements/', Advertisements.as_view(), name='api_advertisements'),
+    path('api/advertisement/<int:pk>/', AdvertisementDetail.as_view(), name='api_advertisement'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

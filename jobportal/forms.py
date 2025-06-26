@@ -45,8 +45,8 @@ class AdCreation(forms.ModelForm):
 
     title = CharField(label="Název", max_length=128)
     position = ModelChoiceField(label="Pracovní Pozice", queryset=Position.objects,
-                                widget=forms.Select(attrs={"class": "form-control"}))
-    text_content = CharField(label="Obsah", widget=Textarea(attrs={"class": "form-control", "cols": 40, "rows": 3}),
+                                widget=forms.Select(attrs={"class": "form-log"}))
+    text_content = CharField(label="Obsah", widget=Textarea(attrs={"class": "form-log", "cols": 40, "rows": 3}),
                             required=True)
     salary = CharField(label="Mzda", max_length=250)
     highlight = BooleanField(label="Topovat inzerát (1000 Kč)", required=False)
