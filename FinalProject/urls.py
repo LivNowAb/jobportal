@@ -62,7 +62,6 @@ urlpatterns = [
     path("payment/<int:pk>", PaymentView.as_view(template_name="payment_mock/payment.html"), name='payment'),
     path("payment/success", PaymentSuccessView.as_view(template_name="payment_mock/payment_success.html"),
         name="payment_success"),
-    path("contacts/", ContactListView.as_view(template_name="contacts/index.html"), name="contacts"),
     path('response/<int:pk>/', ResponseDetailView.as_view(), name='response_detail'),
     path('response/<int:pk>/delete/', ResponseDeleteView.as_view(), name='response_delete'),
     path('advertisement/<int:pk>/edit/', AdvertisementUpdateView.as_view(), name='advertisement_edit'),

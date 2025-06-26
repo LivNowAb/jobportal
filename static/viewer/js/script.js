@@ -190,7 +190,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const allDistrictOptions = Array.from(districtSelect.options).slice(1);
 
     function filterDistrictByRegion(regionId) {
-        districtSelect.innerHTML = `<option value="">-- Vyberte okres --</option>`;
+        districtSelect.innerHTML = `<option value="">-- Vyberte okres --</option>`; //reset when region changed
         if (!regionId) return;
 
         const filteredOptions = allDistrictOptions.filter(

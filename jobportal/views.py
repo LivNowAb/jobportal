@@ -139,12 +139,7 @@ class CreateAd(LoginRequiredMixin, CreateView):
 
 
 class ClientProfileView(TemplateView):
-    model = Client
     template_name = "client/index.html"
-    context_object_name = 'client_detail'
-
-    class Meta:
-        ordering = ['-published_date']
 
     def get_context_data(self, **kwargs):
         context = super(ClientProfileView, self).get_context_data(**kwargs)

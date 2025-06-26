@@ -11,10 +11,10 @@ from .error_messages import ERROR_MESSAGES
 
 
 class RegistrationForm(UserCreationForm):
-    username = forms.CharField(label="Uživatelské jméno", widget=forms.TextInput(attrs={"class": "form-control"}))
-    email = forms.EmailField(label="Email", required=True, widget=forms.EmailInput(attrs={"class": "form-control"}))
-    password1 = forms.CharField(label="Heslo", widget=forms.PasswordInput(attrs={"class": "form-control"}))
-    password2 = forms.CharField(label="Heslo znovu", widget=forms.PasswordInput(attrs={"class": "form-control"}))
+    username = forms.CharField(label="Uživatelské jméno", widget=forms.TextInput(attrs={"class": "form-log"}))
+    email = forms.EmailField(label="Email", required=True, widget=forms.EmailInput(attrs={"class": "form-log"}))
+    password1 = forms.CharField(label="Heslo", widget=forms.PasswordInput(attrs={"class": "form-log"}))
+    password2 = forms.CharField(label="Heslo znovu", widget=forms.PasswordInput(attrs={"class": "form-log"}))
 
     class Meta:
         model = User
