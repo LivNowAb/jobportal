@@ -22,6 +22,18 @@ Authors: Juraj Miškolczi, Livia Nowak Abdul, Nicole Taudy
 - [x] price list view
 - [x] applicants responses in client's account
 - [x] contact page
+- [x] API - ad manipulation outside application (via Postman or other services)
+
+
+## Project preview:
+### Homepage
+![homepage.png](homepage.png)
+### Ad Detail (modal)
+![ad_modal.png](ad_modal.png)
+### Ad Creation
+![ad_creation.png](ad_creation.png)
+### Client Profile
+![client_profile_view.png](client_profile_view.png)
 
 
 ## Database:
