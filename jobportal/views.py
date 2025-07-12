@@ -1,4 +1,5 @@
 from datetime import timedelta
+from urllib.parse import urlparse, urlencode, urlunparse
 
 from django.contrib.auth import login
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -15,6 +16,7 @@ from jobportal.models import Advertisement, Client, Contacts, Response, Region, 
 # Create your views here.
 def home(request):
     return render(request, "index.html")
+
 
 def pricing_list(request):
     return render(request, "pricing.html")
@@ -57,15 +59,15 @@ class AdsListView(ListView):
     paginate_by = 10
 
     def get_queryset(self):
-        queryset = super().get_queryset().select_related('client__district__region_id', 'position') # filter
+        queryset = super().get_queryset().select_related('client__district__region_id', 'position')  # filter
         # super() calls parent class and overrides default method
 
-        cutoff_date = timezone.now() - timedelta(days=14) # expiring ads older than 14 days
+        cutoff_date = timezone.now() - timedelta(days=14)  # expiring ads older than 14 days
         queryset = queryset.filter(published_date__gte=cutoff_date)
 
-        queryset = queryset.filter(published=True) # displays only paid for ads
+        queryset = queryset.filter(published=True)  # displays only paid for ads
 
-        region = self.request.GET.get('region') # filtering options
+        region = self.request.GET.get('region')  # filtering options
         district = self.request.GET.get('district')
         position = self.request.GET.get('position')
 
@@ -83,10 +85,10 @@ class AdsListView(ListView):
         context = super().get_context_data(**kwargs)
         context['regions'] = Region.objects.all()
         context['districts'] = District.objects.all()
-        context['positions'] = Position.objects.all() # populates filter dropdowns
+        context['positions'] = Position.objects.all()  # populates filter dropdowns
 
-        query = self.request.GET.copy() # necessary for pagination, makes a mutable copy of the GET parameters above
-        query.pop('page', None) # pops page to ensure selected filters apply over to the next page
+        query = self.request.GET.copy()  # necessary for pagination, makes a mutable copy of the GET parameters above
+        query.pop('page', None)  # pops page to ensure selected filters apply over to the next page
         context['query_string'] = query.urlencode()
 
         return context
@@ -98,25 +100,30 @@ class AdDetail(DetailView):
     context_object_name = 'ad_detail'
 
     def get_queryset(self):
-        return super().get_queryset().select_related('client')  # select_related() offers better performance
+        return super().get_queryset().select_related('client')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        if 'submitted' in self.request.GET:
-            context['form_submitted'] = True
-        else:
-            context['form_submitted'] = False
-            context['form'] = ResponseForm()
-        return context  # displays a blank form if submitted is False
+        context['form_submitted'] = self.request.GET.get('submitted') == 'True'
+        context['form'] = ResponseForm()
+        context['next'] = self.request.GET.get('next', '/')
+        return context
 
     def post(self, request, *args, **kwargs):
         self.object = self.get_object()
         form = ResponseForm(request.POST, request.FILES)
+        next_url = request.POST.get('next', '/')
+
         if form.is_valid():
             response = form.save(commit=False)
-            response.advertisement = self.object  # links response to advertisement
+            response.advertisement = self.object
             response.save()
-            return redirect(f'{self.request.path}?submitted=True')
+
+            url_parts = list(urlparse(request.path))
+            query = {'submitted': 'True', 'next': next_url}
+            url_parts[4] = urlencode(query)
+            return redirect(urlunparse(url_parts))
+
         else:
             context = self.get_context_data()
             context['form'] = form

@@ -33,13 +33,14 @@ document.addEventListener('click', (event) => {
 // modal:
 
 document.addEventListener("DOMContentLoaded", function () {
-    const modal = document.getElementById("myModal");
-    const closeBtn = modal?.querySelector(".close");
+    const closeBtn = document.getElementById("modal-close");
 
-    closeBtn?.addEventListener("click", function () {
-        modal.classList.remove("visible");
-        document.body.classList.remove("modal-open");
-    });
+    if (closeBtn) {
+        closeBtn.addEventListener("click", function () {
+            const redirectUrl = closeBtn.dataset.next || "/";
+            window.location.href = redirectUrl;
+        });
+    }
 });
 
 document.addEventListener("DOMContentLoaded", function () {
