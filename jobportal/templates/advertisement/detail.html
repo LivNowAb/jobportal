@@ -6,7 +6,9 @@
     <div id="myModal" class="modal-bg visible">
         <div class="modal-content">
             <div class="modal-header">
-                <button id="modal-close" class="closing-x" type="button" onclick="history.back()">&times;
+                <button id="modal-close" class="closing-x" type="button"
+                        data-next="{{ next }}">
+                    &times;
                 </button>
                 <h1 class="h1-modal">{{ ad_detail.title }}</h1>
             </div>
@@ -33,6 +35,7 @@
                     {% else %}
                         <form id="responseForm" method="post" enctype="multipart/form-data">
                             {% csrf_token %}
+                            <input type="hidden" name="next" value="{{ next }}">
 
                             <div class="form-group">
                                 <label for="{{ form.name.id_for_label }}"> {{ form.name.label }}</label>

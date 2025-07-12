@@ -59,7 +59,7 @@
                 <td>
                     <div class="ads-header">
                         <h3 class="ads-title">
-                            <a href="{% url 'ad_detail' advertisement.id %}">
+                            <a href="{% url 'ad_detail' advertisement.id %}?next={{ request.get_full_path|urlencode }}">
                                 {{ advertisement.title }}
                             </a>
                         </h3>
